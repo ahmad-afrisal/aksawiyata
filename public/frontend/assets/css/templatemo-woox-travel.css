@@ -1136,13 +1136,12 @@ About Page Style
 */
 
 .about-main-content {
-  margin-top: 70px;
   background-image: url(../images/about-content-bg.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  padding: 130px 0px 200px 0px;
+  padding: 0px 0px 200px 0px;
 }
 
 .blur-bg {
@@ -1160,7 +1159,7 @@ About Page Style
 .about-main-content .content {
   border-radius: 23px;
   text-align: center;
-  padding: 120px 60px;
+  padding: 0px 60px;
   position: relative;
   overflow: hidden;
   z-index: 2;
@@ -1248,6 +1247,75 @@ About Page Style
   font-size: 20px;
   color: #fff;
 }
+
+.slider-content h5, .slider-content .h5 {
+  font-weight: normal;
+  font-size: 18px;
+  color: #0c0d36;
+}
+.slider-content .store-gallery {
+  margin-top: 20px;
+}
+.slider-content img {
+  border-radius: 10px;
+}
+.slider-content .thumbnail-image {
+  margin-bottom: 14px;
+  border: 2px solid transparent;
+}
+.slider-content .thumbnail-image:hover, .slider-content .thumbnail-image.active {
+  border: 2px solid #ff7158;
+}
+.slider-content .store-heading {
+  margin-bottom: 10px;
+}
+.slider-content .store-heading h1, .slider-content .store-heading .h1 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  color: #0c0d36;
+  margin-bottom: 0px;
+}
+.slider-content .store-heading .owner {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #979797;
+  /* margin-bottom: 8px; */
+}
+
+.cities-town .slider-content .store-details-container .store-heading .price {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #22b3c1;
+  margin-bottom: 10px;
+}
+
+.slider-content .store-description {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 180%;
+  color: #525252;
+}
+.slider-content .store-review .flex-shrink-0 img {
+  max-width: 50px;
+}
+.slider-content .store-review .flex-grow-1 {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 180%;
+  color: #525252;
+  margin-bottom: 20px;
+}
+.slider-content .store-review .flex-grow-1 h5, .slider-content .store-review .flex-grow-1 .h5 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #0c0d36;
+}
+
+
+/* Tets */
 
 .cities-town .owl-nav {
   position: absolute;
@@ -2028,64 +2096,19 @@ Reservation Page Style
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 260px 0px 190px 0px;
-  text-align: center;
+  padding: 260px 0px 50px 0px;
 }
 
-.second-page-heading h4 {
-  font-size: 20px;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 15px;
-  position: relative;
-  padding-bottom: 25px;
-}
-
-.second-page-heading h4::after {
-  position: absolute;
-  width: 100px;
-  height: 2px;
-  background-color: rgba(250, 250, 250, 0.3);
-  content: '';
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50px);
-}
-
-.second-page-heading h2 {
-  font-size: 50px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 30px;
-}
-
-.second-page-heading p {
-  padding: 0px 15%;
-  color: #fff;
-  margin-bottom: 30px;
-}
-
-.second-page-heading .main-button a {
-  border-color: #fff;
-  color: #22b3c1;
-  background-color: #fff;
-}
-
-.second-page-heading .main-button a:hover {
-  border-color: #22b3c1;
-  background-color: #22b3c1;
-  color: #fff;
-}
 
 .reservation-info {
-  margin-top: -99px;
+  margin-top: -99px;  
 }
 
 .more-info .info-item {
   background-color: #fff;
   border-radius: 23px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.15);
-  text-align: center;
+  text-align: left;
   padding: 30px;
 }
 
@@ -2113,9 +2136,6 @@ Reservation Page Style
   color: #22b3c1;
 }
 
-.reservation-form {
-  margin: 120px 0px;
-}
 
 .reservation-form #map {
   margin-bottom: -6px;
@@ -2133,10 +2153,9 @@ Reservation Page Style
 }
 
 .reservation-form #reservation-form {
-  padding: 60px 120px;
-  background-color: #f9f9f9;
-  border-bottom-right-radius: 23px;
-  border-bottom-left-radius: 23px;
+  padding: 60px 30px;
+  /* background-color: #f9f9f9; */
+  border-radius: 23px;
 }
 
 .reservation-form #reservation-form label {
@@ -2326,4 +2345,79 @@ body {
   .weekly-offers .container-fluid {
     padding: 0px;
   }
+}
+
+
+/* 
+---------------------------------------------
+Success Page Style
+--------------------------------------------- 
+*/
+
+.success-main-content {
+  margin-top: 70px;
+  background-image: url(../images/about-content-bg.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 130px 0px 200px 0px;
+}
+
+
+.success-main-content .content {
+  border-radius: 23px;
+  text-align: center;
+  padding: 120px 60px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.success-main-content .content h2 {
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  font-size: 50px;
+  margin-bottom: 25px;
+}
+
+.success-main-content .content .line-dec {
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 2px;
+  background-color: rgba(250,250,250,0.3);
+  margin: 20px auto;
+}
+
+.success-main-content .content h4 {
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.success-main-content .content p {
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  padding: 0px 15%;
+}
+
+.success-main-content .content .main-button {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+}
+
+.success-main-content .content .main-button a {
+  background-color: #fff;
+  color: #22b3c1;
+  border-color: #fff;
+}
+
+.success-main-content .content .main-button a:hover {
+  opacity: 0.9;
 }
