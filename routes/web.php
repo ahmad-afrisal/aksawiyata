@@ -40,3 +40,19 @@ Route::get('/contact', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/dashboard/confirm', function () {
+    return view('dashboard.confirm');
+})->name('dashboard-confirm');
+
+Route::get('/dashboard/success', function () {
+    return view('dashboard.success');
+})->name('dashboard-success');
+
+Route::get('/dashboard/activity', function () {
+    return view('dashboard.active-activity');
+})->name('dashboard-activity');
+
+Route::get('/dashboard/user-profile', function () {
+    return view('dashboard.user-profile');
+})->name('user-profile');
