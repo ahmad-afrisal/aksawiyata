@@ -55,6 +55,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/dashboard/accepted', function () {
+    return view('dashboard.accepted');
+})->name('accepted');
+
+Route::get('/dashboard/confirm', function () {
+    return view('dashboard.confirm');
+})->name('confirm');
+
 Route::get('/dashboard/activity', function () {
     return view('dashboard.active-activity');
 })->name('dashboard-activity');
@@ -62,3 +70,7 @@ Route::get('/dashboard/activity', function () {
 Route::get('/dashboard/user-profile', function () {
     return view('dashboard.user-profile');
 })->name('user-profile');
+
+Route::get('/dashboard/success', function () {
+    return view('dashboard.success');
+})->name('success');
