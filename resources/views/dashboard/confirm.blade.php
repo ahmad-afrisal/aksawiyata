@@ -348,7 +348,6 @@
                                                 <img src="{{ asset('backend/assets/img/apple-touch-icon.png') }}" class="" alt="Done" style="max-height: 100px">
                                                 <p class="text-dark small pt-1 fw-bold">Laodinawang</p>
                                                 <p class="text-muted small">Sekarang anda telah terdaftar sebagai peserta magang, jangan sia-siakan kesempatan ini</p>  
-                                                  
                                             </div>
                                         </div>
                                     </div>
