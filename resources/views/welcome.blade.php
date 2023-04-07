@@ -59,8 +59,17 @@ https://templatemo.com/tm-580-woox-travel
                     <ul class="nav">
                         <li><a href="index.html" class="active">Beranda</a></li>
                         <li><a href="about.html">Kontak</a></li>
-                        <li><a href="deals.html">Masuk ke Akun</a></li>
-                        <li><a href="deals.html">Buat Akun</a></li>
+                        @auth
+                          <li><a href="deals.html">Hi, {{Auth::user()->name }}</a></li>
+                          <li>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Keluar</a>
+                            <form id="logout-form" action="{{route('logout')}}" method="post" style="display:none">
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </form>
+                          </li>
+                        @else
+                          <li><a href="{{ route('user.login.google')}}">Masuk ke Akun</a></li>
+                        @endauth
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
