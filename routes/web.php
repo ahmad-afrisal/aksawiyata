@@ -25,7 +25,7 @@ Route::get('/details', function () {
 
 Route::get('/checkout', function () {
     return view('checkout');
-})->name('details');
+})->name('checkout');
 
 Route::get('/success', function () {
     return view('success');

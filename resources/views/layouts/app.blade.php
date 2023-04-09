@@ -13,8 +13,6 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/templatemo-woox-travel.css') }}">
@@ -28,6 +26,7 @@ TemplateMo 580 Woox Travel
 https://templatemo.com/tm-580-woox-travel
 
 -->
+
   </head>
 
 <body>
@@ -45,40 +44,16 @@ https://templatemo.com/tm-580-woox-travel
   </div>
   <!-- ***** Preloader End ***** -->
 
+  @include('components.navbar')
 
-    <div class="amazing-deals">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-sm-12">
-                    <div class="item">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="image">
-                                    <img src="{{ asset('frontend/assets/images/deals-01.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                                <div class="content">
-                                    <span class="info">Masuk dan Mulai Membangun Kariermu Bersama Kami</span>
-                                    <h4>Mulai Sekarang!</h4>
-                                    <div class="main-button">
-                                        <a href="{{ route('user.login.google') }}"><i class="fa-brands fa-google text-white"></i> Masuk Dengan Google</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+  @yield('content')
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('frontend/vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('frontend/vendor/vue/vue.js') }}"></script>
+
 
   <script src="{{ asset('frontend/assets/js/isotope.min.js') }}"></script>
   <script src="{{ asset('frontend/assets/js/owl-carousel.js') }}"></script>
@@ -88,10 +63,60 @@ https://templatemo.com/tm-580-woox-travel
   <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
 
   <script>
+    function bannerSwitcher() {
+      next = $('.sec-1-input').filter(':checked').next('.sec-1-input');
+      if (next.length) next.prop('checked', true);
+      else $('.sec-1-input').first().prop('checked', true);
+    }
+
+    var bannerTimer = setInterval(bannerSwitcher, 5000);
+
     $(".option").click(function(){
       $(".option").removeClass("active");
       $(this).addClass("active"); 
     });
+
+    $('nav .controls label').click(function() {
+      clearInterval(bannerTimer);
+      bannerTimer = setInterval(bannerSwitcher, 5000)
+    });
+
+    var gallery = new Vue({
+      el: "#gallery",
+      mounted() {
+        AOS.init();
+      },
+      data: {
+        activePhoto: 0,
+        photos: [
+          {
+            id: 1,
+            url: "{{ asset('frontend/assets/images/product-details-1.jpg') }}"
+          },
+          {
+            id: 2,
+            url: "{{ asset('frontend/assets/images/product-details-2.jpg') }}"
+          },
+          {
+            id: 3,
+            url: "{{ asset('frontend/assets/images/product-details-3.jpg') }}"
+          },
+          {
+            id: 4,
+            url: "{{ asset('frontend/assets/images/product-details-4.jpg') }}"
+          },
+          {
+            id: 5,
+            url: "{{ asset('frontend/assets/images/product-details-4.jpg') }}"
+          },
+        ],
+      },
+      methods: {
+        changeActive(id) {
+          this.activePhoto = id;
+        }
+      }
+    })
   </script>
 
   </body>
