@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Checkout;
 use App\Models\Job;
+use Auth;
 
 
 class HomeController extends Controller
@@ -31,4 +33,19 @@ class HomeController extends Controller
     {
         return view('details');
     }
+
+    public function dashboard()
+    {
+        $checkouts = Checkout::with('Job')->whereUserId(Auth::id())->get();
+        // return $checkouts;
+
+        return view('user.dashboard.dashboard', [
+            'checkouts' => $checkouts
+        ]);
+        
+    }
+
+
+
+
 }

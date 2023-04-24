@@ -11,9 +11,9 @@
           <h4>Yeahhhh</h4>
           <div class="line-dec"></div>
           <h2>Pendaftaran Berhasil</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt uttersi labore et dolore magna aliqua is ipsum suspendisse ultrices gravida</p>
+          <p>Terima kasih sudah mendaftar! Untuk memastikan bahwa Anda selalu terkini dengan status pendaftaran Anda, kami sarankan Anda memeriksa dashboard Anda secara teratur</p>
           <div class="main-button">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
+            <a href="{{ route('user.dashboard') }}">Dashboard</a>
           </div>
         </div>
       </div>
