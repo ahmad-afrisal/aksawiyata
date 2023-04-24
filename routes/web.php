@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // user dashboard
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/dashboard/active-activity', [DashboardController::class, 'activeActivity'])->name('dashboard-activity');
 
 
     // Route Dari Breeze
@@ -57,9 +59,7 @@ Route::get('/dashboard/confirm', function () {
     return view('dashboard.confirm');
 })->name('confirm');
 
-Route::get('/dashboard/activity', function () {
-    return view('dashboard.active-activity');
-})->name('dashboard-activity');
+
 
 Route::get('/dashboard/user-profile', function () {
     return view('dashboard.user-profile');
