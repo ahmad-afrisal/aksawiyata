@@ -1,10 +1,4 @@
 
-### TABLE companies
-INSERT INTO companies(id,name,place,ceo,mentor,number_of_employees,website_link,address) VALUES
-('','bangk.id','Majene','Ahmad Afrisal','Isal','20','www.bangk.id','Jl. Poros Majene Mamuju No 39 Banggae Timur'),
-('','Radio Kampus','Majene','Aditya','Dinda','44','www.radiokampus.com','Jalan Sudirman No. 123'),
-('','laodinawang','Polewali Mandar','Bisma','Eka','16','www.laodinawang.com','Jalan Gubernur Suryo No. 789'),
-('','triasih','Jogjakarta','Cahaya','Farhan','100','www.triasih.com','Jalan Dewi Sri No. 101');
 
 
 ### TABLE jobs
@@ -36,6 +30,9 @@ Kriteria soft skills:
 - Berpikir strategis',
 'Sehat jasmani dan rohani serta siap melaksanakan program magang secara offline di kantor PT Widya Inovasi Indonesia.','10'
 ),
+
+
+
 (
 '',
 'VR Lab Development		

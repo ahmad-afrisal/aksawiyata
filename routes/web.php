@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
-Route::get('/details', function () {
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+
+Route::get('/details/{job:slug}', function () {
     return view('details');
 })->name('details');
 
@@ -31,7 +31,7 @@ Route::get('/success', function () {
     return view('success');
 })->name('success');
 
-Route::get('/companies', function () {
+Route::get('/companies/{company:slug}', function () {
     return view('companies');
 })->name('companies');
 

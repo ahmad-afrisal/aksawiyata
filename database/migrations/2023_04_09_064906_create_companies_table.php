@@ -13,12 +13,8 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            // 1st method
-            $table->bigInteger('job_id')->unsigned();
-            // $table->unsignedBigInteger('job_id);
-            // 2nd method
-            // $table->foreignId('job_id')->constrained();
             $table->string('name');
+            $table->string('slug');
             $table->text('about');
             $table->string('ceo');
             $table->integer('number_of_employees');
@@ -28,9 +24,10 @@ return new class extends Migration
             $table->string('district');
             $table->string('regency');
             $table->string('province');
+            $table->text('image');
             $table->timestamps();
-
-            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            $table->softDeletes();
+            
         });
     }
 

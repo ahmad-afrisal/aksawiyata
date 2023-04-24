@@ -110,36 +110,41 @@
         <div class="col-lg-8">
           <div class="items">
             <div class="row">
+              @forelse ($jobs as $job)
               <div class="col-lg-12">
                 <div class="item">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
                       <div class="image">
-                        <img src="{{ asset('frontend/assets/images/company/company-1.jpg') }}" alt="" style="min-height:250px; max-height: 280px">
+                        <img src="{{ asset('frontend/assets/images/company/'.$job->company->image)  }}" alt="" style="min-height:250px; max-height: 280px">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
                       <div class="right-content">
-                        <h4>Full Stack Web Developer</h4>
-                        <span>Bangk.id</span>
+                        <h4>{{ $job->name }}</h4>
+                        <span>{{ $job->company->name }}</span>
                         <div class="main-button">
-                          <a href="{{ route('details') }}">Lihat</a>
+                          <a href="{{ route('details', $job->slug) }}">Lihat</a>
                         </div>
-                        <p>Woox Travel is a professional Bootstrap 5 theme HTML CSS layout for your website. You can use this layout for your commercial work.</p>
+                        <p>{{ $job->company->about }}</p>
                         <ul class="info">
-                          <li><i class="fa fa-user"></i> 8</li>
-                          <li><i class="fa fa-globe"></i> www.bangk.id</li>
-                          <li><i class="fa fa-home"></i> Majene</li>
+                          <li><i class="fa fa-user"></i>{{ $job->company->number_of_employees }}</li>
+                          <li><i class="fa fa-globe"></i>{{ $job->company->website_link }} </li>
+                          <li><i class="fa fa-home"></i>{{ $job->company->regency }}</li>
                         </ul>
                         <div class="text-button">
-                          <a href="{{ route('companies') }}">Selengkapnya <i class="fa fa-arrow-right"></i></a>
+                          <a href="{{ route('companies', $job->company->slug) }}">Selengkapnya <i class="fa fa-arrow-right"></i></a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-12">
+              @empty
+                <p>No Data</p>
+              @endforelse
+              
+              {{-- <div class="col-lg-12">
                 <div class="item">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
@@ -152,7 +157,7 @@
                         <h4>UI/UX Designer</h4>
                         <span>Laodinawang</span>
                         <div class="main-button">
-                          <a href="{{ route('details') }}">Lihat</a>
+                          <a href="{{ route('details', 'full-stack-web-developer') }}">Lihat</a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
                         <ul class="info">
@@ -179,14 +184,14 @@
                     <div class="col-lg-8 col-sm-7">
                       <div class="right-content">
                         <h4>Web Developer</h4>
-                        <span>Triasih</span>
+                        <span>Radio Kampus</span>
                         <div class="main-button">
-                          <a href="{{ route('details') }}">Lihat</a>
+                          <a href="{{ route('details', 'full-stack-web-developer') }}">Lihat</a>
                         </div>
-                        <p>We hope this WoOx template is useful for you, please support us a <a href="https://paypal.me/templatemo" target="_blank">small amount of PayPal</a> to info [at] templatemo.com for our survival. We really appreciate your contribution.</p>
+                        <p>Radio Kampus adalah  situs web yang menyediakan platform untuk mengadakan dan mengikuti webinar.</p>
                         <ul class="info">
                           <li><i class="fa fa-user"></i> 67</li>
-                          <li><i class="fa fa-globe"></i> www.triasih.com</li>
+                          <li><i class="fa fa-globe"></i> www.radioakampus.com</li>
                           <li><i class="fa fa-home"></i> Majene</li>
                         </ul>
                         <div class="text-button">
@@ -196,7 +201,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
+
+              {{--  --}}
               <div class="col-lg-12">
                 <ul class="page-numbers">
                   <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>

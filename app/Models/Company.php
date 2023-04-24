@@ -6,16 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Jobs extends Model
+class Company extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
-        'details_of_activities',
-        'develop_competetncies',
-        'participant_criteria',
-        'additional_information',
-        'quota'
+        'slug',
+        'about',
+        'ceo',
+        'number_of_employees',
+        'website_link',
+        'street',
+        'postal_code',
+        'district',
+        'regency',
+        'province',
     ];
 }
