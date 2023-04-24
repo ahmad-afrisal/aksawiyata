@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,26 +19,13 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/details/{job:slug}', [HomeController::class, 'detail'])->name('details');
+Route::get('/companies/{company:slug}', [HomeController::class, 'company'])->name('companies');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-Route::get('/details/{job:slug}', function () {
-    return view('details');
-})->name('details');
-
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
-
-Route::get('/success', function () {
-    return view('success');
-})->name('success');
-
-Route::get('/companies/{company:slug}', function () {
-    return view('companies');
-})->name('companies');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('/checkout/{job:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
+Route::post('/checkout/{job}', [CheckoutController::class, 'store'])->name('checkout.store');
 
 // socialite routes
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');

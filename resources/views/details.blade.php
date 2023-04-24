@@ -27,8 +27,6 @@
                   <li class="breadcrumb-item active" aria-current="page">Detail</li>
                 </ol>
               </nav>
-              <br>
-              <h2>Caribbean’s <em>Cities &amp; Towns</em></h2>
             </div>
           </div>
           <div class="col-lg-12">
@@ -69,21 +67,23 @@
               </div>
             </section>
             <div class="store-details-container" data-aos="fade-up">
+
               <div class="store-heading">
                 <div class="container">
                   <div class="row">
                     <div class="col-lg-10">
-                      <h1>Sofa Ternyaman</h1>
-                      <div class="owner">By Galih Pratama</div>
-                      <div class="price" id="price">$1,409</div>
+                      <h1>{{  $job->name}}</h1>
+                      <div class="owner">{{ $job->company->name }}</div>
+                      <div class="price" id="price">Kuota {{  $job->quota}} orang</div>
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
                       <a
                         class="btn btn-success nav-link py-2 text-white btn-block mb-3"
-                        href="{{ url('checkout')}}"
+                        href="{{ route('checkout.create', $job->slug)}}"
                         >Daftar</a
                       >
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -91,30 +91,35 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-12 col-lg-8">
+                      <h5 class="mt-1">Detail Kegiatan</h5>
                       <p>
-                        The Nike Air Max 720 SE goes bigger than ever before with
-                        Nike's tallest Air unit yet for unimaginable, all-day comfort.
-                        There's super breathable fabrics on the upper, while colours
-                        add a modern edge.
+                        {{  $job->details_of_activities }}
+                        
                       </p>
+                      <h5 class="mt-3">Kompetensi yang dikembangkan</h5>
                       <p>
-                        Bring the past into the future with the Nike Air Max 2090, a
-                        bold look inspired by the DNA of the iconic Air Max 90.
-                        Brand-new Nike Air cushioning underfoot adds unparalleled
-                        comfort while transparent mesh and vibrantly coloured details
-                        on the upper are blended with timeless OG features for an
-                        edgy, modernised look.
+                        {{  $job->develop_competencies}}
+                        
                       </p>
+                      <h5 class="mt-3">Kriteria Peserta</h5>
+                      <p>
+                        {{  $job->participant_criteria }}
+                        
+                      </p>
+                      <h5 class="mt-3">Informasi Tambahan</h5>
+                      <p>
+                        {{  $job->additional_information}}
+                      </p>
+                      
                     </div>
                   </div>
                 </div>
               </div>
-
               <div class="store-review">
                 <div class="container">
                   <div class="row">
                     <div class="col-12 col-lg-8 mt-3 mb-3">
-                      <h5>Customer Review (3)</h5>
+                      <h5>Student Review (3)</h5>
                     </div>
                   </div>
                   <div class="row">
@@ -144,7 +149,7 @@
                           <img src="{{ asset('frontend/assets/images/icon-testimonial-3.png') }}" alt="...">
                         </div>
                         <div class="flex-grow-1 ms-3">
-                          <h5 class="mt-2 mb-1">Dakimu Wangi</h5>
+                          <h5 class="mt-2 mb-1">Yunimu Wangi</h5>
                           <p>When I saw at first, it was really awesome to have with. Just let me know if there is another
                             upcoming product like this.</p>
                         </div>
@@ -153,6 +158,7 @@
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>

@@ -15,16 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->text('about');
+            $table->text('about')->nullable();
             $table->string('ceo');
-            $table->integer('number_of_employees');
-            $table->string('website_link');
-            $table->string('street');
-            $table->string('postal_code');
-            $table->string('district');
-            $table->string('regency');
-            $table->string('province');
-            $table->text('image');
+            $table->integer('number_of_employees')->nullable();
+            $table->string('website_link')->nullable();
+            $table->string('street')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('district')->nullable();
+            $table->string('regency')->nullable();
+            $table->string('province')->nullable();
+            $table->text('image')->nullable();
+            $table->text('logo')->nullable();
             $table->timestamps();
             $table->softDeletes();
             

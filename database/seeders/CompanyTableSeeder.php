@@ -27,6 +27,7 @@ class CompanyTableSeeder extends Seeder
                 'regency' => 'Majene',
                 'province' => 'Sulawesi Barat',
                 'image' => 'company-2.jpg',
+                'logo' => 'bangkid.png',
 
             ],
             [
@@ -42,6 +43,7 @@ class CompanyTableSeeder extends Seeder
                 'regency' => 'Makassar',
                 'province' => 'Sulawesi Selatan',
                 'image' => 'company-1.jpg',
+                'logo' => 'radiokampus.png',
             ],
             [
                 'name' => 'laodinawang',
@@ -56,6 +58,7 @@ class CompanyTableSeeder extends Seeder
                 'regency' => 'Mamuju',
                 'province' => 'Sulawesi Barat',
                 'image' => 'company-4.jpg',
+                'logo' => 'laodinawang.png',
             ],
             [
                 'name' => 'triasih',
@@ -70,6 +73,7 @@ class CompanyTableSeeder extends Seeder
                 'regency' => 'Majene',
                 'province' => 'Sulawesi Barat',
                 'image' => 'company-3.jpg',
+                'logo' => 'triasih.png',
             ]
             ];
             
