@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CheckoutController;
-use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\DashboardController as UserDashboard;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +40,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout/{job:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
     Route::post('/checkout/{job}', [CheckoutController::class, 'store'])->name('checkout.store');
 
+    // dashboard
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
     // user dashboard
-    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('user.dashboard');
-    Route::get('/dashboard/active-activity', [DashboardController::class, 'activeActivity'])->name('dashboard-activity');
-    Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('user-profile');
+    Route::prefix('user/dashboard')->namespace('User')->name('user.')->group(function(){
+        Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
+
+        Route::get('/dashboard/active-activity', [DashboardController::class, 'activeActivity'])->name('dashboard-activity');
+        Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('profile');
+    });
+
+
+    // admin dashboard
+    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->group(function(){
+        Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
+    });
 
     // Route Dari Breeze
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

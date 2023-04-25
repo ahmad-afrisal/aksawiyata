@@ -229,7 +229,7 @@
                 </li>
 
                 <li>
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('user-profile')}}">
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile')}}">
                     <i class="bi bi-person"></i>
                     <span>My Profile</span>
                 </a>
@@ -279,19 +279,19 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="{{ route('user.dashboard') }}">
+            <a class="nav-link " href="{{ route('dashboard') }}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('dashboard-activity')}}">
+            <a class="nav-link collapsed" href="{{ route('user.dashboard-activity')}}">
             <i class="bi bi-envelope"></i>
             <span>Kegiatan Aktif</span>
             </a>
         </li><!-- End Contact Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('user-profile')}}">
+            <a class="nav-link collapsed" href="{{ route('user.profile')}}">
             <i class="bi bi-person"></i>
             <span>Profile</span>
             </a>
