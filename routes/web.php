@@ -60,9 +60,6 @@ Route::get('/dashboard/confirm', function () {
     return view('dashboard.confirm');
 })->name('confirm');
 
-
-
-
 Route::get('/dashboard/success', function () {
     return view('dashboard.success');
 })->name('success');

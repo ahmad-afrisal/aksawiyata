@@ -4,10 +4,13 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Checkout\Store;
+use App\Mail\Checkout\AfterCheckout;
 use App\Models\Checkout;
 use App\Models\Job;
+use Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class CheckoutController extends Controller
 {
@@ -39,8 +42,7 @@ class CheckoutController extends Controller
      */
     public function store(Store $request, Job $job)
     {
-        return $request->all();
-
+        
         // mapping request data
         $data = $request->all();
         $data['user_id'] = Auth::id();
@@ -48,6 +50,9 @@ class CheckoutController extends Controller
         
         // create checkout
         $checkout = Checkout::create($data);
+
+        // sendig email
+        Mail::to(Auth::user()->email)->send(new AfterCheckout($checkout));
 
         return redirect(route('checkout.success'));
     }

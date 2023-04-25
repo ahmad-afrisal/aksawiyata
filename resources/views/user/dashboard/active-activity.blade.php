@@ -40,10 +40,6 @@
                                 </div>
                             </div>
                         </div><!-- End Sales Card -->
-                        @empty
-                            <h3>Belum terdaftar pada kegiatan apappun</h3>
-                        @endforelse
-                        
 
                         <div class="col-xxl-4 col-md-6">
                             <div class="card info-card sales-card">
@@ -75,21 +71,31 @@
                             </div>
                         </div><!-- End Sales Card -->
 
-                        <div class="col-xxl-12 col-md-12">
-                            <div class="card info-card sales-card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mt-4">
-                                        <div class="">
-                                            <h6>Selamat, kamu telah menyelesaikan program!</h6>
-                                            <span class="text-muted small pt-2">Silahkan unduh sertifikat sebagai bukti keikutsertaan KPI</span>
-                                            <div class="mt-2">
-                                                <button type="button" class="btn btn-primary"><i class="bi bi-download me-1"></i> Unduh Sertifikat</button>
+                        @if ($checkout->status == "done")
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="card info-card sales-card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mt-4">
+                                            <div class="">
+                                                <h6>Selamat, kamu telah menyelesaikan program!</h6>
+                                                <span class="text-muted small pt-2">Silahkan unduh sertifikat sebagai bukti keikutsertaan KPI</span>
+                                                <div class="mt-2">
+                                                    <button type="button" class="btn btn-primary"><i class="bi bi-download me-1"></i> Unduh Sertifikat</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div><!-- End Sales Card -->
+                            </div><!-- End Sales Card -->
+                        @endif
+
+                        
+                        @empty
+                            <h3>Belum ada kegiatan yang di ikuti</h3>
+                        @endforelse
+                        
+
+                        
                     </div>
                 </div><!-- End Left side columns -->
             </div>
