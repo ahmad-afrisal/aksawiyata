@@ -25,14 +25,20 @@
                 <div class="col-lg-6">
                   <div class="col-lg-12">
                     <fieldset>
-                        <label for="nim" class="form-label">Nama Lengkap</label>
-                        <input type="text" name="name" class="Name"  autocomplete="on" value="{{Auth::user()->name}}" disabled required>
+                        <label for="name" class="form-label">Nama Lengkap</label>
+                        <input type="text" name="name" class="Name" autocomplete="on" value="{{Auth::user()->name}}"  readonly required >
+                        @if ($errors->has('name'))
+                            <p class="text-danger">{{ $errors->first('name') }}</p>
+                        @endif
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                       <fieldset>
                           <label for="nim" class="form-label">NIM</label>
-                          <input type="text" name="nim" class="Number"  autocomplete="on" value="{{Auth::user()->nim}}" disabled maxlength="8" required>
+                          <input type="text" name="nim" class="Number"  autocomplete="on" value="{{Auth::user()->nim}}" required readonly maxlength="8" >
+                          @if ($errors->has('nim'))
+                            <p class="text-danger">{{ $errors->first('nim') }}</p>
+                        @endif
                       </fieldset>
                   </div>
 

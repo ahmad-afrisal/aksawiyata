@@ -15,10 +15,11 @@
 
     <section class="section dashboard">
       <div class="row">
-
+        
         <!-- Left side columns -->
         <div class="col-lg-12">
           <div class="row">
+            @include('components.alert')
 
             @forelse ($checkouts as $checkout)
             <div class="col-xxl-4 col-md-6">

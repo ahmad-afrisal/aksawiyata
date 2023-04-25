@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+// use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::middleware('auth')->group(function () {
     // user dashboard
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/dashboard/active-activity', [DashboardController::class, 'activeActivity'])->name('dashboard-activity');
-
+    Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('user-profile');
 
     // Route Dari Breeze
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -61,9 +62,6 @@ Route::get('/dashboard/confirm', function () {
 
 
 
-Route::get('/dashboard/user-profile', function () {
-    return view('dashboard.user-profile');
-})->name('user-profile');
 
 Route::get('/dashboard/success', function () {
     return view('dashboard.success');
