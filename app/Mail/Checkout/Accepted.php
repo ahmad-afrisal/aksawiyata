@@ -13,12 +13,14 @@ class Accepted extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $checkout;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($checkout)
     {
-        //
+        $this->checkout = $checkout;
     }
 
     /**
@@ -27,7 +29,7 @@ class Accepted extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Accepted',
+            subject: 'Pendaftaran Disetujui',
         );
     }
 
@@ -38,6 +40,10 @@ class Accepted extends Mailable
     {
         return new Content(
             markdown: 'emails.checkout.accepted',
+            with: [
+                'checkout' => $this->checkout,
+                'url' => route('user.dashboard'),
+            ]
         );
     }
 

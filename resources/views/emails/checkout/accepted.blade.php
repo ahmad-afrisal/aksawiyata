@@ -1,12 +1,14 @@
 <x-mail::message>
-# Introduction
+# Pendafataranmu telah disetujui
 
-The body of your message.
+Hi {{$checkout->User->name}}
+<br>
+Pendaftaranmu pada posisi <b>{{$checkout->Job->name}}</b> di <b>{{$checkout->Job->Company->name}}</b> menunggu persetujuanmu.
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="$url">
+Dashboard
 </x-mail::button>
 
-Thanks,<br>
+Terima Kasih,<br>
 {{ config('app.name') }}
 </x-mail::message>
