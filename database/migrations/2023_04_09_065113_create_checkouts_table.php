@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('job_id')->constrained();
-            $table->string('status')->default('process');
+            $table->string('status', ['sudah daftar','terima tawaran', 'sedang berjalan','selesai','ditolak'])->default('sudah daftar');
             $table->timestamps();
             $table->softDeletes();
         });
