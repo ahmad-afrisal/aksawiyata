@@ -27,4 +27,15 @@ class DashboardController extends Controller
             'users' => $users,
         ]);
     }
+
+    public function settings()
+    {
+        return view('admin.setting.index');
+    }
+
+    public function updateProfile()
+    {
+        
+    }
+
 }

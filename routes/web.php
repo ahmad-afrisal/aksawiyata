@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
     // admin dashboard
     Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('ensureUserRole:admin')->group(function(){
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
+        Route::get('/settings', [AdminDashboard::class, 'settings'])->name('settings');
+        Route::post('/update-profile', [AdminDashboard::class, 'updateProfile'])->name('update-profile');
 
         // Admin Checkout
         Route::post('checkout/{checkout}', [AdminCheckout::class, 'update'])->name('checkout.update');

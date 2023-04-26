@@ -284,12 +284,7 @@
             <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-person-add"></i>
-                <span>Pendaftar</span>
-            </a>
-        </li><!-- End Pendaftar Page Nav -->
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
                 <i class="bi bi-buildings"></i>
@@ -309,7 +304,7 @@
             </a>
         </li><!-- End Pengguna Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="{{ route('admin.settings')}}">
                 <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
             </a>

@@ -38,7 +38,7 @@
                           <input type="text" name="nim" class="Number"  autocomplete="on" value="{{Auth::user()->nim}}" required readonly maxlength="8" >
                           @if ($errors->has('nim'))
                             <p class="text-danger">{{ $errors->first('nim') }}</p>
-                        @endif
+                          @endif
                       </fieldset>
                   </div>
 
