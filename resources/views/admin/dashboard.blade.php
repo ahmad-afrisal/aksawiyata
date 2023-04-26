@@ -38,10 +38,10 @@
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-cart"></i>
+                    <i class="bi bi-buildings"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>145</h6>
+                    <h6>{{ $companies }}</h6>
                   </div>
                 </div>
               </div>
@@ -67,10 +67,10 @@
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
+                    <i class="bi bi-person-workspace"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>264</h6>
+                    <h6>{{ $jobs }}</h6>
                   </div>
                 </div>
               </div>
@@ -100,7 +100,7 @@
                     <i class="bi bi-people"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>144</h6>
+                    <h6>{{ $users }}</h6>
                   </div>
                 </div>
 

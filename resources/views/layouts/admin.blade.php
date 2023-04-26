@@ -286,31 +286,31 @@
         </li><!-- End Dashboard Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-            <i class="bi bi-envelope"></i>
-            <span>Pendaftar</span>
+                <i class="bi bi-person-add"></i>
+                <span>Pendaftar</span>
             </a>
         </li><!-- End Pendaftar Page Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-buildings"></i>
                 <span>Perusahaan</span>
             </a>
         </li><!-- End Perusahaan Page Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-person-workspace"></i>
                 <span>Posisi</span>
             </a>
         </li><!-- End Posisi Page Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-people"></i>
                 <span>Pengguna</span>
             </a>
         </li><!-- End Pengguna Page Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
             </a>
         </li><!-- End Pengaturan Page Nav -->
