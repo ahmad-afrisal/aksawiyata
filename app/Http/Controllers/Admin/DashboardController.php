@@ -38,4 +38,20 @@ class DashboardController extends Controller
         
     }
 
+    
+    public function users()
+    {
+        $users = User::where('is_admin', false)->get();
+        $usersCount = User::where('is_admin', false)->count();
+
+        return view('admin.user.index', [
+            'users' => $users,
+            'usersCount' => $usersCount,
+
+        ]);
+
+
+        
+    }
+
 }

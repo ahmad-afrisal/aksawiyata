@@ -4,11 +4,11 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>Pengguna</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active">Pengguna</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -31,61 +31,46 @@
                     <h6>Filter</h6>
                   </li>
 
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
                 </ul>
               </div>
 
               <div class="card-body pb-0">
-                <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                <h5 class="card-title">Pengguna <span>| {{ $usersCount }}</span></h5>
 
-                <table class="table table-borderless">
+                <table class="table table-borderless datatable">
                   <thead>
                     <tr>
-                      <th scope="col">Preview</th>
-                      <th scope="col">Product</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Sold</th>
-                      <th scope="col">Revenue</th>
+                      <th scope="col">Foto</th>
+                      <th scope="col">Nama</th>
+                      <th scope="col">NIM</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">phone_number</th>
+                      <th scope="col">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @forelse ($users as $user)
                     <tr>
-                      <th scope="row"><a href="#"><img src="{{ asset('backend/assets/img/product-1.jpg') }}" alt=""></a></th>
-                      <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                      <td>$64</td>
-                      <td class="fw-bold">124</td>
-                      <td>$5,828</td>
+                      <th scope="row">
+                        @if ($user->avatar)
+                            <img src="{{$user->avatar}}" class="rounded-circle" alt="" srcset="">
+                        @else
+                            <img src="https://ui-avatars.com/api/?name={{$user->name}}" class=" rounded-circle" alt="" srcset="">
+                        @endif
+                      </th>
+                      <td class="fw-bold">{{ $user->name }}</td>
+                      <td><a href="#" class="text-primary fw-bold">{{ $user->nim}}</a></td>
+                      <td>{{ $user->email }}</td>
+                      <td>{{ $user->phone_number }}</td>
+                      <td><a href="#" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td>
                     </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="{{ asset('backend/assets/img/product-2.jpg') }}" alt=""></a></th>
-                      <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                      <td>$46</td>
-                      <td class="fw-bold">98</td>
-                      <td>$4,508</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="{{ asset('backend/assets/img/product-3.jpg') }}" alt=""></a></th>
-                      <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                      <td>$59</td>
-                      <td class="fw-bold">74</td>
-                      <td>$4,366</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="{{ asset('backend/assets/img/product-4.jpg') }}" alt=""></a></th>
-                      <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                      <td>$32</td>
-                      <td class="fw-bold">63</td>
-                      <td>$2,016</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="{{ asset('backend/assets/img/product-5.jpg') }}" alt=""></a></th>
-                      <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                      <td>$79</td>
-                      <td class="fw-bold">41</td>
-                      <td>$3,239</td>
-                    </tr>
+                    @empty
+                        <tr>
+                          <td colspan="6">Belum Ada penggua terdaftar</td>
+                        </tr>
+                    @endforelse
+                   
+
                   </tbody>
                 </table>
 

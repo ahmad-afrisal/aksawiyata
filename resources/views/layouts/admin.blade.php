@@ -44,7 +44,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
+                <img src="{{ asset('backend/assets/img/logo.png') }}" alt="">
                 <span class="d-none d-lg-block">Aksawiyata</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -286,19 +286,19 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="{{ route('admin.company.index')}}">
                 <i class="bi bi-buildings"></i>
                 <span>Perusahaan</span>
             </a>
         </li><!-- End Perusahaan Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="{{ route('admin.job.index')}}">
                 <i class="bi bi-person-workspace"></i>
                 <span>Posisi</span>
             </a>
         </li><!-- End Posisi Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="{{ route('admin.users.index')}}">
                 <i class="bi bi-people"></i>
                 <span>Pengguna</span>
             </a>
@@ -352,9 +352,20 @@
     <script src="{{ asset('backend/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+
 
     <!-- Template Main JS File -->
     <script src="{{ asset('backend/assets/js/main.js') }}"></script>
+    
+    <script>
+        function thisFileUpload() {
+            document.getElementById("file").click();
+        }
+        // Replace the <textarea id="editor1"> with a CKEditor 4
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1');
+    </script>
 
 </body>
 

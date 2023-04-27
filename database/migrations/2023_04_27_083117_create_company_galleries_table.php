@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('checkouts', function (Blueprint $table) {
+        Schema::create('company_galleries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('job_id')->constrained();
-            $table->enum('status', ['sudah daftar','terima tawaran', 'sedang berjalan','selesai','ditolak'])->default('sudah daftar');
+            $table->string('photos')->unique();
+            $table->foreignId('companies_id')->constrained();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checkouts');
+        Schema::dropIfExists('company_galleries');
     }
 };

@@ -9,6 +9,8 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\CheckoutController as AdminCheckout;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('user/dashboard')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){
         Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
 
-        Route::get('/dashboard/active-activity', [DashboardController::class, 'activeActivity'])->name('dashboard-activity');
+        Route::get('/dashboard/active-activity', [UserDashboard::class, 'activeActivity'])->name('dashboard-activity');
         Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('profile');
     });
 
@@ -58,9 +60,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
         Route::get('/settings', [AdminDashboard::class, 'settings'])->name('settings');
         Route::post('/update-profile', [AdminDashboard::class, 'updateProfile'])->name('update-profile');
+        Route::get('/users', [AdminDashboard::class, 'users'])->name('users.index');
 
         // Admin Checkout
-        Route::post('checkout/{checkout}', [AdminCheckout::class, 'update'])->name('checkout.update');
+        Route::post('/checkout/{checkout}', [AdminCheckout::class, 'update'])->name('checkout.update');
+        Route::get('/company', [CompanyController::class, 'index'])->name('company.index');
+        Route::get('/company/create', [CompanyController::class, 'create'])->name('company.create');
+        Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
+        Route::get('/company/show/{company}', [CompanyController::class, 'show'])->name('company.show');
+        Route::get('/company/edit/{company}', [CompanyController::class, 'edit'])->name('company.edit');
+        Route::post('/company/update/{company}', [CompanyController::class, 'update'])->name('company.update');
+        
+        Route::get('/job', [JobController::class, 'index'])->name('job.index');
+        // Route::resource('/company', CompanyController::class);
     });
 
     // Route Dari Breeze
