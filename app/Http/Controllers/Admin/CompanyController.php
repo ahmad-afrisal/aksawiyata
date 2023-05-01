@@ -68,8 +68,11 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.company.show');
-        
+        $company =  Company::with(['CompanyGallery'])->findOrFail($id);
+
+        return view('admin.company.show', [
+            'company' => $company,
+        ]);
     }
 
     /**
