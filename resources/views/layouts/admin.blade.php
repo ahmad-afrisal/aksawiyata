@@ -211,7 +211,7 @@
 
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                 @if (Auth::user()->avatar)
-                    <img src="{{Auth::user()->avatar}}" class="rounded-circle" alt="" srcset="">
+                    <img src="{{Storage::url(Auth::user()->avatar ?? '')}}" class="rounded-circle" alt="" srcset="">
                 @else
                     <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class=" rounded-circle" alt="" srcset="">
                 @endif
@@ -221,21 +221,21 @@
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
-                <h6>{{Auth::user()->name}}</h6>
-                <span>{{Auth::user()->nim}}</span>
+                    <h6>{{Auth::user()->name}}</h6>
+                    <span>{{Auth::user()->nim}}</span>
                 </li>
                 <li>
-                <hr class="dropdown-divider">
+                    <hr class="dropdown-divider">
                 </li>
 
                 <li>
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile')}}">
-                    <i class="bi bi-person"></i>
-                    <span>My Profile</span>
-                </a>
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile')}}">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
                 </li>
                 <li>
-                <hr class="dropdown-divider">
+                    <hr class="dropdown-divider">
                 </li>
 
                 {{-- <li>

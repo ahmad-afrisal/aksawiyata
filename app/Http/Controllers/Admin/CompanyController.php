@@ -38,13 +38,11 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-        $data = $request->all();
-       
+        $data = $request->all();       
 
         $data['slug'] = Str::slug($request->name);
         $data['logo'] = $request->file('logo')->store('assets/logo','public');
         $company = Company::create($data);
-
 
         $files = $request->file('photo');
         foreach ($files as $file) {
@@ -54,11 +52,6 @@ class CompanyController extends Controller
             ];
             CompanyGallery::create($gallery);
         }
-
-
-        
-
-       
 
         return redirect()->route('admin.company.index');
     }
@@ -131,7 +124,7 @@ class CompanyController extends Controller
 
         } else {
             $item->update([
-                'title'     => $request->name,
+                'name'     => $request->name,
                 'slug'     => Str::slug($request->name),
                 'about'     => $request->about,
                 'ceo'     => $request->ceo,

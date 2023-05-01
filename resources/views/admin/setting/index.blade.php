@@ -21,7 +21,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
               @if (Auth::user()->avatar)
-                  <img src="{{Auth::user()->avatar}}" class="rounded-circle" alt="" srcset="">
+                  <img src="{{ Storage::url(Auth::user()->avatar ?? '')}}" class="rounded-circle" alt="" srcset="">
               @else
                   <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class=" rounded-circle" alt="" srcset="">
               @endif
@@ -32,9 +32,9 @@
                 @endif
               </h3>
               <div class="social-links mt-2">
-                <a href="{{ Auth::user()->instagram_profile}}" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="{{ Auth::user()->linkedin_profile}}" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                <a href="{{ Auth::user()->github_profile}}" class="github"><i class="bi bi-github"></i></a>
+                <a href="{{ Auth::user()->instagram_profile}}" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="{{ Auth::user()->linkedin_profile}}" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                <a href="{{ Auth::user()->github_profile}}" target="_blank" class="github"><i class="bi bi-github"></i></a>
               </div>
             </div>
           </div>
@@ -89,72 +89,99 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form method="post" action="{{ route('admin.update-profile')}}">
+                  <form method="post" action="{{ route('admin.update-profile')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Foto</label>
-                      <div class="col-md-8 col-lg-9">
+                      <label for="avatar" class="col-md-4 col-lg-3 col-form-label">Foto</label>
+                      <div class="col-md-9">
                         @if (Auth::user()->avatar)
-                            <img src="{{Auth::user()->avatar}}" class="img-preview" alt="" srcset="">
+                            <img src="{{ Storage::url(Auth::user()->avatar ?? '')}}" class="img-preview" alt="" srcset="">
                         @else
                             <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class="img-preview" alt="" srcset="">
                         @endif
                         <div class="pt-2">
-                        <input name="fullName" type="file" class="form-control" onchange="previewImg()" id="sampul" value="Kevin Anderson">
-                          
+                          <input name="avatar" type="file" class="form-control {{$errors->has('avatar') ? 'is-invalid' : ''}}" onchange="previewImg()" id="sampul" >
+                          @if ($errors->has('avatar'))
+                            <div class="invalid-feedback">
+                              {{$errors->first('avatar')}}
+                            </div>
+                          @endif
                         </div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                      <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                        <input name="name" type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" value="{{ Auth::user()->name }}">
+                        @if ($errors->has('name'))
+                          <div class="invalid-feedback">
+                            {{$errors->first('name')}}
+                          </div>
+                        @endif
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="about" class="col-md-4 col-lg-3 col-form-label">Tentang</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                        <textarea name="about" class="form-control {{$errors->has('about') ? 'is-invalid' : ''}}" id="about" style="height: 100px">{{ Auth::user()->about}}</textarea>
+                        @if ($errors->has('about'))
+                          <div class="invalid-feedback">
+                            {{$errors->first('about')}}
+                          </div>
+                        @endif
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <label for="phone_number" class="col-md-4 col-lg-3 col-form-label">Nomor Telepon</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                        <input name="phone_number" type="text" class="form-control {{$errors->has('phone_number') ? 'is-invalid' : ''}}"  value="{{ Auth::user()->phone_number}}">
+                        @if ($errors->has('phone_number'))
+                          <div class="invalid-feedback">
+                            {{$errors->first('phone_number')}}
+                          </div>
+                        @endif
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Nomor Telepon</label>
+                      <label for="instagram_profile" class="col-md-4 col-lg-3 col-form-label">Profil Instagram</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                        <input name="instagram_profile" type="text" class="form-control {{$errors->has('instagram_profile') ? 'is-invalid' : ''}}" value="{{ Auth::user()->instagram_profile }}">
+                        @if ($errors->has('instagram_profile'))
+                          <div class="invalid-feedback">
+                            {{$errors->first('instagram_profile')}}
+                          </div>
+                        @endif
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Profil Instagram</label>
+                      <label for="linkedin_profile" class="col-md-4 col-lg-3 col-form-label">Profil Linkedin</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Profil Linkedin</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+                        <input name="linkedin_profile" type="text" class="form-control {{$errors->has('linkedin_profile') ? 'is-invalid' : ''}}"  value="{{ Auth::user()->linkedin_profile}}">
+                        @if ($errors->has('linkedin_profile'))
+                          <div class="invalid-feedback">
+                            {{$errors->first('linkedin_profile')}}
+                          </div>
+                        @endif
                       </div>
                     </div>
                     <div class="row mb-3">
                       <label for="github_profile" class="col-md-4 col-lg-3 col-form-label">Profil Github</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="github_profile" type="url" class="form-control" id="github_profile" value="{{old('github_profile')?:Auth::user()->github_profile}}" placeholder="https://github.com/#">
+                        <input name="github_profile" type="text" class="form-control {{$errors->has('linkedin_profile') ? 'is-invalid' : ''}}" id="github_profile" value="{{ Auth::user()->linkedin_profile}}">
+                        @if ($errors->has('linkedin_profile'))
+                          <div class="invalid-feedback">
+                            {{$errors->first('linkedin_profile')}}
+                          </div>
+                        @endif
                       </div>
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
