@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Company\CompanyRequest;
+use Illuminate\Support\Str;
 use App\Models\Company;
+use App\Models\CompanyGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -32,9 +36,31 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
+        $data = $request->all();
+       
+
+        $data['slug'] = Str::slug($request->name);
+        $data['logo'] = $request->file('logo')->store('assets/logo','public');
+        $company = Company::create($data);
+
+
+        $files = $request->file('photo');
+        foreach ($files as $file) {
+            $gallery = [
+                'photos' => $file->store('assets/company','public'),
+                'companies_id' => $company->id,
+            ];
+            CompanyGallery::create($gallery);
+        }
+
+
+        
+
+       
+
+        return redirect()->route('admin.company.index');
     }
 
     /**
@@ -51,16 +77,73 @@ class CompanyController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.company.edit');
+        $company = Company::with(['CompanyGallery','User'])->findOrFail($id);
+
+        // $company = 1;
+        return view('admin.company.edit', [
+            'company' => $company,
+        ]);
         
+    }
+
+    public function uploadGallery(Request $request)
+    {
+        $data = $request->all();
+
+        $data['photos'] = $request->file('photo')->store('assets/company','public');
+
+        CompanyGallery::create($data);
+
+        return redirect()->route('admin.company.edit', $request->companies_id);
+    }
+
+    public function deleteGallery(Request $request, $id)
+    {
+        $item = CompanyGallery::findOrFail($id);
+
+        Storage::delete('public/'.$item->photos);
+
+        $item->delete();
+
+        return redirect()->route('admin.company.edit', $item->companies_id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CompanyRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $item = Company::findOrFail($id);
+
+
+        if($request->hasFile('logo')) {
+            $data['slug'] = Str::slug($request->name);
+            $data['logo'] = $request->file('logo')->store('assets/logo','public');
+            
+            Storage::delete('public/'.$item->logo);
+    
+            $item->update($data);
+
+        } else {
+            $item->update([
+                'title'     => $request->name,
+                'slug'     => Str::slug($request->name),
+                'about'     => $request->about,
+                'ceo'     => $request->ceo,
+                'number_of_employees'     => $request->number_of_employees,
+                'webiste_link'     => $request->webiste_link,
+                'street'     => $request->street,
+                'postal_code'     => $request->postal_code,
+                'district'     => $request->district,
+                'regency'     => $request->regency,
+                'province'     => $request->province,
+            ]);
+        }
+
+        return redirect()->route('admin.company.index');
+
     }
 
     /**

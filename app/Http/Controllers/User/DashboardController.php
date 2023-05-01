@@ -22,6 +22,7 @@ class DashboardController extends Controller
             'checkouts' => $checkouts
         ]);
     }
+
     public function activeActivity()
     {
         $checkouts = Checkout::with('Job')->where('user_id', Auth::id())
@@ -33,5 +34,15 @@ class DashboardController extends Controller
             'checkouts' => $checkouts
         ]);
         
+    }
+
+    public function confirm()
+    {
+        return view('user.dashboard.confirm');
+    }
+
+    public function success()
+    {
+        return view('user.dashboard.success');
     }
 }

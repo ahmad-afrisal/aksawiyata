@@ -3,22 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Job;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class FinalReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $jobs = Job::all();
-        $jobsCount = Job::count();
-        return view('admin.job.index', [
-            'jobs' => $jobs,
-            'jobsCount' => $jobsCount,
-        ]);
+        return view('admin.final-report.index');
     }
 
     /**
@@ -26,7 +20,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.job.create');
+        //
     }
 
     /**
@@ -42,7 +36,7 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.job.show');
+        //
     }
 
     /**
@@ -50,8 +44,7 @@ class JobController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.job.edit');
-        
+        //
     }
 
     /**

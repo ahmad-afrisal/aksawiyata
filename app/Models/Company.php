@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
@@ -22,5 +23,16 @@ class Company extends Model
         'district',
         'regency',
         'province',
+        'logo',
     ];
+
+    public function CompanyGallery()
+    {
+        return $this->hasMany(CompanyGallery::class, 'companies_id', 'id' );
+    }
+
+    public function User(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

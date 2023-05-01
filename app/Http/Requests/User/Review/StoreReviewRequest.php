@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User\Checkout;
+namespace App\Http\Requests\User\Review;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class Store extends FormRequest
+class StoreReviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,7 @@ class Store extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'nim' => 'required|string|max:8|unique:users,nim,'.Auth::id().',id',
+            'review' => 'required|string',
         ];
     }
 }

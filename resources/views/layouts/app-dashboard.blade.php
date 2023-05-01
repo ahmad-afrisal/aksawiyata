@@ -285,7 +285,7 @@
             </a>
         </li><!-- End Dashboard Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('user.dashboard-activity')}}">
+            <a class="nav-link collapsed" href="{{ route('user.activity.index')}}">
             <i class="bi bi-envelope"></i>
             <span>Kegiatan Aktif</span>
             </a>

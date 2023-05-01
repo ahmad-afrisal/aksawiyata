@@ -304,6 +304,23 @@
             </a>
         </li><!-- End Pengguna Page Nav -->
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-layout-text-window-reverse"></i><span>Laporan Mahasiswa</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="#">
+                  <i class="bi bi-circle"></i><span>Laporan Kegiatan</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ route('admin.final-report.index')}}">
+                  <i class="bi bi-circle"></i><span>Laporan Akhir</span>
+                </a>
+              </li>
+            </ul>
+          </li><!-- End Tables Nav -->
+        <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('admin.settings')}}">
                 <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
@@ -359,12 +376,31 @@
     <script src="{{ asset('backend/assets/js/main.js') }}"></script>
     
     <script>
+        function previewImg() {
+            const sampul = document.querySelector('#sampul');
+            const sampulLabel = document.querySelector('.custom-file-label');
+            const imgPreview = document.querySelector('.img-preview');
+
+            // untuk Label | Tp di bootstrap 5 tdk d gunakan
+            // sampulLabel.textContent = sampul.files[0].name;
+
+            const fileSampul = new FileReader();
+            fileSampul.readAsDataURL(sampul.files[0]);
+
+            fileSampul.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+        
         function thisFileUpload() {
             document.getElementById("file").click();
         }
         // Replace the <textarea id="editor1"> with a CKEditor 4
         // instance, using default configuration.
         CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
+        CKEDITOR.replace('editor3');
+        CKEDITOR.replace('editor4');
     </script>
 
 </body>

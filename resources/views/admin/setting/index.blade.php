@@ -91,19 +91,20 @@
                   <!-- Profile Edit Form -->
                   <form method="post" action="{{ route('admin.update-profile')}}">
                     @csrf
-                    {{-- <div class="row mb-3">
+                    <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Foto</label>
                       <div class="col-md-8 col-lg-9">
                         @if (Auth::user()->avatar)
-                            <img src="{{Auth::user()->avatar}}" class="" alt="" srcset="">
+                            <img src="{{Auth::user()->avatar}}" class="img-preview" alt="" srcset="">
                         @else
-                            <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class="" alt="" srcset="">
+                            <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class="img-preview" alt="" srcset="">
                         @endif
                         <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                        <input name="fullName" type="file" class="form-control" onchange="previewImg()" id="sampul" value="Kevin Anderson">
+                          
                         </div>
                       </div>
-                    </div> --}}
+                    </div>
 
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
