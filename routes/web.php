@@ -100,6 +100,7 @@ Route::middleware('auth')->group(function () {
 
         // Admin Users
         Route::get('/users', [AdminDashboard::class, 'users'])->name('users.index');
+        Route::get('/users/show/{user}', [AdminDashboard::class, 'show'])->name('users.show');
 
         // Admin Settings
         Route::get('/settings', [AdminDashboard::class, 'settings'])->name('settings');

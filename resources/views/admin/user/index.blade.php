@@ -62,7 +62,7 @@
                       <td><a href="#" class="text-primary fw-bold">{{ $user->nim}}</a></td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->phone_number }}</td>
-                      <td><a href="#" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td>
+                      <td><a href="{{ route('admin.users.show', $user->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td>
                     </tr>
                     @empty
                         <tr>

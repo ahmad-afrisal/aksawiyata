@@ -78,7 +78,6 @@ class ProfileController extends Controller
 
             $item->update($data);
         } elseif($request->hasFile('transkip')) {
-           
             $data['transkip'] = $request->file('transkip')->store('assets/transkip','public');
             
             Storage::delete('public/'.$item->transkip);

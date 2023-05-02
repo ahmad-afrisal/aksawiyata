@@ -74,10 +74,17 @@ class DashboardController extends Controller
         return view('admin.user.index', [
             'users' => $users,
             'usersCount' => $usersCount,
-        ]);
+        ]);        
+    }
 
-
-        
+    public function show(String $id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.user.show', [
+            'user' => $user,
+            'transkip' => str_replace('public/assets/transkip/', '', $user->transkip),
+            'cv' => str_replace('public/assets/cv/', '', $user->cv),
+        ]);  
     }
 
 }
