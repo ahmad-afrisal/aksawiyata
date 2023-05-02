@@ -30,7 +30,7 @@ class User extends Authenticatable
         'phone_number',
         'instagram_profile',
         'linkedin_profile',
-        'gihub_profile',
+        'github_profile',
         'transkip',
         'cv',
         'is_admin'

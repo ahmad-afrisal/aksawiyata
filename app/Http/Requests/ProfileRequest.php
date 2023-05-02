@@ -23,7 +23,7 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'string',
             'nim' => 'string',
             'concentration' => 'string',
             'about' => 'string',
@@ -31,8 +31,8 @@ class ProfileRequest extends FormRequest
             'instagram_profile' => 'string',
             'linkedin_profile' => 'string',
             'github_profile' => 'string',
-            'transkip' => 'string',
-            'cv' => 'string',
+            'transkip' => 'file|mimes:pdf',
+            'cv' => 'file|mimes:pdf',
             'avatar' => 'image|mimes:png,jpg,jpeg|max:2048',
         ];
     }
