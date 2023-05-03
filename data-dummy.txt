@@ -80,7 +80,8 @@ b.      Pembuatan konten
 Proses promosi dan edukasi media sosial akan dilakukan oleh tim Social Media Specialist yang berfokus pada produksi konten untuk menunjang pemasaran NaZMa. Tim sosial media akan berkolaborasi dengan tim ilustrator dan video editor untuk menciptakan konten yang berkualitas. Pada bagian sosial media ini, mahasiswa akan banyak dilatih terkait manajemen sosial media, paid advertising, dan sosial media analytics untuk memperoleh hasil yang maksimal.
 c.     Pemasaran Produk
 Mahasiswa akan belajar untuk menyusun strategi pemasaran dengan bekerjasama secara erat dengan bagian riset maupun pengembangan produk untuk mengenali lebih dalam target pasar, strategi menjangkau pasar, strategi penetrasi produk ke pasar dan membangun hubungan dengan target pasar. Selain membangun strategi, mahasiswa juga akan belajar melakukan pemasaran langsung ke target pasar baik melalui media online maupun offline.',
-'Database Design and Management, Back End Development, Front End Development, Team Collaboration, System Testing & Deployment', 'Kriteria Kandidat
+'Database Design and Management, Back End Development, Front End Development, Team Collaboration, System Testing & Deployment', 
+'Kriteria Kandidat
 Jurusan    : Sistem Informasi / Informatika / Teknik Komputer / Teknologi Informasi / Manajemen Informasi
 Jenjang    : D3/S1
 Semester :  Semester 6

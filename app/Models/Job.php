@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use App\Models\Checkout;
-use Auth;
 
+use Illuminate\Support\Facades\Auth;
 
 class Job extends Model
 {
@@ -18,11 +18,13 @@ class Job extends Model
     protected $fillable = [
             'company_id',
             'name',
+            'slug',
             'details_of_activities',
-            'develop_competetncies',
+            'develop_competencies',
             'participant_criteria',
             'additional_information',
-            'quota'
+            'quota',
+            'status'
         ];
 
     public function getIsRegisteredAttribute()

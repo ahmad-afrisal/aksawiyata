@@ -27,9 +27,6 @@
                 <!-- Floating Labels Form -->
                 <form class="row g-3" action="{{ route('admin.company.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
-                  {{-- kurang safe --}} 
-                  <input type="hidden" name="users_id" value="{{ Auth::user()->id }}"> 
-                  {{-- Kurang safe --}}
                   <div class="col-6">
                     <label for="name" class="form-label">Nama Perusahaan</label>
                     <input type="text" class="form-control  {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{old('name') ?: ''}}" id="name" name="name"  required>

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Job\JobRequest;
 use App\Models\Job;
+use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class JobController extends Controller
 {
@@ -14,6 +18,7 @@ class JobController extends Controller
     public function index()
     {
         $jobs = Job::all();
+        
         $jobsCount = Job::count();
         return view('admin.job.index', [
             'jobs' => $jobs,
@@ -26,15 +31,26 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.job.create');
+        $companies = Company::all();
+        return view('admin.job.create',[
+            'companies' => $companies,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(JobRequest $request)
     {
-        //
+
+        $data = $request->all();       
+
+        $data['slug'] = Str::slug($request->name);
+        
+        $job = Job::create($data);
+
+
+        return redirect()->route('admin.job.index');
     }
 
     /**
@@ -42,7 +58,11 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.job.show');
+        $job = Job::findOrFail($id);
+
+        return view('admin.job.show',[
+            'job' => $job,
+        ]);
     }
 
     /**
@@ -50,16 +70,33 @@ class JobController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.job.edit');
+        $job = Job::findOrFail($id);
+        $companies = Company::all();
+
+        return view('admin.job.edit', [
+            'job' => $job,
+            'companies' => $companies,
+
+        ]);
         
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(JobRequest $request, string $id)
     {
-        //
+        
+        $data = $request->all();
+
+        $item = Job::findOrFail($id);
+
+        $data['slug'] = Str::slug($request->name);
+    
+        $item->update($data);
+
+        return redirect()->route('admin.job.show', $item->id);
+
     }
 
     /**
