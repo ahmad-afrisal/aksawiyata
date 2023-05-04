@@ -59,6 +59,9 @@ Route::middleware('auth')->group(function () {
         // User Activty
         Route::get('/activity', [ActivityController::class, 'index'])->name('activity.index');
         Route::post('/review/{user_riviews}', [ActivityController::class, 'review'])->name('activity.review');
+        Route::post('/report/', [ActivityController::class, 'report'])->name('activity.report');
+        Route::post('/logbook/', [ActivityController::class, 'logbook'])->name('activity.logbook');
+        Route::get('/logbook/history', [ActivityController::class, 'history'])->name('activity.logbook-history');
         
         // User Profile
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

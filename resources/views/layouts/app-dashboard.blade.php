@@ -341,6 +341,28 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('backend/assets/js/main.js') }}"></script>
 
+    <script>
+         function previewImg() {
+            const sampul = document.querySelector('#sampul');
+            const sampulLabel = document.querySelector('.custom-file-label');
+            const imgPreview = document.querySelector('.img-preview');
+
+            // untuk Label | Tp di bootstrap 5 tdk d gunakan
+            // sampulLabel.textContent = sampul.files[0].name;
+
+            const fileSampul = new FileReader();
+            fileSampul.readAsDataURL(sampul.files[0]);
+
+            fileSampul.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+        
+        function thisFileUpload() {
+            document.getElementById("file").click();
+        }
+    </script>
+
 </body>
 
 </html>
