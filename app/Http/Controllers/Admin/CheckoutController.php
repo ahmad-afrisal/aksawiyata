@@ -12,7 +12,7 @@ class CheckoutController extends Controller
 {
     public function update(Request $request, Checkout $checkout)
     {
-        $checkout->status = "terima tawaran";
+        $checkout->status = "sedang berjalan";
         $checkout->save();
 
         // send email to user

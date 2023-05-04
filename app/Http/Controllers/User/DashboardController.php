@@ -36,13 +36,4 @@ class DashboardController extends Controller
         
     }
 
-    public function confirm()
-    {
-        return view('user.dashboard.confirm');
-    }
-
-    public function success()
-    {
-        return view('user.dashboard.success');
-    }
 }

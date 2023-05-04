@@ -23,7 +23,6 @@
             @forelse ($checkouts as $checkout)
             <div class="col-xxl-4 col-md-6">
               
-              <a href="{{ route('user.confirm')}}">
               <div class="card info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title ">
@@ -31,8 +30,6 @@
                       <span class="badge bg-light text-success">Sudah Daftar </span>
                     @elseif ($checkout->status == "ditolak")
                       <span  class="badge bg-danger">Di Tolak</span>
-                    @elseif ($checkout->status == "terima tawaran")
-                      <span class="badge bg-warning ">Terima Tawaran</span>
                     @elseif ($checkout->status == "sedang berjalan")
                       <span class="badge bg-success">Sedang Berjalan</span>
                     @else
@@ -50,7 +47,6 @@
                   </div>
                 </div>
               </div>
-            </a>
             </div>
             @empty
                 <h5>Belum melakukan pendaftaran</h5>

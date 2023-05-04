@@ -52,10 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('user/dashboard')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){
         Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
 
-        // User Confirm
-        Route::get('/success', [UserDashboard::class, 'success'])->name('success');
-        Route::get('/confirm', [UserDashboard::class, 'confirm'])->name('confirm');
-
         // User Activty
         Route::get('/activity', [ActivityController::class, 'index'])->name('activity.index');
         Route::post('/review/{user_riviews}', [ActivityController::class, 'review'])->name('activity.review');
