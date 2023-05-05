@@ -43,8 +43,8 @@
                     <tr>
                       <th scope="col">NIM</th>
                       <th scope="col">Nama</th>
-                      <th scope="col">Posisi</th>
-                      <th scope="col">Perusahaan</th>
+                      {{-- <th scope="col">Posisi</th>
+                      <th scope="col">Perusahaan</th> --}}
                       <th scope="col">Tanggal Upload</th>
                       <th scope="col">Laporan Akhir</th>
                       <th scope="col">Status</th>
@@ -52,28 +52,28 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {{-- @forelse ($checkouts as $checkout) --}}
+                    @forelse ($reports as $report)
                       <tr>
-                        <th scope="row"><a href="#">D0220374</a></th>
-                        <td>Ahmad Afrisal</td>
-                        <td>Full Stack Web Developer</td>
-                        <td>Bangk.id</td>
-                        <td>23 Apr 2023</td>
-                        <td><a href="#" class="text-primary">Download</a></td>
+                        <th scope="row"><a href="#">{{ $report->User->nim }}</a></th>
+                        <td>{{ $report->User->name }}</td>
+                        {{-- <td>{{ $report->User-> }}</td> --}}
+                        {{-- <td>Bangk.id</td> --}}
+                        <td>{{ (date_format($report->created_at, 'd-m-Y')) }}</td>
+                        <td><a href="{{ Storage::url($report->report ?? '')}}" class="text-primary">Download</a></td>
                         <td>
                           {{-- <span class="badge bg-danger">Di Tolak</span> --}}
-                          <span class="badge bg-success">Diterima</span>
+                          <span class="badge bg-success">{{ $report->status }}</span>
                           {{-- <span class="badge bg-light">Selesai</span> --}}
                         </td>
                           <td>
-                            <form action="" method="post">
+                            <form action="{{ route('admin.final-report.update-reject', $report->id) }}" method="post">
                               @csrf
-                              <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-exclamation-octagon"></i></button>
+                              <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-exclamation-octagon"></i></button>
                             </form>
                           </td>
                         <td>
                             {{-- @if ($checkout->status == "sudah daftar") --}}
-                              <form action="#" method="post">
+                              <form action="{{ route('admin.final-report.update-accept', $report->id) }}" method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle"></i></button>
                               </form>
@@ -81,11 +81,11 @@
                             
                           </td>
                       </tr>
-                    {{-- @empty --}}
+                    @empty
                       <tr>
-                        <td colspan="9">Belum ada pendaftar</td>
+                        <td colspan="9">Belum ada laporan</td>
                       </tr>
-                    {{-- @endforelse --}}
+                    @endforelse
                   </tbody>
                 </table>
 

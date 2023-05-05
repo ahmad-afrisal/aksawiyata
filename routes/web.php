@@ -96,6 +96,8 @@ Route::middleware('auth')->group(function () {
 
         // Admin FinalReport
         Route::get('/final-report', [FinalReportController::class, 'index'])->name('final-report.index');
+        Route::post('/final-report/update-accept/{report}', [FinalReportController::class, 'updateAccept'])->name('final-report.update-accept');
+        Route::post('/final-report/update-rejcet/{report}', [FinalReportController::class, 'updateReject'])->name('final-report.update-reject');
 
         // Admin Users
         Route::get('/users', [AdminDashboard::class, 'users'])->name('users.index');

@@ -304,22 +304,11 @@
             </a>
         </li><!-- End Pengguna Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-layout-text-window-reverse"></i><span>Laporan Mahasiswa</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link collapsed" href=" {{ route('admin.final-report.index')}}">
+                <i class="bi bi-file-earmark-pdf"></i>
+                <span>Laporan Mahasiswa</span>
             </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-              <li>
-                <a href="#">
-                  <i class="bi bi-circle"></i><span>Laporan Kegiatan</span>
-                </a>
-              </li>
-              <li>
-                <a href="{{ route('admin.final-report.index')}}">
-                  <i class="bi bi-circle"></i><span>Laporan Akhir</span>
-                </a>
-              </li>
-            </ul>
-          </li><!-- End Tables Nav -->
+        </li><!-- End Pengguna Page Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('admin.settings')}}">
                 <i class="bi bi-gear"></i>
@@ -327,7 +316,7 @@
             </a>
         </li><!-- End Pengaturan Page Nav -->
 
-
+       
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
                 <i class="bi bi-box-arrow-in-right"></i>
