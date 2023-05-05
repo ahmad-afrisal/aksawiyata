@@ -100,14 +100,14 @@
                             </div>
 
 
-                            {{-- <div class="col-12">
+                            <div class="col-12">
                                 <div class="card info-card sales-card">
                                     <div class="card-body">
                                         <h5 class="card-title">Laporan Akhir |  
-                                        @if ($item->status)
-                                            <span class="badge bg-warning text-dark">Sedang Diperiksa</span>
-                                        @else
+                                        @if ($item->status == "Belum Upload")
                                             <span class="badge bg-info text-dark">Belum Upload</span>
+                                        @elseif($item->status == "Sedang Diperiksa")
+                                            <span class="badge bg-warning text-dark">Sedang Diperiksa</span>
                                         @endif
 
                                         </h5>
@@ -129,7 +129,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div><!-- End Sales Card --> --}}
+                            </div><!-- End Sales Card -->
 
                             @if ($checkout->status == "selesai")
                                 <div class="col-xxl-12 col-md-12">

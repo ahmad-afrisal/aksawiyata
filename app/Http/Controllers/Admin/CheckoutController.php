@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Checkout;
 use Mail;
 use App\Mail\Checkout\Accepted;
+use App\Models\Report;
 
 class CheckoutController extends Controller
 {
@@ -15,6 +16,13 @@ class CheckoutController extends Controller
         $checkout->status = "sedang berjalan";
         $checkout->save();
 
+        Report::create([
+                'user_id'     => $checkout->user_id,
+                'report'     => '-',
+                'status'     => 'Belum Upload',
+                'message'     => '',
+        ]);
+        
         // send email to user
         Mail::to($checkout->User->email)->send(new Accepted($checkout));
 

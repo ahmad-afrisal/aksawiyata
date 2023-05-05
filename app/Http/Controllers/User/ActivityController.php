@@ -28,12 +28,13 @@ class ActivityController extends Controller
         $checkouts = Checkout::with('Job')->where('user_id', Auth::id())
         ->where('status', '=', 'selesai')->orWhere('status', '=', 'sedang berjalan')
         ->take(1)->get();
-        // return $checkouts;
 
         $item = Report::where('user_id', Auth::id())->first();
+
+        
         return view('user.dashboard.activity', [
             'item' => $item,
-            // 'report' => str_replace('public/assets/report/', '', $item->report),
+            'report' => str_replace('public/assets/report/', '', $item->report),
             'checkouts' => $checkouts
 
         ]);
@@ -125,18 +126,18 @@ class ActivityController extends Controller
 
     public function logbook(StoreLogbookRequest $request)
     {
-        $isFilled = Logbook::where('user_id', Auth::user()->id )
-                            ->where('created_at', Carbon::today())->get();
+        $dateCheck = Carbon::now()->format('Y-m-d');
+        $isFilled = Logbook::whereUserId(Auth::id())->where('date',$dateCheck)->exists();
 
-        $isTableFilled = Logbook::count();
-        // return $isFilled && $isTableFilled > 0;
-        if ($isFilled && $isTableFilled > 0) {
+        // return $isFilled;
+        if ($isFilled)   {
             return redirect()->back()->with('error', 'Form sudah diisi sebelumnya');
         } else {           
     
             $data = $request->all();    
             $formatPhoto = $request->file('photo')->getClientOriginalExtension();
             $tanggal = Carbon::now()->format('d-m-Y');
+            $data['date'] = $dateCheck; 
             $data['user_id'] = Auth::user()->id;
             $data['photo'] = $request->file('photo')->storeAs('public/assets/documentation', 'documentation-'.str_replace(" ","-",Auth::user()->name).'-'.$tanggal.'-'.Str::random(15).'.'.$formatPhoto);
     

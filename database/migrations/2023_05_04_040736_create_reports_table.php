@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('report');
-            $table->enum('status', ['Sedang Diperiksa','Diterima', 'sedang berjalan'])->default('Sedang Diperiksa');
+            $table->enum('status', ['Belum Upload','Sedang Diperiksa','Diterima', 'sedang berjalan'])->default('Belum Upload');
             $table->text('message')->nullable();
             $table->timestamps();
             $table->softDeletes();

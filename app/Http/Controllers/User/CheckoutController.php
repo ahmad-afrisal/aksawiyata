@@ -27,6 +27,7 @@ class CheckoutController extends Controller
      */
     public function create(Job $job, Request $request)
     {
+
         if ($job->isRegistered) {
             $request->session()->flash('error', "Kamu sudah terdaftar pada {$job->name}");
             return redirect(route('user.dashboard'));
