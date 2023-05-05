@@ -10,5 +10,5 @@ class Logbook extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id','date','activity','detail_activity','photo'];
+    protected $fillable = ['user_id','activity','detail_activity','photo'];
 }

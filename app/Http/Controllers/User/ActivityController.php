@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\Activity\StoreLogbookRequest;
 use App\Http\Requests\User\Activity\StoreReportRequest;
 use App\Http\Requests\User\Review\StoreReviewRequest;
 use App\Models\Checkout;
 use App\Models\Job;
+use App\Models\Logbook;
 use App\Models\Report;
 use App\Models\UserReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 
 class ActivityController extends Controller
@@ -30,7 +33,7 @@ class ActivityController extends Controller
         $item = Report::where('user_id', Auth::id())->first();
         return view('user.dashboard.activity', [
             'item' => $item,
-            'report' => str_replace('public/assets/report/', '', $item->report),
+            // 'report' => str_replace('public/assets/report/', '', $item->report),
             'checkouts' => $checkouts
 
         ]);
@@ -120,14 +123,37 @@ class ActivityController extends Controller
         return redirect()->route('user.activity.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
 
-    public function logbook()
+    public function logbook(StoreLogbookRequest $request)
     {
-        # code...
+        $isFilled = Logbook::where('user_id', Auth::user()->id )
+                            ->where('created_at', Carbon::today())->get();
+
+        $isTableFilled = Logbook::count();
+        // return $isFilled && $isTableFilled > 0;
+        if ($isFilled && $isTableFilled > 0) {
+            return redirect()->back()->with('error', 'Form sudah diisi sebelumnya');
+        } else {           
+    
+            $data = $request->all();    
+            $formatPhoto = $request->file('photo')->getClientOriginalExtension();
+            $tanggal = Carbon::now()->format('d-m-Y');
+            $data['user_id'] = Auth::user()->id;
+            $data['photo'] = $request->file('photo')->storeAs('public/assets/documentation', 'documentation-'.str_replace(" ","-",Auth::user()->name).'-'.$tanggal.'-'.Str::random(15).'.'.$formatPhoto);
+    
+            Logbook::create($data);
+    
+    
+            return redirect()->route('user.activity.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        }
+
     }
 
     public function history()
     {
-        # code...
+        $logbooks = Logbook::where('user_id', Auth::id())->get();
+        return view('user.dashboard.history', [
+            'logbooks' => $logbooks,
+        ]);
     }
 
 }

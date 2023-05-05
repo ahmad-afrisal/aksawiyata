@@ -8,7 +8,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-          <li class="breadcrumb-item active">Perusahaan</li>
+          <li class="breadcrumb-item">Perusahaan</li>
           <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
       </nav>

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('logbooks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->datetime('date');
             $table->string('activity');
             $table->text('detail_activity');
             $table->string('photo');
