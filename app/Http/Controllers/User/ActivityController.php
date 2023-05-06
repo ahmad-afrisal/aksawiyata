@@ -27,17 +27,29 @@ class ActivityController extends Controller
     {
         $checkouts = Checkout::with('Job')->where('user_id', Auth::id())
         ->where('status', '=', 'selesai')->orWhere('status', '=', 'sedang berjalan')
-        ->take(1)->get();
+        ->take(1)->get(); 
+        // return $checkouts;
 
-        $item = Report::where('user_id', Auth::id())->first();
+        if($checkouts->isEmpty() > 0) {
+            
+            return view('user.dashboard.activity', [
+                'checkouts' => $checkouts
+            ]);
+        }
+        else {
+            
+            $item = Report::where('user_id', Auth::id())->first();
+
+            return view('user.dashboard.activity', [
+                'item' => $item,
+                'report' => str_replace('public/assets/report/', '', $item->report),
+                'checkouts' => $checkouts
+    
+            ]);
+        }
 
         
-        return view('user.dashboard.activity', [
-            'item' => $item,
-            'report' => str_replace('public/assets/report/', '', $item->report),
-            'checkouts' => $checkouts
-
-        ]);
+        
     }
 
     /**

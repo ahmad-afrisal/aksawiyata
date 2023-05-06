@@ -7,7 +7,7 @@
     <h1>Laporan Akhir</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
         <li class="breadcrumb-item">Laporan</li>
         <li class="breadcrumb-item active">Laporan Akhir</li>
       </ol>
@@ -61,9 +61,15 @@
                         <td>{{ (date_format($report->created_at, 'd-m-Y')) }}</td>
                         <td><a href="{{ Storage::url($report->report ?? '')}}" class="text-primary">Download</a></td>
                         <td>
-                          {{-- <span class="badge bg-danger">Di Tolak</span> --}}
-                          <span class="badge bg-success">{{ $report->status }}</span>
-                          {{-- <span class="badge bg-light">Selesai</span> --}}
+                          @if ($report->status == "Belum Upload")
+                            <span class="badge bg-info text-dark">Belum Upload</span>
+                          @elseif($report->status == "Sedang Diperiksa")
+                            <span class="badge bg-warning text-dark">Sedang Diperiksa</span>
+                          @elseif($report->status == "Diterima")
+                            <span class="badge bg-success text-white">Diterima</span>
+                          @elseif($report->status == "Ditolak")
+                            <span class="badge bg-danger text-white">Ditolak</span>
+                          @endif
                         </td>
                           <td>
                             <form action="{{ route('admin.final-report.update-reject', $report->id) }}" method="post">
@@ -72,14 +78,11 @@
                             </form>
                           </td>
                         <td>
-                            {{-- @if ($checkout->status == "sudah daftar") --}}
-                              <form action="{{ route('admin.final-report.update-accept', $report->id) }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle"></i></button>
-                              </form>
-                            {{-- @endif --}}
-                            
-                          </td>
+                          <form action="{{ route('admin.final-report.update-accept', $report->id) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle"></i></button>
+                          </form>
+                        </td>
                       </tr>
                     @empty
                       <tr>
@@ -94,17 +97,6 @@
             </div>
           </div><!-- End Recent Sales -->
 
-          {{-- 
-                      <td><span class="badge bg-danger">Rejected</span></td>
-                      <td><span class="badge bg-warning">Pending</span></td>
-                      <td><span class="badge bg-success">Approved</span></td>
-                      <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
-                      <button type="button" class="btn btn-danger"><i class="bi bi-exclamation-octagon"></i></button>
-                      <button type="button" class="btn btn-warning"><i class="bi bi-exclamation-triangle"></i></button>
-                      <button type="button" class="btn btn-info"><i class="bi bi-info-circle"></i></button
-            
-            --}}
-
 
         </div>
       </div><!-- End Left side columns -->
@@ -112,10 +104,9 @@
     </div>
   </section>
 
-</main><!-- End #main -->
+</main>
+<!-- End #main -->
 
-
-  {{-- | Ditolak | Terima Tawaran | Sedang Berjalan | Selesai --}}
 
 @endsection
 

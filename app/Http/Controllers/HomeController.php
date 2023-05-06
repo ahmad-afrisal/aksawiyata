@@ -8,6 +8,7 @@ use App\Models\Checkout;
 use App\Models\Company;
 use App\Models\CompanyGallery;
 use App\Models\Job;
+use App\Models\User;
 use App\Models\UserReview;
 use Auth;
 
@@ -16,8 +17,15 @@ class HomeController extends Controller
 {
     public function welcome() {
         $jobs = Job::with('company')->get();
+        $companies = Company::count();
+        $users = User::where('is_admin', false)->count();
 
-        return response(view('welcome', ['jobs' => $jobs]));
+        return response(view('welcome', [
+            'jobs' => $jobs,
+            'companies' => $companies,
+            'users' => $users,
+            'jobsCount' => $jobs->count(),
+        ]));
     }
 
     public function detail($slug)
@@ -62,8 +70,5 @@ class HomeController extends Controller
         }
         
     }
-
-
-
 
 }

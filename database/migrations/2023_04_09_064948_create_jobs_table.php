@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('develop_competencies');
             $table->text('participant_criteria');
             $table->text('additional_information');
-            $table->integer('quota');
+            $table->integer('quota')->unsigned();
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();

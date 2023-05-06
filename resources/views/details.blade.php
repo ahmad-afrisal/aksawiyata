@@ -39,7 +39,6 @@
                         :key="photos[activePhoto].id"
                         :src="photos[activePhoto].url"
                         class="w-100 main-image"
-                       
                         alt=""
                       />
                     </transition>
@@ -78,11 +77,11 @@
                       <div class="price" id="price">Kuota {{  $job->quota}} orang</div>
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
-                      <a
-                        class="btn btn-success nav-link py-2 text-white btn-block mb-3"
-                        href="{{ route('checkout.create', $job->slug)}}"
-                        >Daftar</a
-                      >
+                      @if ($job->quota > 0)
+                        <a class="btn btn-success nav-link py-2 text-white btn-block mb-3" href="{{ route('checkout.create', $job->slug)}}">Daftar</a>
+                      @else
+                        <a class="btn btn-secondary nav-link py-2 text-white btn-block mb-3" href="{{ route('welcome')}}">Cari lain</a>
+                      @endif
                     </div>
 
                   </div>

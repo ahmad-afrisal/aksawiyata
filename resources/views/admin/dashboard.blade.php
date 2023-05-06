@@ -137,11 +137,12 @@
                       <th scope="col">Nama</th>
                       <th scope="col">Posisi</th>
                       <th scope="col">Perusahaan</th>
+                      <th scope="col">Sisa Kuota</th>
                       <th scope="col">Tanggal Daftar</th>
                       <th scope="col">Transkip</th>
                       <th scope="col">CV</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Aksi</th>
+                      <th scope="col">Setujui</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,6 +152,7 @@
                         <td>{{$checkout->User->name }}</td>
                         <td>{{$checkout->Job->name }}</td>
                         <td>{{$checkout->Job->Company->name }}</td>
+                        <td>{{$checkout->Job->quota }}</td>
                         <td>{{ $checkout->created_at->format('M d Y') }}</td>
                         <td><a href="{{$checkout->User->transkip}}" class="text-primary">Lihat</a></td>
                         <td><a href="{{$checkout->User->cv}}" class="text-primary">Lihat CV</a></td>
@@ -172,7 +174,7 @@
                             @csrf
                             <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-exclamation-octagon"></i></button>
                           </form> --}}
-                          @if ($checkout->status == "sudah daftar")
+                          @if ($checkout->status == "sudah daftar" && $checkout->Job->quota > 0 )
                             <form action="{{ route('admin.checkout.update', $checkout->id) }}" method="post">
                               @csrf
                               <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle"></i></button>

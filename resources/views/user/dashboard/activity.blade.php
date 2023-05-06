@@ -108,13 +108,17 @@
                                             <span class="badge bg-info text-dark">Belum Upload</span>
                                         @elseif($item->status == "Sedang Diperiksa")
                                             <span class="badge bg-warning text-dark">Sedang Diperiksa</span>
+                                        @elseif($item->status == "Diterima")
+                                            <span class="badge bg-success text-white">Diterima</span>
+                                        @elseif($item->status == "Ditolak")
+                                            <span class="badge bg-danger text-white">Ditolak</span>
                                         @endif
 
                                         </h5>
                                         <form class="row g-3" action="{{ route('user.activity.report') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-10">
-                                                <input class="form-control" type="file" id="report" name="report" {{$item->status == 'Sedang Diperiksa' and $item->status == 'Diterima' ? 'disabled': ''}} required>
+                                                <input class="form-control" type="file" id="report" name="report" {{ $item->status == "Sedang Diperiksa" || $item->status == "Diterima" ? 'disabled': ''}}  required>
                                                 <p class="text-muted small pt-2">Link Download : <a href="{{ Storage::url($item->report ?? '')}}">{{ $report }} </a></p>
                                                 <span class="text-muted small pt-2">Dokumen harus sesuai dengan </span><span class="text-success small pt-1 fw-bold">Template</span>, <span class="text-muted small pt-2">diisi sesuai petunjuk dan diunggah dalam format pdf dengan ukuran maksimal 5MB. Di upload sebelum seminar KPI.</span>
                                                 @if ($errors->has('report'))

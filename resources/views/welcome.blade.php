@@ -21,15 +21,15 @@
                     <div class="row">
                       <div class="col-lg-3 col-sm-6 col-6">
                         <i class="fa fa-user"></i>
-                        <h4><span>Pengguna :</span><br>1080</h4>
+                        <h4><span>Pengguna :</span><br>{{ $users }}</h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
                         <i class="fa fa-globe"></i>
-                        <h4><span>Lowongan :</span><br>275</h4>
+                        <h4><span>Lowongan :</span><br>{{ $jobsCount }}</h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
                         <i class="fa fa-home"></i>
-                        <h4><span>Perusahaan :</span><br>45</h4>
+                        <h4><span>Perusahaan :</span><br>{{ $companies }}</h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
                         <div class="main-button">
@@ -116,7 +116,7 @@
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
                       <div class="image">
-                        <img src="{{ asset('frontend/assets/images/company/'.$job->company->image)  }}" alt="" style="min-height:250px; max-height: 280px">
+                        <img src="{{ Storage::url($job->Company->CompanyGallery->first()->photos ?? '') }}" alt="" style="min-height:250px; max-height: 280px">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
@@ -126,7 +126,7 @@
                         <div class="main-button">
                           <a href="{{ route('details', $job->slug) }}">Lihat</a>
                         </div>
-                        <p>{{ $job->company->about }}</p>
+                        <p>{!! $job->company->about !!}</p>
                         <ul class="info">
                           <li><i class="fa fa-user"></i>{{ $job->company->number_of_employees }}</li>
                           <li><i class="fa fa-globe"></i>{{ $job->company->website_link }} </li>
@@ -140,70 +140,11 @@
                   </div>
                 </div>
               </div>
+
               @empty
                 <p>No Data</p>
               @endforelse
-              
-              {{-- <div class="col-lg-12">
-                <div class="item">
-                  <div class="row">
-                    <div class="col-lg-4 col-sm-5">
-                      <div class="image">
-                        <img src="{{ asset('frontend/assets/images/company/company-4.jpg') }}" class="" alt="" style="min-height:250px; max-height: 280px">
-                      </div>
-                    </div>
-                    <div class="col-lg-8 col-sm-7">
-                      <div class="right-content">
-                        <h4>UI/UX Designer</h4>
-                        <span>Laodinawang</span>
-                        <div class="main-button">
-                          <a href="{{ route('details', 'full-stack-web-developer') }}">Lihat</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                        <ul class="info">
-                          <li><i class="fa fa-user"></i> 44</li>
-                          <li><i class="fa fa-globe"></i> www.laodi.com</li>
-                          <li><i class="fa fa-home"></i> Polewali Mandar</li>
-                        </ul>
-                        <div class="text-button">
-                          <a href="{{ route('companies') }}">Selengkapnya <i class="fa fa-arrow-right"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="item last-item">
-                  <div class="row">
-                    <div class="col-lg-4 col-sm-5">
-                      <div class="image">
-                        <img src="{{ asset('frontend/assets/images/company/company-3.jpg') }}" alt="" style="min-height:250px; max-height: 280px">
-                      </div>
-                    </div>
-                    <div class="col-lg-8 col-sm-7">
-                      <div class="right-content">
-                        <h4>Web Developer</h4>
-                        <span>Radio Kampus</span>
-                        <div class="main-button">
-                          <a href="{{ route('details', 'full-stack-web-developer') }}">Lihat</a>
-                        </div>
-                        <p>Radio Kampus adalah  situs web yang menyediakan platform untuk mengadakan dan mengikuti webinar.</p>
-                        <ul class="info">
-                          <li><i class="fa fa-user"></i> 67</li>
-                          <li><i class="fa fa-globe"></i> www.radioakampus.com</li>
-                          <li><i class="fa fa-home"></i> Majene</li>
-                        </ul>
-                        <div class="text-button">
-                          <a href="{{ route('companies') }}">Selengkapnya <i class="fa fa-arrow-right"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
-
-              {{--  --}}
+              {{-- {{ $jobs->links() }} --}}
               <div class="col-lg-12">
                 <ul class="page-numbers">
                   <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
