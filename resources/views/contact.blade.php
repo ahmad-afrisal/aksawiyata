@@ -18,34 +18,15 @@
         <div class="owl-weekly-offers owl-carousel">
           <div class="item">
             <div class="thumb">
-              <img src="{{ asset('frontend/assets/images/offers-01.jpg') }}" alt="">
-              <div class="text">
-                <h4>Havana<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                <h6>$420<br><span>/person</span></h6>
-                <div class="line-dec"></div>
-                <ul>
-                  <li>Deal Includes:</li>
-                  <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
-                  <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
-                  <li><i class="fa fa-building"></i> Daily Places Visit</li>
-                </ul>
-                <div class="main-button">
-                  <a href="#">Make a Reservation</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="thumb">
               <img src="{{ asset('frontend/assets/images/offers-02.jpg') }}" alt="">
               <div class="text">
                 <h4>Penanggung Jawab 1<br><span>Esia</span></h4>
                 <div class="line-dec"></div>
                 <ul>
                   <li>Kontak:</li>
-                  <li><i class="fa fa-phone"></i> 5 Days Trip > Hotel Included</li>
-                  <li><i class="fa-brands fa-whatsapp"></i> Airplane Bill Included</li>
-                  <li><i class="fa fa-envelope"></i> Daily Places Visit</li>
+                  <li><i class="fa fa-phone"></i> -</li>
+                  <li><i class="fa-brands fa-whatsapp"></i> -</li>
+                  <li><i class="fa fa-envelope"></i> -</li>
                 </ul>
                 <div class="main-button">
                   <a href="#">Kirim Pesan</a>
@@ -57,14 +38,13 @@
             <div class="thumb">
               <img src="{{ asset('frontend/assets/images/offers-03.jpg') }}" alt="">
               <div class="text">
-                <h4>George Town<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                <h6>$420<br><span>/person</span></h6>
+                <h4>Penanggung Jawab 2<br><span><i class="fa fa-users"></i> Ahmad Afrisal</span></h4>
                 <div class="line-dec"></div>
                 <ul>
-                  <li>Deal Includes:</li>
-                  <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
-                  <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
-                  <li><i class="fa fa-building"></i> Daily Places Visit</li>
+                  <li>Kontak:</li>
+                  <li><i class="fa fa-phone"></i> -</li>
+                  <li><i class="fa-brands fa-whatsapp"></i> -</li>
+                  <li><i class="fa fa-envelope"></i> -</li>
                 </ul>
                 <div class="main-button">
                   <a href="#">Kirim Pesan</a>

@@ -18,11 +18,9 @@ class HomeController extends Controller
         return response(view('welcome', ['jobs' => $jobs]));
     }
 
-    public function detail(Job $job)
+    public function detail()
     {
-        return view('details', [
-            'job' => $job
-        ]);
+        return view('details');
     }
 
     public function company($slug)
@@ -34,9 +32,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function contact(Job $job)
+    public function contact()
     {
-        return view('details');
+        return view('contact');
     }
 
     public function dashboard()
