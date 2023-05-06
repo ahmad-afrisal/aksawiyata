@@ -16,7 +16,7 @@ use Auth;
 class HomeController extends Controller
 {
     public function welcome() {
-        $jobs = Job::with('company')->get();
+        $jobs = Job::with('company')->paginate(4);
         $companies = Company::count();
         $users = User::where('is_admin', false)->count();
 

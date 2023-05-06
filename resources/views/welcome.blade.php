@@ -144,8 +144,8 @@
               @empty
                 <p>No Data</p>
               @endforelse
-              {{-- {{ $jobs->links() }} --}}
-              <div class="col-lg-12">
+              {{ $jobs->links() }}
+              {{-- <div class="col-lg-12">
                 <ul class="page-numbers">
                   <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
                   <li><a href="#">1</a></li>
@@ -153,7 +153,7 @@
                   <li><a href="#">3</a></li>
                   <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
                 </ul>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
