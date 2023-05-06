@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Checkout;
+use App\Models\Company;
 use App\Models\Job;
 use Auth;
 
@@ -24,9 +25,13 @@ class HomeController extends Controller
         ]);
     }
 
-    public function company(Job $job)
+    public function company($slug)
     {
-        return view('companies');
+        $company = Company::with('CompanyGallery')->where('slug', $slug)->firstOrFail();
+        
+        return view('companies', [
+            'company' => $company,
+        ]);
     }
 
     public function contact(Job $job)
