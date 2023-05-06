@@ -39,6 +39,7 @@
                         :key="photos[activePhoto].id"
                         :src="photos[activePhoto].url"
                         class="w-100 main-image"
+                       
                         alt=""
                       />
                     </transition>
@@ -68,7 +69,7 @@
             </section>
             <div class="store-details-container" data-aos="fade-up">
 
-              <div class="store-heading">
+              <div class="store-heading mt-3">
                 <div class="container">
                   <div class="row">
                     <div class="col-lg-10">
@@ -93,22 +94,22 @@
                     <div class="col-12 col-lg-8">
                       <h5 class="mt-1">Detail Kegiatan</h5>
                       <p>
-                        {{  $job->details_of_activities }}
+                        {!!  $job->details_of_activities !!}
                         
                       </p>
                       <h5 class="mt-3">Kompetensi yang dikembangkan</h5>
                       <p>
-                        {{  $job->develop_competencies}}
+                        {!!  $job->develop_competencies!!}
                         
                       </p>
                       <h5 class="mt-3">Kriteria Peserta</h5>
                       <p>
-                        {{  $job->participant_criteria }}
+                        {!!  $job->participant_criteria !!}
                         
                       </p>
                       <h5 class="mt-3">Informasi Tambahan</h5>
                       <p>
-                        {{  $job->additional_information}}
+                        {!!  $job->additional_information !!}
                       </p>
                       
                     </div>
@@ -119,41 +120,30 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-12 col-lg-8 mt-3 mb-3">
-                      <h5>Student Review (3)</h5>
+                      <h5>Ulasan</h5>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12 col-lg-8">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <img src="{{ asset('frontend/assets/images/icon-testimonial-1.png') }}" alt="...">
+                      @forelse ($reviews as $review)
+                        <div class="d-flex">
+                          <div class="flex-shrink-0">
+                            @if ($review->user->avatar)
+                              <img src="{{$review->user->avatar}}" class="rounded-circle" alt="" srcset="">
+                            @else
+                              <img src="https://ui-avatars.com/api/?name={{$review->user->name}}" class=" rounded-circle" alt="" srcset="">
+                            @endif
+                       
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <h5 class="mt-2 mb-1">{{ $review->user->name }}</h5>
+                            <p>{{ $review->review }}.</p>
+                          </div>
                         </div>
-                        <div class="flex-grow-1 ms-3">
-                          <h5 class="mt-2 mb-1">Hazza Risky</h5>
-                          <p>I thought it was not good for living room. I really happy to decided buy this product last week
-                            now feels like homey.</p>
-                        </div>
-                      </div>
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <img src="{{ asset('frontend/assets/images/icon-testimonial-2.png') }}" alt="...">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                          <h5 class="mt-2 mb-1">Anna Sukkirata</h5>
-                          <p>Color is great with the minimalist concept. Even I thought it was made by Cactus industry. I do
-                            really satisfied with this.</p>
-                        </div>
-                      </div>
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <img src="{{ asset('frontend/assets/images/icon-testimonial-3.png') }}" alt="...">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                          <h5 class="mt-2 mb-1">Yunimu Wangi</h5>
-                          <p>When I saw at first, it was really awesome to have with. Just let me know if there is another
-                            upcoming product like this.</p>
-                        </div>
-                      </div>
+                      @empty
+                        <p>Belm ada ulasan</p>
+                      @endforelse
+
                     </div>
                   </div>
                 </div>
@@ -167,3 +157,30 @@
   </div>
 </div>
 @endsection
+
+@push('addon-script')
+    <script>
+      var gallery = new Vue({
+        el: "#gallery",
+        mounted() {
+          AOS.init();
+        },
+        data: {
+          activePhoto: 0,
+          photos: [
+            @foreach ($galleries as $gallery)
+            {
+              id: {{ $gallery->id }},
+              url: "{{ Storage::url($gallery->photos) }}",
+            },
+            @endforeach
+          ],
+        },
+        methods: {
+          changeActive(id) {
+            this.activePhoto = id;
+          },
+        },
+      });
+    </script>
+@endpush

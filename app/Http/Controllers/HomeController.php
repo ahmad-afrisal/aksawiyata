@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Checkout;
 use App\Models\Company;
+use App\Models\CompanyGallery;
 use App\Models\Job;
+use App\Models\UserReview;
 use Auth;
 
 
@@ -18,9 +20,19 @@ class HomeController extends Controller
         return response(view('welcome', ['jobs' => $jobs]));
     }
 
-    public function detail()
+    public function detail($slug)
     {
-        return view('details');
+        $job = Job::where('slug', $slug)->firstOrFail();
+        $reviews = UserReview::where('job_id', $job->id)->get();
+        $galleries = CompanyGallery::where('companies_id', $job->company_id)->get();
+
+
+        return view('details', [
+            'job' => $job,
+            'reviews' => $reviews,
+            'galleries' => $galleries
+
+        ]);
     }
 
     public function company($slug)
