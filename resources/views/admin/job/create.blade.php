@@ -27,7 +27,7 @@
                 <!-- Floating Labels Form -->
                 <form class="row g-3" action="{{ route('admin.job.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
-                  <div class="col-6">
+                  <div class="col-12 col-lg-6">
                     <label for="companies_id" class="form-label">Perusahaan</label>
                     <div class="col-sm-12">
                       <select class="form-select" aria-label="Default select example" name="company_id">
@@ -38,7 +38,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-12 col-lg-6">
                     <label for="name" class="form-label">Posisi</label>
                     <input type="text" class="form-control  {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{old('name') ?: ''}}"  id="name" name="name">
                     @if ($errors->has('name'))

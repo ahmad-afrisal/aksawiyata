@@ -43,16 +43,13 @@
                         <h5 class="card-title">Profil Perusahaan</h5>
 
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 label ">Pimpinan</div>
-                            <div class="col-lg-8 col-md-6">: {{ $company->ceo }}</div>
+                            <div class="col-12  label ">Pimpinan : {{ $company->ceo }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 label ">Jumlah Karyawan</div>
-                            <div class="col-lg-8 col-md-6">: {{ $company->number_of_employees }}</div>
+                            <div class="col-12  label ">Jumlah Karyawan : {{ $company->number_of_employees }} Orang</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 label ">Link Website</div>
-                            <div class="col-lg-8 col-md-6">: <a href="{{ $company->website_link}}" target="_blank">{{ $company->website_link}}</a></div>
+                            <div class="col-12 label ">Link Website : <a href="{{ $company->website_link}}" target="_blank">{{ $company->website_link}}</a></div>
                         </div>
                     </div>
                 </div>

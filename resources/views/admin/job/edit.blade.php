@@ -29,7 +29,7 @@
                   @csrf
                   {{-- <input type="hidden" value="{{ $job->id}}"  id="id"> --}}
 
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="company_id" class="form-label">Perusahaan</label>
                     
                     <div class="col-sm-12">
@@ -39,9 +39,9 @@
                         <option value="{{ $company->id }}">{{ $company->name }}</option>
                         @endforeach
                       </select>
+                    </div>
                   </div>
-                  </div>
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="name" class="form-label">Posisi</label>
                     <input type="text" class="form-control  {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{ $job->name}}"  id="name" name="name">
                     @if ($errors->has('name'))

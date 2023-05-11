@@ -28,7 +28,7 @@
                 <form class="row g-3" action="{{ route('admin.company.update', $company->id)}}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <input type="hidden" name="users_id" value="{{ Auth::user()->id}}">
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="name" class="form-label">Nama Perusahaan</label>
                     <input type="text" class="form-control  {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{ $company->name}}" id="name" name="name">
                     @if ($errors->has('name'))
@@ -37,7 +37,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="ceo" class="form-label">Pimpinan Perusahaan</label>
                     <input type="text" class="form-control {{$errors->has('ceo') ? 'is-invalid' : ''}}"  value="{{ $company->ceo}}" id="ceo" name="ceo">
                     @if ($errors->has('ceo'))
@@ -55,7 +55,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-2">
+                  <div class="col-lg-2 col-12">
                     <label for="number_of_employees" class="form-label">Jumlah Karyawan</label>
                     <input type="number" class="form-control {{$errors->has('number_of_employees') ? 'is-invalid' : ''}}"  value="{{ $company->number_of_employees}}"  id="number_of_employees" name="number_of_employees">
                     @if ($errors->has('number_of_employees'))
@@ -64,7 +64,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-4">
+                  <div class="col-lg-4 col-12">
                     <label for="website_link" class="form-label">Website</label>
                     <input type="url" class="form-control {{$errors->has('website_link') ? 'is-invalid' : ''}}" value="{{ $company->website_link}}" id="website_link" name="website_link">
                     @if ($errors->has('website_link'))
@@ -73,7 +73,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="street" class="form-label">Alamat Jalan</label>
                     <input type="text" class="form-control  {{$errors->has('street') ? 'is-invalid' : ''}}" value="{{ $company->street}}" id="street" name="street">
                     @if ($errors->has('street'))
@@ -82,7 +82,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="district" class="form-label">Kecamatan</label>
                     <input type="text" class="form-control {{$errors->has('district') ? 'is-invalid' : ''}}" value="{{ $company->district}}" id="district" name="district">
                     @if ($errors->has('website_link'))
@@ -91,7 +91,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="regency" class="form-label">Kabupaten</label>
                     <input type="text" class="form-control {{$errors->has('regency') ? 'is-invalid' : ''}}" value="{{ $company->regency}}" id="regency" name="regency">
                     @if ($errors->has('regency'))
@@ -100,7 +100,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="province" class="form-label">Provinsi</label>
                     <div class="col-sm-12">
                       <select class="form-select {{$errors->has('province') ? 'is-invalid' : ''}}" id="province" name="province" aria-label="Default select example">
@@ -150,7 +150,7 @@
                       @endif
                     </div>
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="postal_code" class="form-label">Kode Pos</label>
                     <input type="text" class="form-control {{$errors->has('postal_code') ? 'is-invalid' : ''}}" value="{{ $company->postal_code}}" name="postal_code" id="postal_code">
                     @if ($errors->has('postal_code'))
@@ -159,11 +159,10 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-2">
-                    <img src="{{ asset('/storage/'.$company->logo) }}" alt="" srcset="" class="img-fluid img-preview">
-                    
+                  <div class="col-lg-2 col-12">
+                    <img src="{{ Storage::url($company->logo ?? '')}}" alt="" srcset="" class="img-fluid img-preview">
                   </div>
-                  <div class="col-10">
+                  <div class="col-lg-10 col-12">
                     <label for="logo" class="form-label">Upload Logo</label>
                     <input type="file" class="form-control {{$errors->has('logo') ? 'is-invalid' : ''}}" onchange="previewImg()" id="sampul" value="{{$company->logo}}" id="logo" name="logo">
                     <span class="text-muted small pt-2">Maksimal ukuran gambar </span><span class="text-success small pt-1 fw-bold">1MB</span>

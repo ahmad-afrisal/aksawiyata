@@ -27,7 +27,7 @@
                 <!-- Floating Labels Form -->
                 <form class="row g-3" action="{{ route('admin.company.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
-                  <div class="col-6">
+                  <div class="col-12 col-lg-6">
                     <label for="name" class="form-label">Nama Perusahaan</label>
                     <input type="text" class="form-control  {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{old('name') ?: ''}}" id="name" name="name"  required>
                     @if ($errors->has('name'))
@@ -36,7 +36,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-12 col-lg-6">
                     <label for="ceo" class="form-label">Pimpinan Perusahaan</label>
                     <input type="text" class="form-control {{$errors->has('ceo') ? 'is-invalid' : ''}}"  value="{{old('ceo') ?: ''}}" id="ceo" name="ceo"  required>
                     @if ($errors->has('ceo'))
@@ -54,7 +54,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-2">
+                  <div class="col-lg-2 col-12">
                     <label for="number_of_employees" class="form-label">Jumlah Karyawan</label>
                     <input type="number" class="form-control {{$errors->has('number_of_employees') ? 'is-invalid' : ''}}"  value="{{old('number_of_employees') ?: ''}}"  id="number_of_employees" name="number_of_employees"  required> 
                     @if ($errors->has('number_of_employees'))
@@ -63,7 +63,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-4">
+                  <div class="col-lg-4 col-12">
                     <label for="website_link" class="form-label">Website</label>
                     <input type="url" class="form-control {{$errors->has('website_link') ? 'is-invalid' : ''}}" value="{{old('website_link') ?: ''}}" id="website_link" name="website_link"  required>
                     @if ($errors->has('website_link'))
@@ -72,7 +72,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="street" class="form-label">Alamat Jalan</label>
                     <input type="text" class="form-control  {{$errors->has('street') ? 'is-invalid' : ''}}" value="{{old('street') ?: ''}}" id="street" name="street"  required>
                     @if ($errors->has('street'))
@@ -81,7 +81,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="district" class="form-label">Kecamatan</label>
                     <input type="text" class="form-control {{$errors->has('district') ? 'is-invalid' : ''}}" value="{{old('district') ?: ''}}" id="district" name="district"  required>
                     @if ($errors->has('website_link'))
@@ -90,7 +90,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="regency" class="form-label">Kabupaten</label>
                     <input type="text" class="form-control {{$errors->has('regency') ? 'is-invalid' : ''}}" value="{{old('regency') ?: ''}}" id="regency" name="regency"  required>
                     @if ($errors->has('regency'))
@@ -99,7 +99,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="province" class="form-label">Provinsi</label>
                     <div class="col-sm-12">
                       <select class="form-select {{$errors->has('province') ? 'is-invalid' : ''}}" id="province" name="province" aria-label="Default select example"  required>
@@ -149,7 +149,7 @@
                       @endif
                     </div>
                   </div>
-                  <div class="col-3">
+                  <div class="col-lg-3 col-12">
                     <label for="postal_code" class="form-label">Kode Pos</label>
                     <input type="text" class="form-control {{$errors->has('postal_code') ? 'is-invalid' : ''}}" value="{{old('postal_code') ?: ''}}" name="postal_code" id="postal_code"  required>
                     @if ($errors->has('postal_code'))
@@ -158,7 +158,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="logo" class="form-label">Upload Logo</label>
                     <input type="file" class="form-control {{$errors->has('logo') ? 'is-invalid' : ''}}" value="{{old('logo') ?: ''}}" id="logo" name="logo" required>
                     <span class="text-muted small pt-2">Maksimal ukuran gambar </span><span class="text-success small pt-1 fw-bold">1MB</span>
@@ -168,7 +168,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6 col-12">
                     <label for="photo" class="form-label">Upload Foto Perusahaan</label>
                     <input type="file" class="form-control {{$errors->has('photo') ? 'is-invalid' : ''}}" value="{{old('photo') ?: ''}}" name="photo[]" multiple required>
                     <span class="text-muted small pt-2">Dapat upload beberapa gambar sekaligus.</span>

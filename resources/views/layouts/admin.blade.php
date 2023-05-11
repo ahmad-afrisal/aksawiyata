@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Dashboard</title>
@@ -279,38 +280,38 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="{{ route('dashboard') }}">
+            <a class="nav-link {{ (request()->is('admin/dashboard')) ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.company.index')}}">
+            <a class="nav-link {{ (request()->is('admin/dashboard/company*')) ? '' : 'collapsed' }}" href="{{ route('admin.company.index')}}">
                 <i class="bi bi-buildings"></i>
                 <span>Perusahaan</span>
             </a>
         </li><!-- End Perusahaan Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.job.index')}}">
+            <a class="nav-link {{ (request()->is('admin/dashboard/job*')) ? '' : 'collapsed' }}" href="{{ route('admin.job.index')}}">
                 <i class="bi bi-person-workspace"></i>
                 <span>Posisi</span>
             </a>
         </li><!-- End Posisi Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.users.index')}}">
+            <a class="nav-link {{ (request()->is('admin/dashboard/users*')) ? '' : 'collapsed' }}" href="{{ route('admin.users.index')}}">
                 <i class="bi bi-people"></i>
                 <span>Pengguna</span>
             </a>
         </li><!-- End Pengguna Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href=" {{ route('admin.final-report.index')}}">
+            <a class="nav-link {{ (request()->is('admin/dashboard/final-report')) ? '' : 'collapsed' }}" href=" {{ route('admin.final-report.index')}}">
                 <i class="bi bi-file-earmark-pdf"></i>
                 <span>Laporan Mahasiswa</span>
             </a>
         </li><!-- End Pengguna Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.settings')}}">
+            <a class="nav-link {{ (request()->is('admin/dashboard/settings')) ? '' : 'collapsed' }}" href="{{ route('admin.settings')}}">
                 <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
             </a>
