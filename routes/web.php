@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
     // admin dashboard
     Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('ensureUserRole:admin')->group(function(){
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
+        Route::get('/detail-job/{job}', [AdminDashboard::class, 'detailJob'])->name('detail-job');
         
 
         // Admin Checkout

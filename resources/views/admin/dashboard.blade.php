@@ -70,7 +70,7 @@
                     <i class="bi bi-person-workspace"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>{{ $jobs }}</h6>
+                    <h6>{{ $job }}</h6>
                   </div>
                 </div>
               </div>
@@ -120,10 +120,6 @@
                   <li class="dropdown-header text-start">
                     <h6>Filter</h6>
                   </li>
-
-                  {{-- <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li> --}}
                 </ul>
               </div>
 
@@ -133,60 +129,38 @@
                 <table class="table table-borderless datatable">
                   <thead>
                     <tr>
-                      <th scope="col">NIM</th>
-                      <th scope="col">Nama</th>
+                      <th scope="col">No</th>
                       <th scope="col">Posisi</th>
                       <th scope="col">Perusahaan</th>
                       <th scope="col">Sisa Kuota</th>
-                      <th scope="col">Tanggal Daftar</th>
-                      <th scope="col">Transkip</th>
-                      <th scope="col">CV</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Setujui</th>
+
+                      <th scope="col">Menu</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @forelse ($checkouts as $checkout)
-                      <tr>
-                        <th scope="row"><a href="#">{{$checkout->User->nim}}</a></th>
-                        <td>{{$checkout->User->name }}</td>
-                        <td>{{$checkout->Job->name }}</td>
-                        <td>{{$checkout->Job->Company->name }}</td>
-                        <td>{{$checkout->Job->quota }}</td>
-                        <td>{{ $checkout->created_at->format('M d Y') }}</td>
-                        <td><a href="{{$checkout->User->transkip}}" class="text-primary">Lihat</a></td>
-                        <td><a href="{{$checkout->User->cv}}" class="text-primary">Lihat CV</a></td>
-                        <td>
-                          @if ($checkout->status == "sudah daftar")
-                            <span class="badge bg-info">Sudah Daftar</span>
-                          @elseif ($checkout->status == "ditolak")
-                            <span class="badge bg-danger">Di Tolak</span>
-                          @elseif ($checkout->status == "terima tawaran")
-                            <span class="badge bg-warning">Terima Tawaran</span>
-                          @elseif ($checkout->status == "sedang berjalan")
-                            <span class="badge bg-success">Sedang Berjalan</span>
-                          @else
-                            <span class="badge bg-light">Selesai</span>
-                          @endif
-                        </td>
-                        <td>
-                          {{-- <form action="" method="post">
-                            @csrf
-                            <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-exclamation-octagon"></i></button>
-                          </form> --}}
-                          @if ($checkout->status == "sudah daftar" && $checkout->Job->quota > 0 )
-                            <form action="{{ route('admin.checkout.update', $checkout->id) }}" method="post">
-                              @csrf
-                              <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle"></i></button>
-                            </form>
-                          @endif
-                          
-                        </td>
-                      </tr>
+                    @forelse ($jobs as $item)
+                    <tr>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <th scope="row">{{ $item->name}}</th>
+                      <td><a href="{{ $item->Company->website_link}}" target="_blank" class="text-primary fw-bold">{{ $item->Company->name}}</a></td>
+                      <td class="fw-bold">{{ $item->quota}}</td>
+                      <td>
+                        @if ($item->status)
+                          <span class="badge bg-success">Terbuka</span>
+                        @else
+                          <span class="badge bg-danger">Tutup</span>
+                        @endif
+                      </td>
+                      {{-- <td class="fw-bold">{{ $item->quota}}</td> --}}
+                      <td>
+                        <a href="{{route('admin.detail-job',$item->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
+                      </td>
+                    </tr>
                     @empty
-                      <tr>
-                        <td colspan="9">Belum ada pendaftar</td>
-                      </tr>
+                        <tr>
+                          <td colspan="6">Belum Ada perusahaan terdaftar</td>
+                        </tr>
                     @endforelse
                   </tbody>
                 </table>
@@ -195,18 +169,6 @@
 
             </div>
           </div><!-- End Recent Sales -->
-
-          {{-- 
-                      <td><span class="badge bg-danger">Rejected</span></td>
-                      <td><span class="badge bg-warning">Pending</span></td>
-                      <td><span class="badge bg-success">Approved</span></td>
-                      <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
-                      <button type="button" class="btn btn-danger"><i class="bi bi-exclamation-octagon"></i></button>
-                      <button type="button" class="btn btn-warning"><i class="bi bi-exclamation-triangle"></i></button>
-                      <button type="button" class="btn btn-info"><i class="bi bi-info-circle"></i></button
-            
-            --}}
-
 
         </div>
       </div><!-- End Left side columns -->

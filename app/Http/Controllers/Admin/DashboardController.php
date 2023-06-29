@@ -17,16 +17,26 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $checkouts = Checkout::with('Job')->get();
+        $jobs = Job::all();
 
         $companies = Company::count();
-        $jobs = Job::count();
+        $job = Job::count();
         $users = User::where('is_admin', false)->count();
         return view('admin.dashboard', [
-            'checkouts' => $checkouts,
-            'companies' => $companies,
             'jobs' => $jobs,
+            'companies' => $companies,
+            'job' => $job,
             'users' => $users,
+        ]);
+    }
+
+    public function detailJob(String $id)
+    {
+        $checkouts = Checkout::with('Job')->where('job_id',$id)->get();
+
+
+        return view('admin.detail-job', [
+            'checkouts' => $checkouts,
         ]);
     }
 
