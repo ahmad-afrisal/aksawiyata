@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         $companies = Company::count();
         $job = Job::count();
-        $users = User::where('is_admin', false)->count();
+        $users = User::where('roles', false)->count();
         return view('admin.dashboard', [
             'jobs' => $jobs,
             'companies' => $companies,
@@ -78,10 +78,10 @@ class DashboardController extends Controller
     
     public function users()
     {
-        $users = User::where('is_admin', false)->get();
-        $usersCount = User::where('is_admin', false)->count();
+        $users = User::where('roles', false)->get();
+        $usersCount = User::where('roles', false)->count();
 
-        return view('admin.user.index', [
+        return view('admin.user.student.index', [
             'users' => $users,
             'usersCount' => $usersCount,
         ]);        
@@ -90,7 +90,7 @@ class DashboardController extends Controller
     public function show(String $id)
     {
         $user = User::findOrFail($id);
-        return view('admin.user.show', [
+        return view('admin.user.student.show', [
             'user' => $user,
             'transkip' => str_replace('public/assets/transkip/', '', $user->transkip),
             'cv' => str_replace('public/assets/cv/', '', $user->cv),

@@ -21,8 +21,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminUserSeeder::class,
-            CompanyTableSeeder::class,
-            JobTableSeeder::class,
+            LectureUserSeeder::class,
+            MentorUserSeeder::class,
+            // CompanyTableSeeder::class,
+            // JobTableSeeder::class,
         ]);
     }
 }

@@ -298,26 +298,43 @@
                 <span>Posisi</span>
             </a>
         </li><!-- End Posisi Page Nav -->
+
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/users*')) ? '' : 'collapsed' }}" href="{{ route('admin.users.index')}}">
-                <i class="bi bi-people"></i>
-                <span>Pengguna</span>
+            <a class="nav-link {{ (request()->is('admin/dashboard/users*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-people"></i><span>Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-        </li><!-- End Pengguna Page Nav -->
+            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                <a href="{{ route('admin.lectures.index')}}">
+                    <i class="bi bi-circle"></i><span>Dosen</span>
+                </a>
+                </li>
+                <li>
+                <a href="{{ route('admin.mentors.index')}}">
+                    <i class="bi bi-circle"></i><span>Mentor</span>
+                </a>
+                </li>
+                <li>
+                <a href="{{ route('admin.users.index')}}">
+                    <i class="bi bi-circle"></i><span>Mahasiswa</span>
+                </a>
+                </li>
+            </ul>
+        </li><!-- End Charts Nav -->
+        
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('admin/dashboard/final-report')) ? '' : 'collapsed' }}" href=" {{ route('admin.final-report.index')}}">
                 <i class="bi bi-file-earmark-pdf"></i>
                 <span>Laporan Mahasiswa</span>
             </a>
         </li><!-- End Pengguna Page Nav -->
+
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('admin/dashboard/settings')) ? '' : 'collapsed' }}" href="{{ route('admin.settings')}}">
                 <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
             </a>
         </li><!-- End Pengaturan Page Nav -->
-
-       
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
                 <i class="bi bi-box-arrow-in-right"></i>

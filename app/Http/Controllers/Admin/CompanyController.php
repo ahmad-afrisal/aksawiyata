@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Company\CompanyRequest;
 use Illuminate\Support\Str;
 use App\Models\Company;
 use App\Models\CompanyGallery;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,7 +31,13 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin.company.create');
+        $lectures = User::where('roles',2)->get();
+        $mentors = User::where('roles',3)->get();
+
+        return view('admin.company.create',[
+            'lectures' => $lectures,
+            'mentors' => $mentors
+        ]);
     }
 
     /**
@@ -73,11 +80,15 @@ class CompanyController extends Controller
      */
     public function edit(string $id)
     {
-        $company = Company::with(['CompanyGallery','User'])->findOrFail($id);
+        $company = Company::with(['CompanyGallery','Adviser','Examiner','Mentor'])->findOrFail($id);
+        $lectures = User::where('roles',2)->get();
+        $mentors = User::where('roles',3)->get();
 
-        // $company = 1;
+
         return view('admin.company.edit', [
             'company' => $company,
+            'lectures' => $lectures,
+            'mentors' => $mentors,
         ]);
         
     }
@@ -126,6 +137,9 @@ class CompanyController extends Controller
             $item->update([
                 'name'     => $request->name,
                 'slug'     => Str::slug($request->name),
+                'mentor_id'     => $request->mentor_id,
+                'adviser_id'     => $request->adviser_id,
+                'examiner_id'     => $request->examiner_id,
                 'about'     => $request->about,
                 'ceo'     => $request->ceo,
                 'number_of_employees'     => $request->number_of_employees,

@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug');
+            $table->unsignedBigInteger('mentor_id');
+            $table->unsignedBigInteger('examiner_id');
+            $table->unsignedBigInteger('adviser_id');
             $table->text('about');
             $table->string('ceo');
             $table->integer('number_of_employees');
@@ -27,6 +30,9 @@ return new class extends Migration
             $table->text('logo');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('mentor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('examiner_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('adviser_id')->references('id')->on('users')->onDelete('cascade');
             
         });
     }

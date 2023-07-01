@@ -20,7 +20,7 @@ class AdminUserSeeder extends Seeder
             'email' => 'admin@aksawiyata.com',
             'email_verified_at' => date('Y-m-d H:i:s', time()),
             'password' => \bcrypt('password'),
-            'is_admin' => true
+            'roles' => 1,
         ]);
     }
 }

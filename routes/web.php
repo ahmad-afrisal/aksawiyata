@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\CheckoutController as AdminCheckout;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\FinalReportController;
+use App\Http\Controllers\Admin\LectureController;
+use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\user\ActivityController;
 
 /*
@@ -101,8 +103,16 @@ Route::middleware('auth')->group(function () {
         Route::post('/final-report/update-rejcet/{report}', [FinalReportController::class, 'updateReject'])->name('final-report.update-reject');
 
         // Admin Users
+        Route::get('/lectures', [LectureController::class, 'index'])->name ('lectures.index');
+        Route::post('/lectures/store', [LectureController::class, 'store'])->name ('lectures.store');
+
+        Route::get('/mentors', [MentorController::class, 'index'])->name ('mentors.index');
+        Route::post('/mentors/store', [MentorController::class, 'store'])->name ('mentors.store');
+        
         Route::get('/users', [AdminDashboard::class, 'users'])->name('users.index');
         Route::get('/users/show/{user}', [AdminDashboard::class, 'show'])->name('users.show');
+
+
 
         // Admin Settings
         Route::get('/settings', [AdminDashboard::class, 'settings'])->name('settings');

@@ -28,7 +28,7 @@
                 <form class="row g-3" action="{{ route('admin.company.update', $company->id)}}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <input type="hidden" name="users_id" value="{{ Auth::user()->id}}">
-                  <div class="col-lg-6 col-12">
+                  <div class="col-12">
                     <label for="name" class="form-label">Nama Perusahaan</label>
                     <input type="text" class="form-control  {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{ $company->name}}" id="name" name="name">
                     @if ($errors->has('name'))
@@ -46,6 +46,53 @@
                       </div>
                     @endif
                   </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="ceo" class="form-label">Pembimbing Lapangan</label>
+                    <div class="col-sm-12">
+                      <select class="form-select" aria-label="Default select example" name="mentor_id">
+                        <option value="{{ $company->mentor_id}}">{{ $company->Mentor->name}}</option>
+                        <option value="" readonly>-----------------------</option>
+                        @foreach ($mentors as $mentor)
+                        <option value="{{ $mentor->id }}">{{ $mentor->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    @if ($errors->has('adviser_id'))
+                      <div class="invalid-feedback">
+                          {{$errors->first('adviser_id')}}
+                      </div>
+                    @endif
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="ceo" class="form-label">Dosen Pembimbing</label>
+                    <div class="col-sm-12">
+                      <select class="form-select" aria-label="Default select example" name="adviser_id">
+                        <option value="{{ $company->adviser_id}}">{{ $company->Adviser->name}}</option>
+                        <option value="" readonly>-----------------------</option>
+                        @foreach ($lectures as $lecture)
+                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    @if ($errors->has('adviser_id'))
+                      <div class="invalid-feedback">
+                          {{$errors->first('adviser_id')}}
+                      </div>
+                    @endif
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="ceo" class="form-label">Dosen Penguji</label>
+                    <div class="col-sm-12">
+                      <select class="form-select" aria-label="Default select example" name="examiner_id">
+                        <option value="{{ $company->examiner_id}}">{{ $company->Examiner->name}}</option>
+                        <option value="" readonly>-----------------</option>
+                        @foreach ($lectures as $lecture)
+                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+
                   <div class="col-12">
                     <label for="about" class="form-label">Tentang Perusahaan</label>
                     <textarea class="form-control {{$errors->has('about') ? 'is-invalid' : ''}}"   id="editor1" name="about">{!! $company->about !!}</textarea>

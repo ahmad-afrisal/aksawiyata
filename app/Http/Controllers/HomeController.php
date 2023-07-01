@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function welcome() {
         $jobs = Job::with('company')->paginate(4);
         $companies = Company::count();
-        $users = User::where('is_admin', false)->count();
+        $users = User::where('roles', false)->count();
 
         return response(view('welcome', [
             'jobs' => $jobs,
@@ -59,7 +59,7 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        switch (Auth::user()->is_admin) {
+        switch (Auth::user()->roles) {
             case true:
                 return redirect(route('admin.dashboard'));
                 break;

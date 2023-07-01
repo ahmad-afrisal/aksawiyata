@@ -27,7 +27,7 @@
                 <!-- Floating Labels Form -->
                 <form class="row g-3" action="{{ route('admin.company.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
-                  <div class="col-12 col-lg-6">
+                  <div class="col-12">
                     <label for="name" class="form-label">Nama Perusahaan</label>
                     <input type="text" class="form-control  {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{old('name') ?: ''}}" id="name" name="name"  required>
                     @if ($errors->has('name'))
@@ -44,6 +44,39 @@
                           {{$errors->first('ceo')}}
                       </div>
                     @endif
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="ceo" class="form-label">Pembimbing Lapangan</label>
+                    <div class="col-sm-12">
+                      <select class="form-select" aria-label="Default select example" name="mentor_id">
+                        <option value="" readonly>Pilih Pembimbing Lapangan</option>
+                        @foreach ($mentors as $mentor)
+                        <option value="{{ $mentor->id }}">{{ $mentor->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="ceo" class="form-label">Dosen Pembimbing</label>
+                    <div class="col-sm-12">
+                      <select class="form-select" aria-label="Default select example" name="adviser_id">
+                        <option value="" readonly>Pilih Dosen Pembimbing</option>
+                        @foreach ($lectures as $lecture)
+                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="ceo" class="form-label">Dosen Penguji</label>
+                    <div class="col-sm-12">
+                      <select class="form-select" aria-label="Default select example" name="examiner_id">
+                        <option value="" readonly>Pilih Dosen Penguji</option>
+                        @foreach ($lectures as $lecture)
+                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
                   </div>
                   <div class="col-12">
                     <label for="about" class="form-label">Tentang Perusahaan</label>

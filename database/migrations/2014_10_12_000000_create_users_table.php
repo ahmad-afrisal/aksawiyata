@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('github_profile')->nullable();
             $table->string('transkip')->nullable();
             $table->string('cv')->nullable();
-            $table->boolean('is_admin')->default(false);
+            $table->boolean('roles')->default(0);
             $table->rememberToken();
             $table->timestamps();
 

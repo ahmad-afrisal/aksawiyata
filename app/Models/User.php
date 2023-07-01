@@ -33,7 +33,7 @@ class User extends Authenticatable
         'github_profile',
         'transkip',
         'cv',
-        'is_admin'
+        'roles'
     ];
 
     /**

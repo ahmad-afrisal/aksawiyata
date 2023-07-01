@@ -15,6 +15,9 @@ class Company extends Model
         'name',
         'slug',
         'about',
+        'mentor_id',
+        'adviser_id',
+        'examiner_id',
         'ceo',
         'number_of_employees',
         'website_link',
@@ -31,8 +34,18 @@ class Company extends Model
         return $this->hasMany(CompanyGallery::class, 'companies_id', 'id' );
     }
 
-    public function User(): BelongsTo
+    public function Adviser(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'adviser_id', 'id' );
+    }
+
+    public function Examiner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'examiner_id', 'id' );
+    }
+
+    public function Mentor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'mentor_id', 'id' );
     }
 }
