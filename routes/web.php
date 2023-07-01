@@ -8,6 +8,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Mentor\DashboardController as MentorDashboard;
 use App\Http\Controllers\Admin\CheckoutController as AdminCheckout;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\JobController;
@@ -120,6 +121,14 @@ Route::middleware('auth')->group(function () {
         
     });
 
+
+    // mentor dashboard
+    Route::prefix('mentor/dashboard')->namespace('Mentor')->name('mentor.')->middleware('ensureUserRole:mentor')->group(function(){
+        Route::get('/', [MentorDashboard::class, 'index'])->name('dashboard');
+        Route::get('/detail/{job}', [MentorDashboard::class, 'detail'])->name('detail');
+        Route::get('/assesment/{user:nim}', [MentorDashboard::class, 'assesment'])->name('assesment');
+
+    });
     // Route Dari Breeze
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -60,10 +60,16 @@ class HomeController extends Controller
     public function dashboard()
     {
         switch (Auth::user()->roles) {
-            case true:
+            case 3:
+                return redirect(route('mentor.dashboard'));
+                break;
+            
+            case 2:
+                return redirect(route('lecture.dashboard'));
+                break;
+            case 1:
                 return redirect(route('admin.dashboard'));
                 break;
-
             default:
                 return redirect(route('user.dashboard'));
                 break;

@@ -43,7 +43,6 @@
                     <tbody>
                       @forelse ($jobs as $job)
                       <tr>
-                        <td></td>
                         <th scope="row">{{ $job->name}}</th>
                         <td><a href="{{ $job->Company->website_link}}" target="_blank" class="text-primary fw-bold">{{ $job->Company->name}}</a></td>
                         <td class="fw-bold">{{ $job->quota}}</td>

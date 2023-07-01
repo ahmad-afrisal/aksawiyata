@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.mentor')
 
 @section('content')
 <main id="main" class="main">
@@ -20,37 +20,8 @@
       <div class="col-lg-12">
         <div class="row">
 
-          <!-- Perusahaan Card -->
-          <div class="col-xxl-4 col-md-4">
-            <div class="card info-card sales-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Perusahaan</h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-buildings"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ $companies }}</h6>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div><!-- End Perusahaan Card -->
-
           <!-- Posisi Card -->
-          <div class="col-xxl-4 col-md-4">
+          <div class="col-xxl-4 col-md-6">
             <div class="card info-card revenue-card">
 
               <div class="filter">
@@ -70,7 +41,7 @@
                     <i class="bi bi-person-workspace"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>{{ $job }}</h6>
+                    <h6>{{ $jobsCount }}</h6>
                   </div>
                 </div>
               </div>
@@ -79,7 +50,7 @@
           </div><!-- End Posisi Card -->
 
           <!-- Pengguna Card -->
-          <div class="col-xxl-4 col-md-4">
+          <div class="col-xxl-4 col-md-6">
 
             <div class="card info-card customers-card">
 
@@ -93,14 +64,14 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">Pengguna</h5>
+                <h5 class="card-title">Mahasiswa Magang</h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="bi bi-people"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>{{ $users }}</h6>
+                    {{-- <h6>{{ $users }}</h6> --}}
                   </div>
                 </div>
 
@@ -124,7 +95,7 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">Pendaftar <span>| Terbaru</span></h5>
+                <h5 class="card-title">Daftar Posisi <span>| Terbaru</span></h5>
 
                 <table class="table table-borderless datatable">
                   <thead>
@@ -132,9 +103,6 @@
                       <th scope="col">No</th>
                       <th scope="col">Posisi</th>
                       <th scope="col">Perusahaan</th>
-                      <th scope="col">Sisa Kuota</th>
-                      <th scope="col">Status</th>
-
                       <th scope="col">Menu</th>
                     </tr>
                   </thead>
@@ -144,26 +112,17 @@
                       <th scope="row">{{ $loop->iteration }}</th>
                       <th scope="row">{{ $item->name}}</th>
                       <td><a href="{{ $item->Company->website_link}}" target="_blank" class="text-primary fw-bold">{{ $item->Company->name}}</a></td>
-                      <td class="fw-bold">{{ $item->quota}}</td>
                       <td>
-                        @if ($item->status)
-                          <span class="badge bg-success">Terbuka</span>
-                        @else
-                          <span class="badge bg-danger">Tutup</span>
-                        @endif
-                      </td>
-                      {{-- <td class="fw-bold">{{ $item->quota}}</td> --}}
-                      <td>
-                        <a href="{{route('admin.detail-job',$item->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
+                        <a href="{{route('mentor.detail', $item->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
                       </td>
                     </tr>
                     @empty
                         <tr>
-                          <td colspan="6">Belum Ada perusahaan terdaftar</td>
+                          <td colspan="6">Belum Ada Posisi Terbuka</td>
                         </tr>
                     @endforelse
                   </tbody>
-                </table>
+                </table> 
 
               </div>
 

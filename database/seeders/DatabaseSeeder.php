@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             LectureUserSeeder::class,
             MentorUserSeeder::class,
             // CompanyTableSeeder::class,
-            // JobTableSeeder::class,
+            JobTableSeeder::class,
         ]);
     }
 }
