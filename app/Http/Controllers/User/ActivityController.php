@@ -7,6 +7,7 @@ use App\Http\Requests\User\Activity\StoreLogbookRequest;
 use App\Http\Requests\User\Activity\StoreReportRequest;
 use App\Http\Requests\User\Review\StoreReviewRequest;
 use App\Models\Checkout;
+use App\Models\Consultation;
 use App\Models\Job;
 use App\Models\Logbook;
 use App\Models\Report;
@@ -60,45 +61,6 @@ class ActivityController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 
     public function review(StoreReviewRequest $request, String $id)
     {
@@ -168,5 +130,35 @@ class ActivityController extends Controller
             'logbooks' => $logbooks,
         ]);
     }
+
+    public function consultation(Request $request)
+    {
+        // return $request;
+        $this->validate($request, [
+            'date' => ['required'],
+            'topic' => ['required'],
+            'detail' => ['required'],
+        ]);
+
+       $user = Consultation::create([
+            'date' => $request->date,
+            'user_id' => Auth::user()->id,
+            'topic' => $request->topic,
+            'detail' => $request->detail,
+            'is_accepted' => 0,
+        ]);
+
+        return redirect()->route('user.activity.consultation-history')->with('success', 'Data bimbingan baru berhasil ditambakan');
+
+    }
+
+    public function historyConsultation()
+    {
+        $consultations = Consultation::where('user_id', Auth::id())->get();
+        return view('user.dashboard.consultation', [
+            'consultations' => $consultations,
+        ]);
+    }
+
 
 }

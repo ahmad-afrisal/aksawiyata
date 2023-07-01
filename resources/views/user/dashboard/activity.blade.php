@@ -41,6 +41,47 @@
                                 </div>
                             </div><!-- End Sales Card -->
 
+                            @if ($checkout->status == "selesai")
+                                <div class="col-xxl-12 col-md-12">
+                                    <div class="card info-card sales-card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mt-4">
+                                                <div class="">
+                                                    <h6>Selamat, kamu telah menyelesaikan program!</h6>
+                                                    <span class="text-muted small pt-2">Silahkan unduh sertifikat sebagai bukti keikutsertaan KPI</span>
+                                                    <div class="mt-2">
+                                                        <button type="button" class="btn btn-primary"><i class="bi bi-download me-1"></i> Unduh Sertifikat</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xxl-4 col-md-12">
+                                    <div class="card info-card sales-card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Ulasan</h5>
+                                            <form action="{{ route('user.activity.review', $checkout->Job->id)}}" method="post">
+                                                @csrf
+                                                <div class="form-floating mb-3">
+                                                    <textarea class="form-control {{$errors->has('review') ? 'is-invalid' : ''}}"  value="{{old('review') ?: ''}}" name="review" id="floatingTextarea" style="height: 100px;"></textarea>
+                                                    <label for="floatingTextarea">Berikan Ulasan terbaikmu</label>
+                                                    @if ($errors->has('review'))
+                                                        <div class="invalid-feedback">
+                                                            {{$errors->first('review')}}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="mt-2">
+                                                    <button type="submit" class="btn btn-secondary">Kirim</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><!-- End Sales Card -->
+                            @endif
+
                             <div class="col-12">
                                 
                                 <div class="card info-card sales-card">
@@ -99,6 +140,57 @@
                                 </div>
                             </div>
 
+                            <div class="col-12">
+                                
+                                <div class="card info-card sales-card">
+                                    <div class="filter">
+                                        <a class=" btn btn-sm btn-secondary" href="{{ route('user.activity.consultation-history')}}">Riawayat Bimbingan &nbsp</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Bimbingan | {{ now() }}</h5>
+
+                                        <!-- Floating Labels Form -->
+                                            <form class="row g-3" action="{{ route('user.activity.consultation') }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="col-12">
+                                                    <label for="date" class="form-label">Waktu Bimbingan</label>
+                                                    <input type="date" class="form-control  {{$errors->has('date') ? 'is-invalid' : ''}}"  value="{{old('date') ?: ''}}"  id="date" name="date" required>
+                                                    @if ($errors->has('date'))
+                                                        <div class="invalid-feedback">
+                                                        {{$errors->first('date')}}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="topic" class="form-label">Topik Bimbingan</label>
+                                                    <input type="text" class="form-control  {{$errors->has('topic') ? 'is-invalid' : ''}}"  value="{{old('topic') ?: ''}}"  id="topic" name="topic" required>
+                                                    @if ($errors->has('topic'))
+                                                        <div class="invalid-feedback">
+                                                        {{$errors->first('topic')}}
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <label for="detail" class="form-label">Detail Bimbingan</label>
+                                                    <textarea class="form-control {{$errors->has('detail') ? 'is-invalid' : ''}}"  id="editor2" name="detail" rows="5">{{ old('detail') ?: ''}}</textarea>
+                                                    @if ($errors->has('detail'))
+                                                        <div class="invalid-feedback">
+                                                        {{$errors->first('detail')}}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                            
+                                                <div class="col-12">
+                                                    <div class="d-grid gap-2 mt-3">
+                                                        <button type="submit" class="btn btn-primary" >Simpan</button>
+                                                    </div>                  
+                                                </div>
+                                            </form>
+                                            <!-- End floating Labels Form -->
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-12">
                                 <div class="card info-card sales-card">
@@ -134,48 +226,8 @@
                                     </div>
                                 </div>
                             </div><!-- End Sales Card -->
-
-                            @if ($checkout->status == "selesai")
-                                <div class="col-xxl-12 col-md-12">
-                                    <div class="card info-card sales-card">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="">
-                                                    <h6>Selamat, kamu telah menyelesaikan program!</h6>
-                                                    <span class="text-muted small pt-2">Silahkan unduh sertifikat sebagai bukti keikutsertaan KPI</span>
-                                                    <div class="mt-2">
-                                                        <button type="button" class="btn btn-primary"><i class="bi bi-download me-1"></i> Unduh Sertifikat</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xxl-4 col-md-12">
-                                    <div class="card info-card sales-card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Ulasan</h5>
-                                            <form action="{{ route('user.activity.review', $checkout->Job->id)}}" method="post">
-                                                @csrf
-                                                <div class="form-floating mb-3">
-                                                    <textarea class="form-control {{$errors->has('review') ? 'is-invalid' : ''}}"  value="{{old('review') ?: ''}}" name="review" id="floatingTextarea" style="height: 100px;"></textarea>
-                                                    <label for="floatingTextarea">Berikan Ulasan terbaikmu</label>
-                                                    @if ($errors->has('review'))
-                                                        <div class="invalid-feedback">
-                                                            {{$errors->first('review')}}
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                                <div class="mt-2">
-                                                    <button type="submit" class="btn btn-secondary">Kirim</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div><!-- End Sales Card -->
-                            @endif
-                        
+                            
+                            
                         @empty
                             <h3>Belum ada kegiatan yang di ikuti</h3>
                         @endforelse
