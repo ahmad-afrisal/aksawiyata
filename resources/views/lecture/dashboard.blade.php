@@ -1,0 +1,158 @@
+@extends('layouts.lecture')
+
+@section('content')
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section dashboard">
+    <div class="row">
+
+      <!-- Left side columns -->
+      <div class="col-lg-12">
+        <div class="row">
+
+          <!-- Posisi Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Pembimbing</h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-person-workspace"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Posisi Card -->
+
+          <!-- Pengguna Card -->
+          <div class="col-xxl-4 col-md-6">
+
+            <div class="card info-card customers-card">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Penguji</h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    {{-- <h6>{{ $users }}</h6> --}}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div><!-- End Pengguna Card -->
+
+          @include('components.alert')
+          <!-- Recent Sales -->
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Riwayat Bimbingan <span>| Terbaru</span></h5>
+
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Tanggal</th>
+                      <th scope="col">Nama</th>
+                      <th scope="col">NIM</th>
+                      <th scope="col">Topik Bimbingan</th>
+                      <th scope="col">Perusahaan</th>
+                      <th scope="col">Menu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- @forelse ($consultations as $consultation)
+                    <tr>
+                    <th scope="row">
+                        {{ $loop->iteration }}
+                    </th>
+                    <td class="fw-bold">{{ $consultation->date }}</td>
+                    <td class="fw-bold">{{ $consultation->topic }}</td>
+                    <td>{{ $consultation->detail }}</td>
+                    <td>
+                        @if ($consultation->is_accepted == 0)
+                            <span class="badge bg-info text-dark">Menuggu Persetujuan</span>
+                        @elseif($consultation->is_accepted == 1)
+                            <span class="badge bg-success text-white">Diterima</span>
+                        @elseif($consultation->is_accepted == 2)
+                            <span class="badge bg-danger text-white">Ditolak</span>
+                        @endif
+                    </td>
+                    </tr>
+                    @empty
+                        <tr>
+                        <td colspan="6">Belum Mengisi consultation</td>
+                        </tr>
+                    @endforelse --}}
+
+
+                </tbody>
+                </table> 
+
+              </div>
+
+            </div>
+          </div><!-- End Recent Sales -->
+
+        </div>
+      </div><!-- End Left side columns -->
+
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+
+  {{-- | Ditolak | Terima Tawaran | Sedang Berjalan | Selesai --}}
+
+@endsection
+

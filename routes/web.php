@@ -9,6 +9,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Mentor\DashboardController as MentorDashboard;
+use App\Http\Controllers\Lecture\DashboardController as LectureDashboard;
 use App\Http\Controllers\Admin\CheckoutController as AdminCheckout;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\JobController;
@@ -133,6 +134,26 @@ Route::middleware('auth')->group(function () {
         Route::get('/assesment/{user:nim}', [MentorDashboard::class, 'assesment'])->name('assesment');
 
     });
+
+
+    // mentor dashboard
+    Route::prefix('lecture/dashboard')->namespace('Lecture')->name('lecture.')->middleware('ensureUserRole:lecture')->group(function(){
+        Route::get('/', [LectureDashboard::class, 'index'])->name('dashboard');
+
+        Route::get('/adviser', [LectureDashboard::class, 'adviser'])->name('adviser');
+        Route::get('/adviser/detail/{job}', [LectureDashboard::class, 'detailAdviser'])->name('adviser.detail');
+        Route::post('/adviser/store', [LectureDashboard::class, 'adviserStore'])->name('adviser.store');
+        Route::get('/adviser/assesment/{user:nim}', [LectureDashboard::class, 'adviserAssesment'])->name('adviser.assesment');
+
+
+        Route::get('/examiner', [LectureDashboard::class, 'examiner'])->name('examiner');
+        Route::get('/examiner/detail', [LectureDashboard::class, 'detailExaminer'])->name('examiner.detail');
+
+    });
+
+
+
+
     // Route Dari Breeze
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

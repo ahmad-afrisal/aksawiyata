@@ -140,9 +140,12 @@ class ActivityController extends Controller
             'detail' => ['required'],
         ]);
 
+        $adviser_id = 
+
        $user = Consultation::create([
             'date' => $request->date,
             'user_id' => Auth::user()->id,
+            // 'lecture_id' => ??,
             'topic' => $request->topic,
             'detail' => $request->detail,
             'is_accepted' => 0,
