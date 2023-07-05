@@ -7,6 +7,7 @@ use App\Models\AdviserScore;
 use App\Models\Checkout;
 use App\Models\Company;
 use App\Models\Consultation;
+use App\Models\ExaminerScore;
 use App\Models\Job;
 use App\Models\ScoreRecap;
 use App\Models\User;
@@ -141,23 +142,4 @@ class DashboardController extends Controller
 
 
 
-    public function examiner()
-    {
-        $company_id = Company::where('examiner_id',Auth::user()->id)->value('id');
-
-        $jobs = Job::where('company_id', $company_id)->get();
-
-        return view('lecture.examiner', [
-            'jobs' => $jobs,
-        ]);
-    }
-
-    public function detailExaminer(String $id)
-    {
-        $checkouts = Checkout::with('Job')->where('job_id',$id)->where('status','sedang berjalan')->get();
-
-        return view('lecture.detail-examiner',[
-            'checkouts' => $checkouts,
-        ]);
-    }
 }

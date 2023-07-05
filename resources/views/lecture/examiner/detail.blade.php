@@ -67,7 +67,7 @@
                           @endif
                         </td>
                         <td>
-                          <a href="{{ route('lecture.adviser.assesment', $checkout->User->nim) }}" class="btn btn-primary btn-sm">Beri Nilai</a>
+                          <a href="{{ route('lecture.examiner.assesment', $checkout->User->nim) }}" class="btn btn-primary btn-sm">Beri Nilai</a>
                         </td>
                       </tr>
                     @empty

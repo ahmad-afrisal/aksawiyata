@@ -164,12 +164,12 @@
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('lecture.adviser')}}">
+                    <a href="{{ route('lecture.adviser') }}">
                         <i class="bi bi-circle"></i><span>Pembimbing</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('lecture.examiner')}}">
+                    <a href="{{ route('lecture.examiner.index') }}">
                         <i class="bi bi-circle"></i><span>Penguji</span>
                     </a>
                 </li>

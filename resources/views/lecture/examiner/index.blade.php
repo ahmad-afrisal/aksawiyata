@@ -53,7 +53,7 @@
                               <th scope="row">{{ $item->name}}</th>
                               <td><a href="{{ $item->Company->website_link}}" target="_blank" class="text-primary fw-bold">{{ $item->Company->name}}</a></td>
                               <td>
-                                <a href="{{route('lecture.adviser.detail', $item->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
+                                <a href="{{route('lecture.examiner.detail', $item->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
                               </td>
                             </tr>
                             @empty

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\FinalReportController;
 use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\MentorController;
+use App\Http\Controllers\Lecture\ExaminerController;
 use App\Http\Controllers\user\ActivityController;
 
 /*
@@ -131,12 +132,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('mentor/dashboard')->namespace('Mentor')->name('mentor.')->middleware('ensureUserRole:mentor')->group(function(){
         Route::get('/', [MentorDashboard::class, 'index'])->name('dashboard');
         Route::get('/detail/{job}', [MentorDashboard::class, 'detail'])->name('detail');
+        Route::post('/assesment/store', [MentorDashboard::class, 'store'])->name('assesment.store');
         Route::get('/assesment/{user:nim}', [MentorDashboard::class, 'assesment'])->name('assesment');
-
     });
 
 
-    // mentor dashboard
+    // lecture dashboard
     Route::prefix('lecture/dashboard')->namespace('Lecture')->name('lecture.')->middleware('ensureUserRole:lecture')->group(function(){
         Route::get('/', [LectureDashboard::class, 'index'])->name('dashboard');
 
@@ -146,8 +147,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/adviser/assesment/{user:nim}', [LectureDashboard::class, 'adviserAssesment'])->name('adviser.assesment');
 
 
-        Route::get('/examiner', [LectureDashboard::class, 'examiner'])->name('examiner');
-        Route::get('/examiner/detail', [LectureDashboard::class, 'detailExaminer'])->name('examiner.detail');
+        Route::get('/examiner', [ExaminerController::class, 'index'])->name('examiner.index');
+        Route::get('/examiner/detail/{job}', [ExaminerController::class, 'detail'])->name('examiner.detail');
+        Route::post('/examiner/store', [ExaminerController::class, 'store'])->name('examiner.store');
+        Route::get('/examiner/assesment/{user:nim}', [ExaminerController::class, 'assesment'])->name('examiner.assesment');
 
     });
 
