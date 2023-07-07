@@ -109,7 +109,8 @@
                   <tbody>
                     @forelse ($jobs as $item)
                     <tr>
-                      <th scope="row">{{ $loop->iteration }}</th>
+                      {{-- <th scope="row">{{ $loop->iteration }}</th> --}}
+                      <th scope="row">{{ !Auth::user()->roles}}</th>
                       <th scope="row">{{ $item->name}}</th>
                       <td><a href="{{ $item->Company->website_link}}" target="_blank" class="text-primary fw-bold">{{ $item->Company->name}}</a></td>
                       <td>

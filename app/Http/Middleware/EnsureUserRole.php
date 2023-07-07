@@ -17,9 +17,11 @@ class EnsureUserRole
     public function handle(Request $request, Closure $next, $role): Response
     {
         $user = Auth::user();
-        if(($role == 'admin' && !$user->roles) || ($role == 'user' && $user->roles)) {
-            abort(403);
+        // return $role;
+        if(($role == 'admin' && $user->roles == 1) || ($role == 'user' && $user->roles == 0) || ($role == 'lecture' && $user->roles == 2) || ($role == 'mentor' && $user->roles == 3) ) {
+            return $next($request);
         }
-        return $next($request);
+        abort(403, 'Unauthorized');
+
     }
 }

@@ -17,6 +17,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // return !$user->roles;
 
         $company_id = Company::where('mentor_id',Auth::user()->id)->value('id');
 
