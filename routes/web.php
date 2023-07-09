@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\FinalReportController;
 use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\MentorController;
+use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Lecture\ExaminerController;
 use App\Http\Controllers\user\ActivityController;
 
@@ -78,7 +79,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('ensureUserRole:admin')->group(function(){
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
         Route::get('/detail-job/{job}', [AdminDashboard::class, 'detailJob'])->name('detail-job');
-        
 
         // Admin Checkout
         Route::post('/checkout/{checkout}', [AdminCheckout::class, 'update'])->name('checkout.update');
@@ -94,7 +94,6 @@ Route::middleware('auth')->group(function () {
         // Admin Gallery Company
         Route::post('/company/gallery/upload', [CompanyController::class, 'uploadGallery'])->name('company.gallery-upload');
         Route::get('/company/gallery/delete/{id}', [CompanyController::class, 'deleteGallery'])->name('company.gallery-delete');
-
 
         // Admin Job
         Route::get('/job', [JobController::class, 'index'])->name('job.index');
@@ -119,12 +118,18 @@ Route::middleware('auth')->group(function () {
         Route::get('/users', [AdminDashboard::class, 'users'])->name('users.index');
         Route::get('/users/show/{user}', [AdminDashboard::class, 'show'])->name('users.show');
 
-
-
         // Admin Settings
         Route::get('/settings', [AdminDashboard::class, 'settings'])->name('settings');
         Route::post('/update-profile', [AdminDashboard::class, 'updateProfile'])->name('update-profile');
         
+
+         // Admin Semseter
+        Route::get('/semester', [SemesterController::class, 'index'])->name('semester.index');
+        Route::get('/semester/create', [SemesterController::class, 'create'])->name('semester.create');
+        Route::post('/semester/store', [SemesterController::class, 'store'])->name('semester.store');
+        Route::get('/semester/show/{semester}', [SemesterController::class, 'show'])->name('semester.show');
+        Route::get('/semester/edit/{semester}', [SemesterController::class, 'edit'])->name('semester.edit');
+        Route::post('/semester/update/{semester}', [SemesterController::class, 'update'])->name('semester.update');
     });
 
 

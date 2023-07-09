@@ -40,6 +40,8 @@
 
 <body>
 
+    {{-- @include('notify::components.notify') --}}
+
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -300,6 +302,20 @@
         </li><!-- End Posisi Page Nav -->
 
         <li class="nav-item">
+            <a class="nav-link {{ (request()->is('admin/dashboard/semester*')) ? '' : 'collapsed' }}" href="{{ route('admin.semester.index')}}">
+                <i class="bi bi-person-workspace"></i>
+                <span>Semseter</span>
+            </a>
+        </li><!-- End Semster Page Nav -->
+
+        {{-- <li class="nav-item">
+            <a class="nav-link {{ (request()->is('admin/dashboard/exam')) ? '' : 'collapsed' }}" href="{{ route('admin.semester.index')}}">
+                <i class="bi bi-person-workspace"></i>
+                <span>Ujian</span>
+            </a>
+        </li><!-- End Semster Page Nav --> --}}
+
+        <li class="nav-item">
             <a class="nav-link {{ (request()->is('admin/dashboard/users*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-people"></i><span>Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -347,6 +363,7 @@
         </ul>
 
     </aside><!-- End Sidebar-->
+
 
     @yield('content')
 
