@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('admin_id');
             $table->date('exam_date');
             $table->string('place');
+            $table->boolean('is_open')->default('0');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');

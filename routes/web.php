@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\FinalReportController;
 use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\SemesterController;
+use App\Http\Controllers\Admin\ExamScheduleController;
 use App\Http\Controllers\Lecture\ExaminerController;
 use App\Http\Controllers\user\ActivityController;
 
@@ -72,6 +73,9 @@ Route::middleware('auth')->group(function () {
         // User Profile
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::post('/profile/{user}', [ProfileController::class, 'update'])->name('update-profile');
+
+        // Examinee Profile
+        Route::get('/examine', [ExamineController::class, 'index'])->name('examine');
     });
 
 
@@ -130,6 +134,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/semester/show/{semester}', [SemesterController::class, 'show'])->name('semester.show');
         Route::get('/semester/edit/{semester}', [SemesterController::class, 'edit'])->name('semester.edit');
         Route::post('/semester/update/{semester}', [SemesterController::class, 'update'])->name('semester.update');
+
+         // Admin Exam
+        Route::get('/exam-schedule', [ExamScheduleController::class, 'index'])->name('exam-schedule.index');
+        Route::get('/exam-schedule/create', [ExamScheduleController::class, 'create'])->name('exam-schedule.create');
+        Route::post('/exam-schedule/store', [ExamScheduleController::class, 'store'])->name('exam-schedule.store');
+        Route::get('/exam-schedule/edit/{examschedule}', [ExamScheduleController::class, 'edit'])->name('exam-schedule.edit');
+        Route::post('/exam-schedule/update/{examschedule}', [ExamScheduleController::class, 'update'])->name('exam-schedule.update');
     });
 
 

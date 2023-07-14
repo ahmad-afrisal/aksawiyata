@@ -151,6 +151,12 @@
             </a>
         </li><!-- End Contact Page Nav -->
         <li class="nav-item">
+            <a class="nav-link {{ (request()->is('user/dashboard/activity')) ? '' : 'collapsed' }}" href="{{ route('user.activity.index')}}">
+            <i class="bi bi-envelope"></i>
+            <span>Jadwal Ujian</span>
+            </a>
+        </li><!-- End Contact Page Nav -->
+        <li class="nav-item">
             <a class="nav-link {{ (request()->is('user/dashboard/profile')) ? '' : 'collapsed' }}" href="{{ route('user.profile')}}">
             <i class="bi bi-person"></i>
             <span>Profile</span>

@@ -303,17 +303,18 @@
 
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('admin/dashboard/semester*')) ? '' : 'collapsed' }}" href="{{ route('admin.semester.index')}}">
-                <i class="bi bi-person-workspace"></i>
-                <span>Semseter</span>
+                <i class="bi bi-card-list"></i>
+                <span>Semester</span>
             </a>
         </li><!-- End Semster Page Nav -->
 
-        {{-- <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/exam')) ? '' : 'collapsed' }}" href="{{ route('admin.semester.index')}}">
-                <i class="bi bi-person-workspace"></i>
-                <span>Ujian</span>
+        <li class="nav-item">
+            <a class="nav-link {{ (request()->is('admin/dashboard/exam-schedule*')) ? '' : 'collapsed' }}" href="{{ route('admin.exam-schedule.index')}}">
+                <i class="bi bi-calendar-week"></i>
+                <span>Jadwal Ujian</span>
             </a>
-        </li><!-- End Semster Page Nav --> --}}
+        </li>
+        <!-- End Semster Page Nav --> 
 
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('admin/dashboard/users*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
