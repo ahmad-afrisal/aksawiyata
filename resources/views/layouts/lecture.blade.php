@@ -145,12 +145,6 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        {{-- <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/company*')) ? '' : 'collapsed' }}" href="">
-                <i class="bi bi-buildings"></i>
-                <span>Bimbingan</span>
-            </a>
-        </li><!-- End Perusahaan Page Nav --> --}}
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('lecture/dashboard/examinee')) ? '' : 'collapsed' }}" href="{{ route('lecture.examinee')}}">
                 <i class="bi bi-person-workspace"></i>
@@ -159,7 +153,7 @@
         </li><!-- End Posisi Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/users*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link {{ (request()->is('lecture/dashboard/users*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-people"></i><span>Mahasiwa</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -177,14 +171,14 @@
         </li><!-- End Charts Nav -->
         
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/final-report')) ? '' : 'collapsed' }}" href=" {{ route('admin.final-report.index')}}">
+            <a class="nav-link {{ (request()->is('lecture/dashboard/report')) ? '' : 'collapsed' }}" href=" {{ route('lecture.report.index')}}">
                 <i class="bi bi-file-earmark-pdf"></i>
                 <span>Laporan Mahasiswa</span>
             </a>
         </li><!-- End Pengguna Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/settings')) ? '' : 'collapsed' }}" href="{{ route('admin.settings')}}">
+            <a class="nav-link {{ (request()->is('admin/dashboard/settings')) ? '' : 'collapsed' }}" href="#">
                 <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
             </a>

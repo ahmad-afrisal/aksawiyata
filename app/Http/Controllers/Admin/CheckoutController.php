@@ -9,13 +9,13 @@ use Mail;
 use App\Mail\Checkout\Accepted;
 use App\Models\Job;
 use App\Models\Report;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
     public function update(Request $request, Checkout $checkout)
     {
 
-        // $checkQuota = Job::where('id', $checkout->job_id)->where('quota', 0)->first();
         $quotaNow = Job::where('id', $checkout->job_id)->value('quota');
 
         if($quotaNow <= 0) {
@@ -23,26 +23,44 @@ class CheckoutController extends Controller
             return redirect(route('admin.dashboard'));
         } else {
 
-            $quotaNew = $quotaNow - 1;
-            Job::where('id', $checkout->job_id)->update(['quota' => $quotaNew]);
+            DB::beginTransaction();
             
-            $checkout->status = "sedang berjalan";
-            $checkout->save();
+            try{
+                $quotaNew = $quotaNow - 1;
+                Job::where('id', $checkout->job_id)->update(['quota' => $quotaNew]);
+                
+                $checkout->status = "sedang berjalan";
+                $checkout->save();
 
-            Report::create([
-                    'user_id'     => $checkout->user_id,
-                    'report'     => '-',
-                    'status'     => 'Belum Upload',
-                    'message'     => '',
-            ]);
-            // Checkout::decrement('quota', 1);
+                Report::create([
+                        'user_id'     => $checkout->user_id,
+                        'job_id'    => $checkout->job_id,
+                        'report'     => '-',
+                        'status'     => 'Belum Upload',
+                        'message'     => '',
+                ]);
+
+                // return $report;
+
+            
             // send email to user
             Mail::to($checkout->User->email)->send(new Accepted($checkout));
-
-
-
+                
+            DB::commit();
+            
             $request->session()->flash('success', "Checkout with ID {$checkout->id} has been updated!");
             return redirect(route('admin.dashboard'));
+
+            } catch(\Exception $e){
+
+                DB::rollback();
+    
+                return redirect()->back()
+    
+                ->with('warning','Something Went Wrong!');
+    
+            }
+
         }
         
     }

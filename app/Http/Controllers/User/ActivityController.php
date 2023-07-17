@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\DB;
 
 class ActivityController extends Controller
 {
@@ -31,7 +31,7 @@ class ActivityController extends Controller
         ->take(1)->first(); 
         // return $checkout;
 
-        if($checkout->count() < 0) {
+        if($checkout == null) {
             
             // return $checkout;
             return view('user.dashboard.activity', [
@@ -40,6 +40,9 @@ class ActivityController extends Controller
         } else {
             
             $item = Report::where('user_id', Auth::id())->first();
+            // $item = Report::all();
+
+            // return $item;
 
             return view('user.dashboard.activity', [
                 'item' => $item,
@@ -79,23 +82,39 @@ class ActivityController extends Controller
 
     public function report(StoreReportRequest $request)
     {
-        $item = Report::where('user_id', Auth::user()->id)->first();
-        if($item) {
-            Storage::delete($item->report);
-            $item->delete();
+        DB::beginTransaction();
+
+        try {
+            $item = Report::where('user_id', Auth::user()->id)->first();
+            $job_id = $item->job_id;
+
+            if($item) {
+                Storage::delete($item->report);
+                $item->delete();
+            }
+            
+
+            $data = $request->all();    
+            
+            $data['user_id'] = Auth::user()->id;
+            $data['job_id'] = $job_id;
+            $data['report'] = $request->file('report')->storeAs('public/assets/report', 'laporan-'.str_replace(" ","-",Auth::user()->name).'-'.Auth::user()->nim.'-'.Str::random(15).'.pdf',);
+            $data['status'] = "Sedang Diperiksa";
+
+            Report::create($data);
+
+            DB::commit();
+            
+            return redirect()->route('user.activity.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
+
+
+        } catch(\Exception $e) {
+            DB::rollback();
+
+            return redirect()->back()->with('warning','Something Went Wrong!');
         }
-        
-
-        $data = $request->all();    
-        
-        $data['user_id'] = Auth::user()->id;
-        $data['report'] = $request->file('report')->storeAs('public/assets/report', 'laporan-'.str_replace(" ","-",Auth::user()->name).'-'.Auth::user()->nim.'-'.Str::random(15).'.pdf',);
-        $data['status'] = "Sedang Diperiksa";
-
-        Report::create($data);
 
 
-        return redirect()->route('user.activity.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
 
     public function logbook(StoreLogbookRequest $request)

@@ -11,11 +11,16 @@ class Report extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id','report','status','message'];
+    protected $fillable = ['user_id','job_id','report','status','message'];
 
     public function User(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function Job(): BelongsTo
+    {
+        return $this->belongsTo(Job::class);
     }
 
 }

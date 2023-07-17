@@ -1,4 +1,4 @@
-@extends('layouts.lecture')
+@extends('layouts.app-dashboard')
 
 @section('content')
 <main id="main" class="main">

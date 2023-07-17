@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\ExamScheduleController;
 use App\Http\Controllers\Lecture\ExamineeController;
 use App\Http\Controllers\Lecture\ExaminerController;
+use App\Http\Controllers\Lecture\ReportController;
 use App\Http\Controllers\user\ActivityController;
 use App\Http\Controllers\User\ExamineController;
 
@@ -179,6 +180,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/examinee', [ExamineeController::class, 'index'])->name('examinee');
         Route::post('/examinee/accepted/{examinee}', [ExamineeController::class, 'accepted'])->name('examinee.accepted');
         Route::post('/examinee/rejected/{examinee}', [ExamineeController::class, 'rejected'])->name('examinee.rejected');
+
+        // Lecture FinalReport
+        Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+        Route::get('/report/detail/{job}', [ReportController::class, 'detail'])->name('report.detail');
+        Route::post('/report/update-accept/{report}', [ReportController::class, 'accepted'])->name('report.accepted');
+        Route::post('/report/update-rejcet/{report}', [ReportController::class, 'rejected'])->name('report.rejected');
 
     });
 

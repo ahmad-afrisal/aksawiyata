@@ -20,7 +20,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         @include('components.alert')
-                        @if (!$checkout->count)
+                        @if ($checkout != null)
 
                             <!-- Sales Card -->
                             <div class="col-xxl-12 col-md-12">
