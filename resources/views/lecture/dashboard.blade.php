@@ -101,41 +101,28 @@
                   <thead>
                     <tr>
                       <th scope="col">No</th>
-                      <th scope="col">Tanggal</th>
-                      <th scope="col">Nama</th>
-                      <th scope="col">NIM</th>
-                      <th scope="col">Topik Bimbingan</th>
+                      <th scope="col">Posisi</th>
                       <th scope="col">Perusahaan</th>
                       <th scope="col">Menu</th>
                     </tr>
-                </thead>
-                <tbody>
-                    {{-- @forelse ($consultations as $consultation)
-                    <tr>
-                    <th scope="row">
-                        {{ $loop->iteration }}
-                    </th>
-                    <td class="fw-bold">{{ $consultation->date }}</td>
-                    <td class="fw-bold">{{ $consultation->topic }}</td>
-                    <td>{{ $consultation->detail }}</td>
-                    <td>
-                        @if ($consultation->is_accepted == 0)
-                            <span class="badge bg-info text-dark">Menuggu Persetujuan</span>
-                        @elseif($consultation->is_accepted == 1)
-                            <span class="badge bg-success text-white">Diterima</span>
-                        @elseif($consultation->is_accepted == 2)
-                            <span class="badge bg-danger text-white">Ditolak</span>
-                        @endif
-                    </td>
-                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($jobs as $item)
+                      <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <th scope="row">{{ $item->name}}</th>
+                        <td><a href="{{ $item->Company->website_link}}" target="_blank" class="text-primary fw-bold">{{ $item->Company->name}}</a></td>
+                        <td>
+                          <a href="{{route('lecture.detail-consultation', $item->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
+                        </td>
+                      </tr>
                     @empty
-                        <tr>
-                        <td colspan="6">Belum Mengisi consultation</td>
-                        </tr>
-                    @endforelse --}}
+                      <tr>
+                        <td colspan="6">Belum Ada Posisi Terbuka</td>
+                      </tr>
+                    @endforelse
 
-
-                </tbody>
+                  </tbody>
                 </table> 
 
               </div>

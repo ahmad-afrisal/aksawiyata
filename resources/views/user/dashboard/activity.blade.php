@@ -20,8 +20,8 @@
                 <div class="col-lg-12">
                     <div class="row">
                         @include('components.alert')
+                        @if (!$checkout->count)
 
-                        @forelse ($checkouts as $checkout)
                             <!-- Sales Card -->
                             <div class="col-xxl-12 col-md-12">
                                 <div class="card info-card sales-card">
@@ -86,7 +86,7 @@
                                 
                                 <div class="card info-card sales-card">
                                     <div class="filter">
-                                        <a class=" btn btn-sm btn-secondary" href="{{ route('user.activity.logbook-history')}}">Riawayat Pengisian &nbsp</a>
+                                        <a class=" btn btn-sm btn-secondary" href="{{ route('user.activity.logbook-history')}}">Riwayat Pengisian &nbsp</a>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">LogBook Hariaan | {{ now() }}</h5>
@@ -116,7 +116,6 @@
 
                                                 <div class="col-2">
                                                     <img src="{{ asset('/storage/') }}" alt="" srcset="" class="img-fluid img-preview">
-                                                    
                                                 </div>
                                                 <div class="col-10">
                                                     <label for="photo" class="form-label">Foto Dokumentasi</label>
@@ -144,13 +143,13 @@
                                 
                                 <div class="card info-card sales-card">
                                     <div class="filter">
-                                        <a class=" btn btn-sm btn-secondary" href="{{ route('user.activity.consultation-history')}}">Riawayat Bimbingan &nbsp</a>
+                                        <a class=" btn btn-sm btn-secondary" href="{{ route('user.activity.consultation-history')}}">Riwayat Bimbingan &nbsp</a>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">Bimbingan | {{ now() }}</h5>
 
                                         <!-- Floating Labels Form -->
-                                            <form class="row g-3" action="{{ route('user.activity.consultation') }}" method="post" enctype="multipart/form-data">
+                                            <form class="row g-3" action="{{ route('user.activity.consultation', $checkout->Job->id) }}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="col-12">
                                                     <label for="date" class="form-label">Waktu Bimbingan</label>
@@ -216,7 +215,7 @@
                                                 @if ($errors->has('report'))
                                                 <div class="invalid-feedback">
                                                     {{$errors->first('report')}}
-                                                </div>
+                                                </div> 
                                                 @endif
                                             </div>
                                             <div class="col-2">
@@ -228,11 +227,9 @@
                             </div><!-- End Sales Card -->
                             
                             
-                        @empty
+                        @else
                             <h3>Belum ada kegiatan yang di ikuti</h3>
-                        @endforelse
-                        
-
+                        @endif
                         
                     </div>
                 </div><!-- End Left side columns -->

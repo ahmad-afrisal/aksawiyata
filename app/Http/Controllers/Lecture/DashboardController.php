@@ -7,6 +7,7 @@ use App\Models\AdviserScore;
 use App\Models\Checkout;
 use App\Models\Company;
 use App\Models\Consultation;
+use App\Models\Examinee;
 use App\Models\ExaminerScore;
 use App\Models\Job;
 use App\Models\ScoreRecap;
@@ -19,16 +20,42 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $consultations = Consultation::where('user_id', Auth::id())->get();
-        // // Ambil Data Perusahaan yang dosen Pembimbing sedang login = id_company
-        // // Ambil Data Posisi Yang ada
+        $company_id = Company::where('adviser_id',Auth::user()->id)->value('id');
 
-        // $test =  Checkout::with('Job','User')->where('adviser_id', Auth::id())->get();
-        // return $test;
+        $jobs = Job::where('company_id', $company_id)->get();
 
-        return view('lecture.dashboard',[
-            // 'consultations' => $consultations,
+        return view('lecture.dashboard', [
+            'jobs' => $jobs,
         ]);
+    }
+
+    public function detailConsultation(String $id)
+    {
+        $consultations = Consultation::with('Job','User')->where([
+            'job_id'=> $id,
+        ])->get()->sortByDesc('id');
+        
+        return view('lecture.detail-consultation',[
+            'consultations' => $consultations,
+        ]);
+    }
+
+    public function accepted(Consultation $consultation)
+    {
+        $consultation->is_accepted = 1;
+        $consultation->save();
+            
+        return redirect(route('lecture.detail-consultation', $consultation->job_id));
+            
+    }
+
+    public function rejected(Consultation $consultation)
+    {
+        $consultation->is_accepted = 0;
+        $consultation->save();
+            
+        return redirect(route('lecture.detail-consultation', $consultation->job_id));
+            
     }
 
     public function adviser()
@@ -139,7 +166,5 @@ class DashboardController extends Controller
         }
 
     }
-
-
 
 }

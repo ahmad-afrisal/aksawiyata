@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/logbook/', [ActivityController::class, 'logbook'])->name('activity.logbook');
         Route::get('/logbook/history', [ActivityController::class, 'history'])->name('activity.logbook-history');
 
-        Route::post('/consultation/', [ActivityController::class, 'consultation'])->name('activity.consultation');
+        Route::post('/consultation/{job}', [ActivityController::class, 'consultation'])->name('activity.consultation');
         Route::get('/consultation/history', [ActivityController::class, 'historyConsultation'])->name('activity.consultation-history');
         
         // User Profile
@@ -160,6 +160,9 @@ Route::middleware('auth')->group(function () {
     // lecture dashboard
     Route::prefix('lecture/dashboard')->namespace('Lecture')->name('lecture.')->middleware('ensureUserRole:lecture')->group(function(){
         Route::get('/', [LectureDashboard::class, 'index'])->name('dashboard');
+        Route::post('/detail-consultation/accepted/{consultation}', [LectureDashboard::class, 'accepted'])->name('detail-consultation.accepted');
+        Route::post('/detail-consultation/rejected/{consultation}', [LectureDashboard::class, 'rejected'])->name('detail-consultation.rejected');
+        Route::get('/detail-consultation/{job}', [LectureDashboard::class, 'detailConsultation'])->name('detail-consultation');
 
         Route::get('/adviser', [LectureDashboard::class, 'adviser'])->name('adviser');
         Route::get('/adviser/detail/{job}', [LectureDashboard::class, 'detailAdviser'])->name('adviser.detail');

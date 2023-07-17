@@ -26,25 +26,25 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $checkouts = Checkout::with('Job')->where('user_id', Auth::id())
+        $checkout = Checkout::with('Job')->where('user_id', Auth::id())
         ->where('status', '=', 'selesai')->orWhere('status', '=', 'sedang berjalan')
-        ->take(1)->get(); 
-        // return $checkouts;
+        ->take(1)->first(); 
+        // return $checkout;
 
-        if($checkouts->isEmpty() > 0) {
+        if($checkout->count() < 0) {
             
+            // return $checkout;
             return view('user.dashboard.activity', [
-                'checkouts' => $checkouts
+                'checkout' => $checkout
             ]);
-        }
-        else {
+        } else {
             
             $item = Report::where('user_id', Auth::id())->first();
 
             return view('user.dashboard.activity', [
                 'item' => $item,
                 'report' => str_replace('public/assets/report/', '', $item->report),
-                'checkouts' => $checkouts
+                'checkout' => $checkout
     
             ]);
         }
@@ -131,24 +131,22 @@ class ActivityController extends Controller
         ]);
     }
 
-    public function consultation(Request $request)
+    public function consultation(Request $request, String $id)
     {
-        // return $request;
+        // return $id;
         $this->validate($request, [
             'date' => ['required'],
             'topic' => ['required'],
             'detail' => ['required'],
         ]);
 
-        $adviser_id = 
-
        $user = Consultation::create([
             'date' => $request->date,
             'user_id' => Auth::user()->id,
-            // 'lecture_id' => ??,
+            'job_id' => $id,
             'topic' => $request->topic,
             'detail' => $request->detail,
-            'is_accepted' => 0,
+            'is_accepted' => 3,
         ]);
 
         return redirect()->route('user.activity.consultation-history')->with('success', 'Data bimbingan baru berhasil ditambakan');
