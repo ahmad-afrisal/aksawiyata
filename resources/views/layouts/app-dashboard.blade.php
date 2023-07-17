@@ -151,7 +151,7 @@
             </a>
         </li><!-- End Contact Page Nav -->
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('user/dashboard/activity')) ? '' : 'collapsed' }}" href="{{ route('user.activity.index')}}">
+            <a class="nav-link {{ (request()->is('user/dashboard/examinee')) ? '' : 'collapsed' }}" href="{{ route('user.examinee')}}">
             <i class="bi bi-envelope"></i>
             <span>Jadwal Ujian</span>
             </a>

@@ -18,8 +18,10 @@ use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\ExamScheduleController;
+use App\Http\Controllers\Lecture\ExamineeController;
 use App\Http\Controllers\Lecture\ExaminerController;
 use App\Http\Controllers\user\ActivityController;
+use App\Http\Controllers\User\ExamineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +77,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/profile/{user}', [ProfileController::class, 'update'])->name('update-profile');
 
         // Examinee Profile
-        Route::get('/examine', [ExamineController::class, 'index'])->name('examine');
+        Route::get('/examinee', [ExamineController::class, 'index'])->name('examinee');
+        Route::post('/examinee/store/{examschedule}', [ExamineController::class, 'store'])->name('examinee.store');
     });
 
 
@@ -139,6 +142,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/exam-schedule', [ExamScheduleController::class, 'index'])->name('exam-schedule.index');
         Route::get('/exam-schedule/create', [ExamScheduleController::class, 'create'])->name('exam-schedule.create');
         Route::post('/exam-schedule/store', [ExamScheduleController::class, 'store'])->name('exam-schedule.store');
+        Route::get('/exam-schedule/show/{examschedule}', [ExamScheduleController::class, 'show'])->name('exam-schedule.show');
         Route::get('/exam-schedule/edit/{examschedule}', [ExamScheduleController::class, 'edit'])->name('exam-schedule.edit');
         Route::post('/exam-schedule/update/{examschedule}', [ExamScheduleController::class, 'update'])->name('exam-schedule.update');
     });
@@ -167,6 +171,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/examiner/detail/{job}', [ExaminerController::class, 'detail'])->name('examiner.detail');
         Route::post('/examiner/store', [ExaminerController::class, 'store'])->name('examiner.store');
         Route::get('/examiner/assesment/{user:nim}', [ExaminerController::class, 'assesment'])->name('examiner.assesment');
+
+        // Examinee Profile
+        Route::get('/examinee', [ExamineeController::class, 'index'])->name('examinee');
+        Route::post('/examinee/accepted/{examinee}', [ExamineeController::class, 'accepted'])->name('examinee.accepted');
+        Route::post('/examinee/rejected/{examinee}', [ExamineeController::class, 'rejected'])->name('examinee.rejected');
 
     });
 

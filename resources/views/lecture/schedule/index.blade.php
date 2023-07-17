@@ -3,7 +3,7 @@
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Posisi</h1>
+      <h1>Ujian</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
@@ -30,7 +30,6 @@
                         <th scope="col">No</th>
                         <th scope="col">Waktu Ujian</th>
                         <th scope="col">Tempat Ujian</th>
-                        <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -39,13 +38,6 @@
                         <th scope="row">{{ $loop->iteration}}</th>
                         <td>{{ $schedule->exam_date }}</td>
                         <td>{{ $schedule->place }}</td>
-                        <td>
-                          <form action="{{route('user.examinee.store', $schedule->id)}}" method="POST">
-                            @csrf
-                              
-                            <button class="btn btn-warning">Daftar</button>
-                          </form>
-                        </td>
                       </tr>
                       @empty
                           <tr>
@@ -66,7 +58,7 @@
             <div class="col-12">
               <div class="card top-selling overflow-auto">
                 <div class="card-body pb-0">
-                  <h5 class="card-title">Riwayat Daftar <span>|</span></h5>
+                  <h5 class="card-title">Pendaftar Daftar <span>|</span></h5>
   
                   <table class="table table-borderless datatable">
                     <thead>
@@ -75,29 +67,48 @@
                         <th scope="col">Waktu Ujian</th>
                         <th scope="col">Tempat Ujian</th>
                         <th scope="col">Tanggal Daftar</th>
+                        <th scope="col">Posisi</th>
+                        <th scope="col">Perusahaan</th>
+                        <th scope="col">Pendaftar</th>
                         <th scope="col">Status</th>
+                        <th scope="col" colspan="2">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @forelse ($histories as $history)
+                      @forelse ($examinees as $examinee)
                       <tr>
                         <th scope="row">{{ $loop->iteration}}</th>
-                        <td>{{ $history->Schedule->exam_date }}</td>
-                        <td>{{ $history->Schedule->place }}</td>
-                        <td>{{ $history->created_at }}</td>
+                        <td>{{ $examinee->Schedule->exam_date }}</td>
+                        <td>{{ $examinee->Schedule->place }}</td>
+                        <td>{{ $examinee->created_at }}</td>
+                        <td>{{ $examinee->Checkout->Job->name }}</td>
+                        <td>{{ $examinee->Checkout->Job->Company->name }}</td>
+                        <td>{{ $examinee->Student->name }}</td>
                         <td>
-                          @if ($history->is_accepted == 0) 
+                          @if ($examinee->is_accepted == 0) 
                             <span class="badge border-danger border-1 text-danger">Ditolak</span>
-                          @elseif ($history->is_accepted == 1)
+                          @elseif ($examinee->is_accepted == 1)
                             <span class="badge border-success border-1 text-success">Disetujui</span>
                           @else
                             <span class="badge border-warning border-1 text-warning">Menunggu</span>
                           @endif
                         </td> 
+                        <td>
+                          <form action="{{ route('lecture.examinee.accepted', $examinee->id) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
+                          </form>
+                        </td>
+                        <td>
+                          <form action="{{ route('lecture.examinee.rejected', $examinee->id) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-exclamation-octagon"></i></button>
+                          </form>
+                        </td>
                       </tr>
                       @empty
                           <tr>
-                            <td colspan="3">Belum Pernah Mendaftar</td>
+                            <td colspan="7">Belum ada pendaftar</td>
                           </tr>
                       @endforelse
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Examinee;
 use App\Models\ExamSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,12 @@ class ExamScheduleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $examinees = Examinee::with('Schedule','Student','Checkout')->get()->sortByDesc('id');
+
+        // return $examinees;
+        return view('admin.exam-schedule.show',[
+            'examinees' => $examinees, 
+        ]);
     }
 
     /**

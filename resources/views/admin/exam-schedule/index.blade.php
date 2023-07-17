@@ -36,7 +36,8 @@
                         <th scope="col">No</th>
                         <th scope="col">Waktu Ujian</th>
                         <th scope="col">Tempat Ujian</th>
-                        <th scope="col">Aksi</th>
+                        <th scope="col">Lihat Pendaftar</th>
+                        <th scope="col">Ubah</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -46,8 +47,12 @@
                         <td>{{ $schedule->exam_date }}</td>
                         <td>{{ $schedule->place }}</td>
                         <td>
+                          <a href="{{route('admin.exam-schedule.show',$schedule->id)}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                        </td>
+                        <td>
                           <a href="{{route('admin.exam-schedule.edit',$schedule->id)}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                         </td>
+                        
                       </tr>
                       @empty
                           <tr>

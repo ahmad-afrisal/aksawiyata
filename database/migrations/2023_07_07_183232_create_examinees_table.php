@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('exam_id');
-            $table->unsignedBigInteger('adviser_id');
+            $table->unsignedBigInteger('checkout_id');
+            $table->unsignedBigInteger('adviser_id')->nullable();
             $table->boolean('is_accepted')->default('0');
             $table->timestamps();
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('checkout_id')->references('id')->on('checkouts')->onDelete('cascade');
             $table->foreign('exam_id')->references('id')->on('exam_schedules')->onDelete('cascade');
             $table->foreign('adviser_id')->references('id')->on('users')->onDelete('cascade');
 

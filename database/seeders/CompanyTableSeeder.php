@@ -25,7 +25,7 @@ class CompanyTableSeeder extends Seeder
                 'postal_code' => '91545',
                 'district' => 'Banggae Timur',
                 'regency' => 'Majene',
-                'province' => 'Sulawesi Barat',
+                'province' => '',
                 'image' => 'company-2.jpg',
                 'logo' => 'bangkid.png',
 

@@ -139,7 +139,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard')) ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
+            <a class="nav-link {{ (request()->is('lecture/dashboard')) ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
             </a>
@@ -152,7 +152,7 @@
             </a>
         </li><!-- End Perusahaan Page Nav --> --}}
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/job*')) ? '' : 'collapsed' }}" href="{">
+            <a class="nav-link {{ (request()->is('lecture/dashboard/examinee')) ? '' : 'collapsed' }}" href="{{ route('lecture.examinee')}}">
                 <i class="bi bi-person-workspace"></i>
                 <span>Ujian</span>
             </a>
