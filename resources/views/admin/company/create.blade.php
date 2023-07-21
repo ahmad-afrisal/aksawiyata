@@ -48,8 +48,7 @@
                   <div class="col-12 col-lg-6">
                     <label for="ceo" class="form-label">Pembimbing Lapangan</label>
                     <div class="col-sm-12">
-                      <select class="form-select" aria-label="Default select example" name="mentor_id">
-                        <option value="" readonly>Pilih Pembimbing Lapangan</option>
+                      <select class="form-select" id="js-example-basic-single" style="width: 100%; height:36px !important;" aria-label="Default select example" height="" name="mentor_id">
                         @foreach ($mentors as $mentor)
                         <option value="{{ $mentor->id }}">{{ $mentor->name }}</option>
                         @endforeach

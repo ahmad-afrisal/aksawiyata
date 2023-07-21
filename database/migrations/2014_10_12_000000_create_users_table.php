@@ -13,25 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('nim')->unique()->nullable();
+            $table->string('username');
             $table->string('email')->unique();
-            $table->string('concentration')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('avatar')->nullable();
-            $table->text('about')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('instagram_profile')->nullable();
-            $table->string('linkedin_profile')->nullable();
-            $table->string('github_profile')->nullable();
-            $table->string('transkip')->nullable();
-            $table->string('cv')->nullable();
-            $table->boolean('roles')->default(0);
+            $table->unsignedBigInteger('role_id');
+            $table->boolean('status')->default(2);     
             $table->rememberToken();
             $table->timestamps();
-
             $table->softDeletes();
+            $table->foreign('role_id')->references('id')->on('group_roles')->onDelete('cascade');
         });
     }
 
