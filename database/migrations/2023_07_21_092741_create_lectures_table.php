@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('jafung_dosen')->nullable();      
             $table->string('hp_dosen')->nullable();      
             $table->string('prodi_dosen')->nullable();      
-            $table->integer('aktif');      
+            $table->integer('aktif')->nullable()->default(1);      
             $table->string('bidang_peminatan')->nullable();      
             $table->timestamps();
             $table->softDeletes();
