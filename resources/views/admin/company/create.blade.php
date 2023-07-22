@@ -48,9 +48,10 @@
                   <div class="col-12 col-lg-6">
                     <label for="ceo" class="form-label">Pembimbing Lapangan</label>
                     <div class="col-sm-12">
-                      <select class="form-select" id="js-example-basic-single" style="width: 100%; height:36px !important;" aria-label="Default select example" height="" name="mentor_id">
+                      <select class="form-select" aria-label="Default select example" height="" name="mentor_id">
+                        <option value="" readonly>Pilih Pembimbing Lapangan</option>
                         @foreach ($mentors as $mentor)
-                        <option value="{{ $mentor->id }}">{{ $mentor->name }}</option>
+                        <option value="{{ $mentor->id }}">{{ $mentor->Mentor->name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -61,7 +62,7 @@
                       <select class="form-select" aria-label="Default select example" name="adviser_id">
                         <option value="" readonly>Pilih Dosen Pembimbing</option>
                         @foreach ($lectures as $lecture)
-                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        <option value="{{ $lecture->id }}">{{ $lecture->Lecture->nama_dosen }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -72,7 +73,7 @@
                       <select class="form-select" aria-label="Default select example" name="examiner_id">
                         <option value="" readonly>Pilih Dosen Penguji</option>
                         @foreach ($lectures as $lecture)
-                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        <option value="{{ $lecture->id }}">{{ $lecture->Lecture->nama_dosen }}</option>
                         @endforeach
                       </select>
                     </div>

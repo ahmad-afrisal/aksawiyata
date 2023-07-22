@@ -7,6 +7,8 @@ use App\Http\Requests\Admin\Company\CompanyRequest;
 use Illuminate\Support\Str;
 use App\Models\Company;
 use App\Models\CompanyGallery;
+use App\Models\Lecture;
+use App\Models\Mentor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,8 +33,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $lectures = User::where('roles',2)->get();
-        $mentors = User::where('roles',3)->get();
+        $lectures = User::with('Lecture')->where('role_id',2)->get();
+        $mentors = User::with('Mentor')->where('role_id',3)->get();
 
         return view('admin.company.create',[
             'lectures' => $lectures,
@@ -45,7 +47,9 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-        $data = $request->all();       
+        $data = $request->all();  
+        
+        // return $data;
 
         $data['slug'] = Str::slug($request->name);
         $data['logo'] = $request->file('logo')->store('assets/logo','public');
@@ -81,8 +85,8 @@ class CompanyController extends Controller
     public function edit(string $id)
     {
         $company = Company::with(['CompanyGallery','Adviser','Examiner','Mentor'])->findOrFail($id);
-        $lectures = User::where('roles',2)->get();
-        $mentors = User::where('roles',3)->get();
+        $lectures = User::with('Lecture')->where('role_id',2)->get();
+        $mentors = User::with('Mentor')->where('role_id',3)->get();
 
 
         return view('admin.company.edit', [

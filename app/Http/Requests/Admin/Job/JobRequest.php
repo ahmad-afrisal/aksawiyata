@@ -23,7 +23,7 @@ class JobRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company_id' => 'required',
+            'company_id' => 'required|exists:companies,id',
             'name' => 'required',
             'details_of_activities' => 'required',
             'develop_competencies' => 'required',
@@ -31,6 +31,7 @@ class JobRequest extends FormRequest
             'additional_information' => 'required',
             'quota' => 'required|integer',
             'status' => 'required|boolean',
+            'semester_id' => 'required|exists:semesters,id',
         ];
     }
 }

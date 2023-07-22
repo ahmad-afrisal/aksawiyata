@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Job\JobRequest;
 use App\Models\Job;
 use App\Models\Company;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -32,8 +33,12 @@ class JobController extends Controller
     public function create()
     {
         $companies = Company::all();
+        $semesters = Semester::all();
+
         return view('admin.job.create',[
             'companies' => $companies,
+            'semesters' => $semesters,
+
         ]);
     }
 
@@ -72,10 +77,12 @@ class JobController extends Controller
     {
         $job = Job::findOrFail($id);
         $companies = Company::all();
+        $semesters = Semester::all();
 
         return view('admin.job.edit', [
             'job' => $job,
             'companies' => $companies,
+            'semesters' => $semesters,
 
         ]);
         
@@ -88,7 +95,7 @@ class JobController extends Controller
     {
         
         $data = $request->all();
-
+        // return $request;
         $item = Job::findOrFail($id);
 
         $data['slug'] = Str::slug($request->name);

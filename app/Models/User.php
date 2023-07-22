@@ -48,13 +48,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // /**
-    //  * Get the user that owns the Checkout
-    //  *
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    //  */
-    // public function Mentor(): BelongsTo
-    // {
-    //     return $this->belongsTo(Mentor::class, '??', 'id');
-    // }
+    /**
+     * Get the user that owns the Checkout
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Mentor(): BelongsTo
+    {
+        return $this->belongsTo(Mentor::class, 'id', 'user_id');
+    }
+
+    /**
+     * Get the user that owns the Checkout
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Lecture(): BelongsTo
+    {
+        return $this->belongsTo(Lecture::class, 'id', 'user_id');
+    }
 }

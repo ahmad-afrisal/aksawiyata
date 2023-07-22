@@ -39,6 +39,7 @@ class JobTableSeeder extends Seeder
                 'additional_information' => 'Sehat jasmani dan rohani serta siap melaksanakan program magang secara offline di kantor PT Widya Inovasi Indonesia',
                 'quota' => 10,
                 'status' => 1,
+                'semester_id' => 1,
             ],
             [
                 'company_id' => '1',
@@ -64,6 +65,7 @@ class JobTableSeeder extends Seeder
                 'additional_information' => 'Sehat jasmani dan rohani serta siap melaksanakan program magang secara offline di kantor PT Widya Inovasi Indonesia',
                 'quota' => 6,
                 'status' => 1,
+                'semester_id' => 1,
             ],
             [
                 'company_id' => '2',
@@ -89,6 +91,7 @@ class JobTableSeeder extends Seeder
                 'additional_information' => 'Sehat jasmani dan rohani serta siap melaksanakan program magang secara offline di kantor PT Widya Inovasi Indonesia',
                 'quota' => 20,
                 'status' => 1,
+                'semester_id' => 1,
             ],
             ];
         

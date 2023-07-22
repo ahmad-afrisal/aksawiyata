@@ -50,10 +50,10 @@
                     <label for="ceo" class="form-label">Pembimbing Lapangan</label>
                     <div class="col-sm-12">
                       <select class="form-select" aria-label="Default select example" name="mentor_id">
-                        <option value="{{ $company->mentor_id}}">{{ $company->Mentor->name}}</option>
+                        <option value="{{ $company->mentor_id}}">{{ $company->Mentor->Mentor->name}}</option>
                         <option value="" readonly>-----------------------</option>
                         @foreach ($mentors as $mentor)
-                        <option value="{{ $mentor->id }}">{{ $mentor->name }}</option>
+                        <option value="{{ $mentor->id }}">{{ $mentor->Mentor->name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -67,10 +67,10 @@
                     <label for="ceo" class="form-label">Dosen Pembimbing</label>
                     <div class="col-sm-12">
                       <select class="form-select" aria-label="Default select example" name="adviser_id">
-                        <option value="{{ $company->adviser_id}}">{{ $company->Adviser->name}}</option>
+                        <option value="{{ $company->adviser_id}}">{{ $company->Adviser->Lecture->nama_dosen}}</option>
                         <option value="" readonly>-----------------------</option>
                         @foreach ($lectures as $lecture)
-                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        <option value="{{ $lecture->id }}">{{ $lecture->Lecture->nama_dosen }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -84,10 +84,10 @@
                     <label for="ceo" class="form-label">Dosen Penguji</label>
                     <div class="col-sm-12">
                       <select class="form-select" aria-label="Default select example" name="examiner_id">
-                        <option value="{{ $company->examiner_id}}">{{ $company->Examiner->name}}</option>
+                        <option value="{{ $company->examiner_id}}">{{ $company->Examiner->Lecture->nama_dosen}}</option>
                         <option value="" readonly>-----------------</option>
                         @foreach ($lectures as $lecture)
-                        <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                        <option value="{{ $lecture->id }}">{{ $lecture->Lecture->nama_dosen }}</option>
                         @endforeach
                       </select>
                     </div>

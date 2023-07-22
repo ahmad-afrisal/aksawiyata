@@ -36,7 +36,7 @@
                         <th scope="col">Logo</th>
                         <th scope="col">Perusahaan</th>
                         <th scope="col">Pimpinan</th>
-                          <th scope="col">Jumlah Karyawan</th>
+                        <th scope="col">Jumlah Karyawan</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Aksi</th>
                       </tr>
@@ -46,7 +46,7 @@
                       <tr>
                         <th scope="row">
                           @if ($company->logo)
-                              <img src="{{ asset('/storage/'.$company->logo) }}" class="rounded-circle" alt="" srcset="">
+                              <img src="{{ asset('/storage/'.$company->logo) }}"  alt="" srcset="">
                           @else
                               <img src="https://ui-avatars.com/api/?name={{$company->logo}}" class=" rounded-circle" alt="" srcset="">
                           @endif

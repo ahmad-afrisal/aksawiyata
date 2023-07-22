@@ -83,7 +83,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 col-lg-4">
                     <label for="quota" class="form-label">Kuota</label>
                     <input type="number" class="form-control {{$errors->has('quota') ? 'is-invalid' : ''}}"  value="{{old('quota') ?: ''}}" id="quota" name="quota">
                     @if ($errors->has('quota'))
@@ -92,7 +92,7 @@
                       </div>
                     @endif
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 col-lg-4">
                     <label for="status"  class="form-label">Status</label>
                     <div class="col-sm-12">
                       <select class="form-select {{$errors->has('status') ? 'is-invalid' : ''}}"  value="{{old('status') ?: ''}}" aria-label="Default select example" name="status">
@@ -103,6 +103,22 @@
                       @if ($errors->has('status'))
                         <div class="invalid-feedback">
                           {{$errors->first('status')}}
+                        </div>
+                      @endif
+                    </div>
+                  </div>
+                  <div class="col-6 col-lg-4">
+                    <label for="semester_id"  class="form-label">Semester</label>
+                    <div class="col-sm-12">
+                      <select class="form-select {{$errors->has('semester_id') ? 'is-invalid' : ''}}" value="{{old('semester_id') ?: ''}}"  aria-label="Default select example" name="semester_id">
+                        <option selected>Pilih Semester</option>
+                        @foreach ($semesters as $semester)
+                          <option value="{{ $semester->id }}">{{ $semester->name }}</option>
+                        @endforeach
+                      </select>
+                      @if ($errors->has('semester_id'))
+                        <div class="invalid-feedback">
+                          {{$errors->first('semester_id')}}
                         </div>
                       @endif
                     </div>
