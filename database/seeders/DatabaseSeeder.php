@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             LectureUserSeeder::class,
             MentorUserSeeder::class,
+            GroupRoleTableSeeder::class,
             // CompanyTableSeeder::class,
             // JobTableSeeder::class,
         ]);

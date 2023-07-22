@@ -4,11 +4,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Posisi</h1>
+      <h1>Semester</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-          <li class="breadcrumb-item ">Posisi</li>
+          <li class="breadcrumb-item ">Semester</li>
           <li class="breadcrumb-item active">Ubah Data</li>
         </ol>
       </nav>

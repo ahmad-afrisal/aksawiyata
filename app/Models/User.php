@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,10 +23,10 @@ class User extends Authenticatable
         'username',
         'email',
         'email_verified_at',
+        'password',
         'avatar',
         'role_id',
         'status',
-        'roles'
     ];
 
     /**
@@ -46,4 +47,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // /**
+    //  * Get the user that owns the Checkout
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  */
+    // public function Mentor(): BelongsTo
+    // {
+    //     return $this->belongsTo(Mentor::class, '??', 'id');
+    // }
 }

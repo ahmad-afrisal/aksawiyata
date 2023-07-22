@@ -14,4 +14,8 @@ class Admin extends Model
         'user_id',
         'name',
     ];
+
+    // use HasFactory, SoftDeletes;
+
+    // protected $fillable = ['user_id', 'adviser_id', 'exercise_score','report_score','presentation_score','final_score'];
 }

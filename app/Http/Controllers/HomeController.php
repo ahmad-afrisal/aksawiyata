@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function welcome() {
         $jobs = Job::with('company')->paginate(4);
         $companies = Company::count();
-        $users = User::where('roles', false)->count();
+        $users = User::count();
 
         return response(view('welcome', [
             'jobs' => $jobs,
@@ -59,7 +59,7 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        switch (Auth::user()->roles) {
+        switch (Auth::user()->role_id) {
             case 3:
                 return redirect(route('mentor.dashboard'));
                 break;

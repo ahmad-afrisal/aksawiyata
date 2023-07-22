@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         $companies = Company::count();
         $job = Job::count();
-        $users = User::where('roles', false)->count();
+        $users = User::count();
         return view('admin.dashboard', [
             'jobs' => $jobs,
             'companies' => $companies,

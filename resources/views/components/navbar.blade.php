@@ -14,7 +14,7 @@
                         <li><a href="{{ route('welcome') }}" class="active">Beranda</a></li>
                         <li><a href="{{ route('contact') }}">Kontak</a></li>
                         @auth
-                            <li><a href="{{  route('dashboard') }}">Hi, {{Auth::user()->name }}</a></li>
+                            <li><a href="{{  route('dashboard') }}">Hi, {{Auth::user()->username }}</a></li>
                             <li>
                                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Keluar</a>
                                 <form id="logout-form" action="{{route('logout')}}" method="post" style="display:none">

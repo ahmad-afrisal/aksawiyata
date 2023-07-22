@@ -18,7 +18,7 @@ class EnsureUserRole
     {
         $user = Auth::user();
         // return $role;
-        if(($role == 'admin' && $user->roles == 1) || ($role == 'user' && $user->roles == 0) || ($role == 'lecture' && $user->roles == 2) || ($role == 'mentor' && $user->roles == 3) ) {
+        if(($role == 'admin' && $user->role_id == 1) || ($role == 'user' && $user->role_id == 4) || ($role == 'lecture' && $user->roles == 2) || ($role == 'mentor' && $user->roles == 3) ) {
             return $next($request);
         }
         abort(403, 'Unauthorized');

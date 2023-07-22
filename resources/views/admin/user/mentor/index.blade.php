@@ -20,6 +20,7 @@
       <!-- Left side columns -->
       <div class="col-lg-12">
         <div class="row">
+          @include('components.alert')
           <div class="col-12">
             <div class="card">
               <div class="card-body">
@@ -29,7 +30,16 @@
                 <form class="row g-3" action="{{ route('admin.mentors.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="col-12 col-lg-6">
-                    <label for="text" class="form-label">Nama</label>
+                    <label for="text" class="form-label">Username</label>
+                    <input type="text" class="form-control {{$errors->has('username') ? 'is-invalid' : ''}}"  value="{{ old('username') ?: ''}}"  pattern="^\S+" title="username tidak boleh mengandung spasi." id="username" name="username">
+                    @if ($errors->has('username'))
+                      <div class="invalid-feedback">
+                        {{$errors->first('username')}}
+                      </div>
+                    @endif
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="text" class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{ old('name') ?: ''}}" id="name" name="name">
                     @if ($errors->has('name'))
                       <div class="invalid-feedback">
@@ -65,8 +75,9 @@
                     @endif
                   </div>
 
-                  <div class="col-12">
-                    <div class="d-grid gap-2 mt-3">
+                  <div class="col-12 col-lg-6">
+                    <label for=""></label>
+                    <div class="d-grid gap-2 mt-2">
                       <button type="submit" class="btn btn-primary" >Tambah Mentor</button>
                     </div>                  
                   </div>
@@ -99,31 +110,32 @@
                     <tr>
                       <th scope="col">Foto</th>
                       <th scope="col">Nama</th>
+                      <th scope="col">Username</th>
                       <th scope="col">Email</th>
-                      <th scope="col">Nomor Handphone</th>
-                      <th scope="col">Perusahaan</th>
-                      <th scope="col">Aksi</th>
+                      {{-- <th scope="col">Nomor Handphone</th> --}}
+                      {{-- <th scope="col">Perusahaan</th> --}}
+                      {{-- <th scope="col">Aksi</th> --}}
                     </tr>
                   </thead>
                   <tbody>
                     @forelse ($mentors as $mentor)
                     <tr>
                       <th scope="row">
-                        @if ($mentor->avatar)
-                            <img src="{{$mentor->avatar}}" class="rounded-circle" alt="" srcset="">
+                        @if ($mentor->User->avatar)
+                            <img src="{{$mentor->User->avatar}}" class="rounded-circle" alt="" srcset="">
                         @else
-                            <img src="https://ui-avatars.com/api/?name={{$mentor->name}}" class=" rounded-circle" alt="" srcset="">
+                            <img src="https://ui-avatars.com/api/?name={{$mentor->User->username}}" class=" rounded-circle" alt="" srcset="">
                         @endif
                       </th>
                       <td class="fw-bold">{{ $mentor->name }}</td>
-                      <td><a href="#" class="text-primary fw-bold">{{ $mentor->nim}}</a></td>
-                      <td>{{ $mentor->email }}</td>
-                      <td>{{ $mentor->phone_number }}</td>
-                      <td><a href="{{ route('admin.users.show', $mentor->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td>
+                      <td>{{ $mentor->User->username }}</td>
+                      <td>{{ $mentor->User->email }}</td>
+                      {{-- <td>{{ $mentor->User->phone_number }}</td> --}}
+                      {{-- <td><a href="{{ route('admin.users.show', $mentor->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td> --}}
                     </tr>
                     @empty
                         <tr>
-                          <td colspan="6">Belum Ada penggua terdaftar</td>
+                          <td colspan="4">Belum Ada penggua terdaftar</td>
                         </tr>
                     @endforelse
                    
