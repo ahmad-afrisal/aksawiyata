@@ -21,6 +21,7 @@
       <div class="col-lg-12">
         <div class="row">
           <div class="col-12">
+            @include('components.alert')
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Tambah Data</h5>
@@ -29,7 +30,16 @@
                 <form class="row g-3" action="{{ route('admin.lectures.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="col-12 col-lg-6">
-                    <label for="text" class="form-label">Nama</label>
+                    <label for="text" class="form-label">Username</label>
+                    <input type="text" class="form-control {{$errors->has('username') ? 'is-invalid' : ''}}"  value="{{ old('username') ?: ''}}"  pattern="^\S+" title="username tidak boleh mengandung spasi." id="username" name="username">
+                    @if ($errors->has('username'))
+                      <div class="invalid-feedback">
+                        {{$errors->first('username')}}
+                      </div>
+                    @endif
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="text" class="form-label">Nama Dosen</label>
                     <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}"  value="{{ old('name') ?: ''}}" id="name" name="name">
                     @if ($errors->has('name'))
                       <div class="invalid-feedback">
@@ -65,8 +75,9 @@
                     @endif
                   </div>
 
-                  <div class="col-12">
-                    <div class="d-grid gap-2 mt-3">
+                  <div class="col-12 col-lg-6">
+                    <label for=""></label>
+                    <div class="d-grid gap-2 mt-lg-2">
                       <button type="submit" class="btn btn-primary">Tambah Dosen</button>
                     </div>                  
                   </div>
@@ -98,28 +109,30 @@
                   <thead>
                     <tr>
                       <th scope="col">Foto</th>
-                      <th scope="col">Nama</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Nama Dosen</th>
                       <th scope="col">Email</th>
-                      <th scope="col">Aksi</th>
+                      {{-- <th scope="col">Aksi</th> --}}
                     </tr>
                   </thead>
                   <tbody>
                     @forelse ($lectures as $lecture)
                     <tr>
                       <th scope="row">
-                        @if ($lecture->avatar)
-                            <img src="{{$lecture->avatar}}" class="rounded-circle" alt="" srcset="">
+                        @if ($lecture->User->avatar)
+                          <img src="{{$lecture->User->avatar}}" class="rounded-circle" alt="" srcset="">
                         @else
-                            <img src="https://ui-avatars.com/api/?name={{$lecture->name}}" class=" rounded-circle" alt="" srcset="">
+                          <img src="https://ui-avatars.com/api/?name={{$lecture->User->username}}" class=" rounded-circle" alt="" srcset="">
                         @endif
                       </th>
-                      <td class="fw-bold">{{ $lecture->name }}</td>
-                      <td>{{ $lecture->email }}</td>
-                      <td><a href="{{ route('admin.users.show', $lecture->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td>
+                      <td>{{ $lecture->User->username }}</td>
+                      <td class="fw-bold">{{ $lecture->nama_dosen }}</td>
+                      <td>{{ $lecture->User->email }}</td>
+                      {{-- <td><a href="{{ route('admin.users.show', $lecture->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td> --}}
                     </tr>
                     @empty
                         <tr>
-                          <td colspan="6">Belum Ada penggua terdaftar</td>
+                          <td colspan="6">Belum Ada Dosen terdaftar</td>
                         </tr>
                     @endforelse
                    

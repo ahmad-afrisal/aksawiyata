@@ -16,7 +16,7 @@ class Mentor extends Model
         'name',
     ];
 
-     /**
+    /**
      * Get the user that owns the Checkout
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
