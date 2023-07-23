@@ -8,6 +8,8 @@ use App\Models\User;
 use Auth;
 use Mail;
 use App\Mail\User\AfterRegister;
+use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -24,18 +26,43 @@ class UserController extends Controller
     public function handleProviderCallback()
     {
         $callback = Socialite::driver('google')->stateless()->user();
-        $data = [
-            'name' => $callback->getName(),
-            'email' => $callback->getEmail(),
-            'avatar' => $callback->getAvatar(),
-            'email_verified_at' => date('Y-m-d H:i:s'),
-        ];
+        $username = strtolower($callback->getName()).strval(rand(100,999));
 
         // $user = User::firstOrCreate(['email' => $data['email']], $data);
-        $user = User::whereEmail($data['email'])->first();
+        $user = User::whereEmail($callback->getEmail())->first();
         if(!$user) {
-            $user = User::create($data);
-            Mail::to($user->email)->send(new AfterRegister($user));
+            // DB::beginTransaction();
+
+            // try {
+
+                $userId = User::insertGetId([
+                    'username' => str_replace(' ', '_', $username),
+                    'email' => $callback->getEmail(),
+                    'avatar' => $callback->getAvatar(),
+                    'email_verified_at' => date('Y-m-d H:i:s'),
+                    'role_id' => 4,
+                    'status' => 1,
+                ]);
+
+                // return $userId;
+
+                Student::create([
+                    'user_id' => $userId,
+                    'nama_mhs' => $callback->getName(),
+                ]);
+                
+                Mail::to($callback->getEmail())->send(new AfterRegister($user));
+
+            //     DB::commit();
+            // } catch (\Exception $e) {
+            //     DB::rollback();
+
+            //     return redirect()->back()->with('warning','Login Gagal');
+            // }
+
+            
+
+
         }
         Auth::login($user, true);
 
