@@ -26,10 +26,12 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $checkout = Checkout::with('Job')->where('user_id', Auth::id())
-        ->where('status', '=', 'selesai')->orWhere('status', '=', 'sedang berjalan')
-        ->take(1)->first(); 
-        // return $checkout;
+        $checkout = Checkout::with('Job')->where('user_id', Auth::user()->id)
+        ->where(function ($query) {
+            $query->where('status', 'sedang berjalan')
+                  ->orWhere('status', 'selesai');
+        })->first();
+        // return $checkout;    
 
         if($checkout == null) {
             
@@ -39,10 +41,7 @@ class ActivityController extends Controller
             ]);
         } else {
             
-            $item = Report::where('user_id', Auth::id())->first();
-            // $item = Report::all();
-
-            // return $item;
+            $item = Report::where('user_id', Auth::user()->id)->first();
 
             return view('user.dashboard.activity', [
                 'item' => $item,

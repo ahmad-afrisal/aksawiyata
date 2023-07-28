@@ -50,8 +50,8 @@
                   <tbody>
                     @forelse ($checkouts as $checkout)
                       <tr>
-                        <th scope="row"><a href="#">{{$checkout->User->nim}}</a></th>
-                        <td>{{$checkout->User->name }}</td>
+                        <th scope="row"><a href="#">{{$checkout->User->Student->nim_mhs}}</a></th>
+                        <td>{{$checkout->User->Student->nama_mhs }}</td>
                         <td>{{$checkout->Job->name }}</td>
                         <td>
                           @if ($checkout->status == "sudah daftar")
@@ -67,7 +67,7 @@
                           @endif
                         </td>
                         <td>
-                          <a href="{{ route('mentor.assesment', $checkout->User->nim) }}" class="btn btn-primary btn-sm">Beri Nilai</a>
+                          <a href="{{ route('mentor.assesment', $checkout->User->Student->nim_mhs) }}" class="btn btn-primary btn-sm">Beri Nilai</a>
                         </td>
                       </tr>
                     @empty

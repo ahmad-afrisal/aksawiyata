@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Job;
 use App\Models\MentorScore;
 use App\Models\ScoreRecap;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,10 +42,17 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function assesment(User $user)
+    public function assesment(Student $student)
     {
-        $data = Checkout::with('Job','User')->where('user_id', $user->id)->get();
-        $mentor_score = MentorScore::where('user_id', $user->id)->first();
+        // return $student;
+        $data = Checkout::with('Job','User')->where('user_id', $student->user_id)
+                        ->where(function ($query) {
+                            $query->where('status', 'sedang berjalan')
+                                ->orWhere('status', 'selesai');
+                        })->get();
+
+                        // return $data;
+        $mentor_score = MentorScore::where('user_id', $student->user_id)->first();
 
         $text_score = " ";
         if($mentor_score) {
@@ -77,7 +85,7 @@ class DashboardController extends Controller
 
     public function store(Request $request)
     {
-        
+        // return $request;   
         $this->validate($request, [
             'user_id' => ['required'],
             'attitude_score' => ['required'],
@@ -86,6 +94,7 @@ class DashboardController extends Controller
             'final_score' => ['required'],
         ]);
 
+        
         
 
         DB::beginTransaction();

@@ -44,7 +44,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="{{ route('welcome')}}" class="logo d-flex align-items-center">
                 <img src="{{ asset('backend/assets/img/logo.png') }}" alt="">
                 <span class="d-none d-lg-block">Aksawiyata</span>
             </a>
@@ -72,16 +72,16 @@
                 @if (Auth::user()->avatar)
                     <img src="{{Storage::url(Auth::user()->avatar ?? '')}}" class="rounded-circle" alt="" srcset="">
                 @else
-                    <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class=" rounded-circle" alt="" srcset="">
+                    <img src="https://ui-avatars.com/api/?name={{Auth::user()->Mentor->name}}" class=" rounded-circle" alt="" srcset="">
                 @endif
                
-                <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->name}}</span>
+                <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->Mentor->name}}</span>
             </a><!-- End Profile Iamge Icon -->
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
-                    <h6>{{Auth::user()->name}}</h6>
-                    <span>{{Auth::user()->nim}}</span>
+                    <h6>{{Auth::user()->Mentor->name}}</h6>
+                    <span>Pembimbing Lapangan</span>
                 </li>
                 <li>
                     <hr class="dropdown-divider">
@@ -138,7 +138,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard')) ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
+            <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
             </a>

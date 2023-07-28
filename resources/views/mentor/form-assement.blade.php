@@ -4,12 +4,12 @@
 <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Perusahaan</h1>
+            <h1>Form Penilaian</h1>
             <nav>
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item">Perusahaan</li>
-                <li class="breadcrumb-item active">Tambah Data</li>
+                <li class="breadcrumb-item active">Form Penilaian</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -33,14 +33,14 @@
                                                 <td>Nama</td>
                                                 <td>:</td>
                                                 <td>
-                                                    <input type="hidden" class="form-control " value="{{ $item->user->id }}" name="user_id"  required>
-                                                    {{ $item->user->name }}
+                                                    <input type="hidden" class="form-control " value="{{ $item->User->Student->user_id }}" name="user_id"  required>
+                                                    {{ $item->user->Student->nama_mhs }}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>NIM</td>
                                                 <td>:</td>
-                                                <td>{{ $item->user->nim }}</td>
+                                                <td>{{ $item->user->Student->nim_mhs }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tempat Kerja Praktek Industri</td>

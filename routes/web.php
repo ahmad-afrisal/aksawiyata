@@ -155,7 +155,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [MentorDashboard::class, 'index'])->name('dashboard');
         Route::get('/detail/{job}', [MentorDashboard::class, 'detail'])->name('detail');
         Route::post('/assesment/store', [MentorDashboard::class, 'store'])->name('assesment.store');
-        Route::get('/assesment/{user:nim}', [MentorDashboard::class, 'assesment'])->name('assesment');
+        Route::get('/assesment/{student:nim_mhs}', [MentorDashboard::class, 'assesment'])->name('assesment');
     });
 
 
