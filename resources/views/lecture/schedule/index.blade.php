@@ -17,9 +17,9 @@
         <!-- Left side columns -->
         <div class="col-lg-12">
           <div class="row">
-            @include('components.alert')
             <!-- Top Selling -->
             <div class="col-12">
+              @include('components.alert')
               <div class="card top-selling overflow-auto">
                 <div class="card-body pb-0">
                   <h5 class="card-title">Jadwal Ujian <span>|</span></h5>
@@ -83,7 +83,7 @@
                         <td>{{ $examinee->created_at }}</td>
                         <td>{{ $examinee->Checkout->Job->name }}</td>
                         <td>{{ $examinee->Checkout->Job->Company->name }}</td>
-                        <td>{{ $examinee->Student->name }}</td>
+                        <td>{{ $examinee->Student->Student->nama_mhs }}</td>
                         <td>
                           @if ($examinee->is_accepted == 0) 
                             <span class="badge border-danger border-1 text-danger">Ditolak</span>

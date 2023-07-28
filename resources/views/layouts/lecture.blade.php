@@ -73,16 +73,16 @@
                 @if (Auth::user()->avatar)
                     <img src="{{Storage::url(Auth::user()->avatar ?? '')}}" class="rounded-circle" alt="" srcset="">
                 @else
-                    <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class=" rounded-circle" alt="" srcset="">
+                    <img src="https://ui-avatars.com/api/?name={{Auth::user()->Lecture->nama_dosen}}" class=" rounded-circle" alt="" srcset="">
                 @endif
                
-                <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->name}}</span>
+                <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->Lecture->nama_dosen}}</span>
             </a><!-- End Profile Iamge Icon -->
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
-                    <h6>{{Auth::user()->name}}</h6>
-                    <span>{{Auth::user()->nim}}</span>
+                    <h6>{{Auth::user()->Lecture->nama_dosen}}</h6>
+                    <span>Dosen</span>
                 </li>
                 <li>
                     <hr class="dropdown-divider">
@@ -154,7 +154,7 @@
 
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('lecture/dashboard/users*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-people"></i><span>Mahasiwa</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people"></i><span>Penilaian</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>

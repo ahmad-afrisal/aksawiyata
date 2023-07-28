@@ -11,6 +11,7 @@ use App\Models\Examinee;
 use App\Models\ExaminerScore;
 use App\Models\Job;
 use App\Models\ScoreRecap;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class DashboardController extends Controller
         $consultation->is_accepted = 1;
         $consultation->save();
             
-        return redirect(route('lecture.detail-consultation', $consultation->job_id));
+        return redirect(route('lecture.detail-consultation', $consultation->job_id))->with('success', "Bimbingan disetujui");
             
     }
 
@@ -54,7 +55,7 @@ class DashboardController extends Controller
         $consultation->is_accepted = 0;
         $consultation->save();
             
-        return redirect(route('lecture.detail-consultation', $consultation->job_id));
+        return redirect(route('lecture.detail-consultation', $consultation->job_id))->with('success', "Bimbingan tidak disetujui");
             
     }
 
@@ -78,10 +79,16 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function adviserAssesment(User $user)
+    public function adviserAssesment(Student $student)
     {
-        $data = Checkout::with('Job','User')->where('user_id', $user->id)->get();
-        $adviser_score = AdviserScore::where('user_id', $user->id)->first();
+        $data = Checkout::with('Job','User')->where('user_id', $student->user_id)
+                        ->where(function ($query) {
+                            $query->where('status', 'sedang berjalan')
+                                ->orWhere('status', 'selesai');
+                        })->get();
+
+
+        $adviser_score = AdviserScore::where('user_id', $student->user_id)->first();
 
         // return ;
         

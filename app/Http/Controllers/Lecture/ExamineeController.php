@@ -27,7 +27,7 @@ class ExamineeController extends Controller
         $examinee->is_accepted = 1;
         $examinee->save();
             
-        return redirect(route('lecture.examinee'));
+        return to_route('lecture.examinee')->with('success', "Ujian disetujui");
             
     }
 
@@ -36,7 +36,8 @@ class ExamineeController extends Controller
         $examinee->is_accepted = 0;
         $examinee->save();
             
-        return redirect(route('lecture.examinee'));
+        return to_route('lecture.examinee')->with('success', "Ujian tidak disetujui");
+
             
     }
 }

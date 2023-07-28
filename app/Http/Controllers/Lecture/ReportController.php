@@ -39,7 +39,7 @@ class ReportController extends Controller
         $report->status = "Diterima";
         $report->save();
             
-        return redirect(route('lecture.report.detail',$report->job_id));
+        return redirect(route('lecture.report.detail',$report->job_id))->with('success','Laproan Diterima');
             
     }
 
@@ -48,7 +48,7 @@ class ReportController extends Controller
         $report->status = "Ditolak";
         $report->save();
             
-        return redirect(route('lecture.report.detail', $report->job_id));
+        return redirect(route('lecture.report.detail', $report->job_id))->with('success','Laporan ditolak');
             
     }
 }

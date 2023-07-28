@@ -22,9 +22,9 @@
       <div class="col-lg-12">
         <div class="row">
 
-          @include('components.alert')
           <!-- Recent Sales -->
           <div class="col-12">
+            @include('components.alert')
             <div class="card recent-sales overflow-auto">
 
               <div class="filter">
@@ -37,7 +37,7 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">Riwayat Bimbingan <span>| Terbaru</span></h5>
+                <h5 class="card-title">Laporan Akhir Mahasiswa <span>| Terbaru</span></h5>
 
                 <table class="table table-borderless datatable">
                   <thead>
@@ -57,10 +57,10 @@
                       <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $report->created_at }}</td>
-                        <td>{{ $report->User->name }}</td>
-                        <td>{{ $report->User->nim }}</td>
+                        <td>{{ $report->User->Student->nama_mhs }}</td>
+                        <td>{{ $report->User->Student->nim_mhs }}</td>
                         <td>{{ $report->Job->name }}, {{ $report->Job->Company->name }}</td>
-                        <td><a href="{{ Storage::url($report->report ?? '')}}">Lihat</a></td>
+                        <td><a href="{{ $report->report}}" target="_blank">Lihat</a></td>
                         <td> 
                           @if ($report->status == "Ditolak") 
                             <span class="badge border-danger border-1 text-danger">Ditolak</span>

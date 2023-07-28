@@ -20,9 +20,9 @@
       <div class="col-lg-12">
         <div class="row">
 
-          @include('components.alert')
           <!-- Recent Sales -->
           <div class="col-12">
+            @include('components.alert')
             <div class="card recent-sales overflow-auto">
 
               <div class="filter">
@@ -55,8 +55,8 @@
                       <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $consultation->created_at }}</td>
-                        <td>{{ $consultation->User->name }}</td>
-                        <td>{{ $consultation->User->nim }}</td>
+                        <td>{{ $consultation->User->Student->nama_mhs }}</td>
+                        <td>{{ $consultation->User->Student->nim_mhs }}</td>
                         <td>{{ $consultation->topic }}</td>
                         <td>{{ $consultation->Job->name }}, {{ $consultation->Job->Company->name }}</td>
                         <td> 

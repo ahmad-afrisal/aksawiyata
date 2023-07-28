@@ -59,7 +59,7 @@
                       </tr>
                     @empty
                       <tr>
-                        <td colspan="6">Belum Ada Posisi Terbuka</td>
+                        <td colspan="4">Belum Ada Posisi Terbuka</td>
                       </tr>
                     @endforelse
 

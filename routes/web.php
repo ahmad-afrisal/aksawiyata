@@ -169,13 +169,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/adviser', [LectureDashboard::class, 'adviser'])->name('adviser');
         Route::get('/adviser/detail/{job}', [LectureDashboard::class, 'detailAdviser'])->name('adviser.detail');
         Route::post('/adviser/store', [LectureDashboard::class, 'adviserStore'])->name('adviser.store');
-        Route::get('/adviser/assesment/{user:nim}', [LectureDashboard::class, 'adviserAssesment'])->name('adviser.assesment');
+        Route::get('/adviser/assesment/{student:nim_mhs}', [LectureDashboard::class, 'adviserAssesment'])->name('adviser.assesment');
 
 
         Route::get('/examiner', [ExaminerController::class, 'index'])->name('examiner.index');
         Route::get('/examiner/detail/{job}', [ExaminerController::class, 'detail'])->name('examiner.detail');
         Route::post('/examiner/store', [ExaminerController::class, 'store'])->name('examiner.store');
-        Route::get('/examiner/assesment/{user:nim}', [ExaminerController::class, 'assesment'])->name('examiner.assesment');
+        Route::get('/examiner/assesment/{student:nim_mhs}', [ExaminerController::class, 'assesment'])->name('examiner.assesment');
 
         // Examinee Profile
         Route::get('/examinee', [ExamineeController::class, 'index'])->name('examinee');

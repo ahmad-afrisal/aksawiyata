@@ -4,11 +4,12 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>Mahasiswa Bimbingan</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item">Dashboard</li>
+        <li class="breadcrumb-item active">Mahasiswa Bimbingan</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -35,7 +36,7 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">Pendaftar <span>| Terbaru</span></h5>
+                <h5 class="card-title">Mahasiswa bimbingan <span>| Terbaru</span></h5>
 
                 <table class="table table-borderless datatable">
                   <thead>
@@ -50,8 +51,8 @@
                   <tbody>
                     @forelse ($checkouts as $checkout)
                       <tr>
-                        <th scope="row"><a href="#">{{$checkout->User->nim}}</a></th>
-                        <td>{{$checkout->User->name }}</td>
+                        <th scope="row"><a href="#">{{$checkout->User->Student->nim_mhs}}</a></th>
+                        <td>{{$checkout->User->Student->nama_mhs }}</td>
                         <td>{{$checkout->Job->name }}</td>
                         <td>
                           @if ($checkout->status == "sudah daftar")
@@ -67,7 +68,7 @@
                           @endif
                         </td>
                         <td>
-                          <a href="{{ route('lecture.adviser.assesment', $checkout->User->nim) }}" class="btn btn-primary btn-sm">Beri Nilai</a>
+                          <a href="{{ route('lecture.adviser.assesment', $checkout->User->Student->nim_mhs) }}" class="btn btn-primary btn-sm">Beri Nilai</a>
                         </td>
                       </tr>
                     @empty

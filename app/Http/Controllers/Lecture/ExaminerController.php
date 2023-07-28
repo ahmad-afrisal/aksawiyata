@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\ExaminerScore;
 use App\Models\Job;
 use App\Models\ScoreRecap;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,10 +37,16 @@ class ExaminerController extends Controller
         ]);
     }
 
-    public function assesment(User $user)
+    public function assesment(Student $student)
     {
-        $data = Checkout::with('Job','User')->where('user_id', $user->id)->get();
-        $examiner_score = ExaminerScore::where('user_id', $user->id)->first();
+        $data = Checkout::with('Job','User')->where('user_id', $student->user_id)
+        ->where(function ($query) {
+            $query->where('status', 'sedang berjalan')
+                ->orWhere('status', 'selesai');
+        })->get();
+
+
+        $examiner_score = ExaminerScore::where('user_id', $student->user_id)->first();
 
         $text_score = " ";
         if($examiner_score) {
