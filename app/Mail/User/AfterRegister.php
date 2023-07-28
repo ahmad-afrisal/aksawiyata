@@ -29,7 +29,7 @@ class AfterRegister extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Registrattion on Aksawiyata',
+            subject: 'Pendaftaran di Aksawiyata',
         );
     }
 

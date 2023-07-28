@@ -9,6 +9,7 @@ use Mail;
 use App\Mail\Checkout\Accepted;
 use App\Models\Job;
 use App\Models\Report;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
@@ -28,9 +29,13 @@ class CheckoutController extends Controller
             try{
                 $quotaNew = $quotaNow - 1;
                 Job::where('id', $checkout->job_id)->update(['quota' => $quotaNew]);
+                Checkout::where('job_id', '!=',$checkout->job_id)
+                            ->where('user_id', $checkout->user_id)->update(['status' => 'ditolak']);
                 
                 $checkout->status = "sedang berjalan";
                 $checkout->save();
+
+                
 
                 Report::create([
                         'user_id'     => $checkout->user_id,

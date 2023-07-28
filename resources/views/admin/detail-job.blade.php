@@ -55,14 +55,14 @@
                   <tbody>
                     @forelse ($checkouts as $checkout)
                       <tr>
-                        <th scope="row"><a href="#">{{$checkout->User->nim}}</a></th>
-                        <td>{{$checkout->User->name }}</td>
+                        <th scope="row"><a href="#">{{$checkout->User->Student->nim_mhs}}</a></th>
+                        <td>{{$checkout->User->Student->nama_mhs }}</td>
                         <td>{{$checkout->Job->name }}</td>
                         <td>{{$checkout->Job->Company->name }}</td>
                         <td>{{$checkout->Job->quota }}</td>
                         <td>{{ $checkout->created_at->format('M d Y') }}</td>
-                        <td><a href="{{$checkout->User->transkip}}" class="text-primary">Lihat</a></td>
-                        <td><a href="{{$checkout->User->cv}}" class="text-primary">Lihat CV</a></td>
+                        <td><a href="{{$checkout->User->Student->transkip}}" target="_blank" class="text-primary">Lihat</a></td>
+                        <td><a href="{{$checkout->User->Student->cv}}" target="_blank" class="text-primary">Lihat CV</a></td>
                         <td>
                           @if ($checkout->status == "sudah daftar")
                             <span class="badge bg-info">Sudah Daftar</span>

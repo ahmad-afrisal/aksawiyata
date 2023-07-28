@@ -24,7 +24,7 @@ class StoreLogbookRequest extends FormRequest
         return [
             'activity' => 'required',
             'detail_activity' => 'required',
-            'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+            // 'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ];
     }
 }

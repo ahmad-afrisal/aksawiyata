@@ -4,7 +4,7 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Perusahaan</h1>
+    <h1>Logbook</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
@@ -34,7 +34,7 @@
                       <th scope="col">Tanggal</th>
                       <th scope="col">Kegiatan</th>
                       <th scope="col">Detail Kegiatan</th>
-                        <th scope="col">Foto</th>
+                        {{-- <th scope="col">Foto</th> --}}
                     </tr>
                   </thead>
                   <tbody>
@@ -46,13 +46,13 @@
                       <td class="fw-bold">{{ (date_format($logbook->created_at,'Y-m-d')) }}</td>
                       <td class="fw-bold">{{ $logbook->activity }}</td>
                       <td>{{ $logbook->detail_activity }}</td>
-                      <td>
+                      {{-- <td>
                         <img src="{{  Storage::url($logbook->photo ?? '') }}" alt="" srcset="">
-                      </td>
+                      </td> --}}
                     </tr>
                     @empty
                         <tr>
-                          <td colspan="6">Belum Mengisi Logbook</td>
+                          <td colspan="4">Belum Mengisi Logbook</td>
                         </tr>
                     @endforelse
 

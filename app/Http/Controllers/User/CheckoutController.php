@@ -51,6 +51,7 @@ class CheckoutController extends Controller
         
         // create checkout
         $checkout = Checkout::create($data);
+        // return $checkout
 
         // sending email
         Mail::to(Auth::user()->email)->send(new AfterCheckout($checkout));

@@ -27,18 +27,21 @@
                 <div class="card-body">
                   <h5 class="card-title ">
                     @if ($checkout->status == "sudah daftar")
-                      <span class="badge bg-light text-success">Sudah Daftar </span>
+                      <span class="badge bg-light">Sudah Daftar </span>
                     @elseif ($checkout->status == "ditolak")
-                      <span  class="badge bg-danger">Di Tolak</span>
+                      <span  class="badge bg-danger text-white">Di Tolak</span>
                     @elseif ($checkout->status == "sedang berjalan")
-                      <span class="badge bg-success">Sedang Berjalan</span>
+                      <span class="badge bg-success text-white">Sedang Berjalan</span>
                     @else
                       <span class="badge bg-info">Selesai</span>
                     @endif
                   </h5>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      {{-- <i class="bi bi-currency-dollar"></i> --}}
+                    <img src="{{ asset('/storage/'.$checkout->Job->Company->logo) }}" style="max-width:62px" class="rounded-circle" alt="" srcset="">
+
+                      
                     </div>
                     <div class="ps-3">
                       <h6>{{ $checkout->Job->name }}</h6>

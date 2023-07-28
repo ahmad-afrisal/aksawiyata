@@ -28,7 +28,7 @@
                                     <div class="card-body mt-4">
                                         <div class="d-flex align-items-center">
                                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                                <i class="bi bi-cart"></i>
+                                                <i class="bi bi-person-bounding-box"></i>
                                             </div>
                                             <div class="ps-3">
                                                 <h6>{{$checkout->Job->Company->name}}</h6>
@@ -114,7 +114,7 @@
                                                     @endif
                                                 </div>
 
-                                                <div class="col-2">
+                                                {{-- <div class="col-2">
                                                     <img src="{{ asset('/storage/') }}" alt="" srcset="" class="img-fluid img-preview">
                                                 </div>
                                                 <div class="col-10">
@@ -126,7 +126,7 @@
                                                         {{$errors->first('photo')}}
                                                     </div>
                                                     @endif
-                                                </div>
+                                                </div> --}}
                             
                                                 <div class="col-12">
                                                     <div class="d-grid gap-2 mt-3">
@@ -209,24 +209,27 @@
                                         <form class="row g-3" action="{{ route('user.activity.report') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-10">
-                                                <input class="form-control" type="file" id="report" name="report" {{ $item->status == "Sedang Diperiksa" || $item->status == "Diterima" ? 'disabled': ''}}  required>
-                                                <p class="text-muted small pt-2">Link Download : <a href="{{ Storage::url($item->report ?? '')}}">{{ $report }} </a></p>
-                                                <span class="text-muted small pt-2">Dokumen harus sesuai dengan </span><span class="text-success small pt-1 fw-bold">Template</span>, <span class="text-muted small pt-2">diisi sesuai petunjuk dan diunggah dalam format pdf dengan ukuran maksimal 5MB. Di upload sebelum seminar KPI.</span>
+                                                <input class="form-control" type="text" id="report" name="report" {{ $item->status == "Sedang Diperiksa" || $item->status == "Diterima" ? 'disabled': ''}} value="{{ $item->report == "-" ? " " : "$item->report" }}" required>
+                                                <p class="text-muted small pt-2">Link Download : <a href="{{ $item->report }}" target="_blank">Download</a></p>
+                                                <span class="text-muted small pt-2">Dokumen harus sesuai dengan </span><span class="text-success small pt-1 fw-bold">Template</span>, <span class="text-muted small pt-2">diisi sesuai petunjuk dan yang diunggah adalah link drive laporan. Di upload sebelum seminar KPI.</span>
                                                 @if ($errors->has('report'))
                                                 <div class="invalid-feedback">
                                                     {{$errors->first('report')}}
                                                 </div> 
                                                 @endif
                                             </div>
+                                            @if ($item->status == "Belum Upload" || $item->status == "Ditolak")
                                             <div class="col-2">
                                                 <button type="submit" class="btn btn-primary">Upload</button>
                                             </div>
+                                            @endif
+                                            
                                         </form>
                                     </div>
                                 </div>
                             </div><!-- End Sales Card -->
                             
-                            
+                            {{-- https://drive.google.com/file/d/11HF6iOVshQa-s_oI7uabwzDbzx3rm56X/view?usp=sharing --}}
                         @else
                             <h3>Belum ada kegiatan yang di ikuti</h3>
                         @endif

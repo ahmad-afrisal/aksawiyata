@@ -46,7 +46,7 @@ class ActivityController extends Controller
 
             return view('user.dashboard.activity', [
                 'item' => $item,
-                'report' => str_replace('public/assets/report/', '', $item->report),
+                'report' => $item->report,
                 'checkout' => $checkout
     
             ]);
@@ -86,26 +86,25 @@ class ActivityController extends Controller
 
         try {
             $item = Report::where('user_id', Auth::user()->id)->first();
-            $job_id = $item->job_id;
 
-            if($item) {
-                Storage::delete($item->report);
-                $item->delete();
-            }
+            $matchingData = [
+                'user_id' => Auth::user()->id,
+            ];
             
 
             $data = $request->all();    
             
             $data['user_id'] = Auth::user()->id;
-            $data['job_id'] = $job_id;
-            $data['report'] = $request->file('report')->storeAs('public/assets/report', 'laporan-'.str_replace(" ","-",Auth::user()->name).'-'.Auth::user()->nim.'-'.Str::random(15).'.pdf',);
+            $data['job_id'] = $item->job_id;
+            $data['report'] = $request->report;
             $data['status'] = "Sedang Diperiksa";
 
-            Report::create($data);
+            // Report::create($data);
+            Report::updateOrCreate($matchingData, $data);
 
             DB::commit();
             
-            return redirect()->route('user.activity.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
+            return redirect()->route('user.activity.index')->with(['success' => 'Laporan berhasil Ditambahkan!']);
 
 
         } catch(\Exception $e) {
@@ -128,11 +127,12 @@ class ActivityController extends Controller
         } else {           
     
             $data = $request->all();    
-            $formatPhoto = $request->file('photo')->getClientOriginalExtension();
+            // $formatPhoto = $request->file('photo')->getClientOriginalExtension();
             $tanggal = Carbon::now()->format('d-m-Y');
             $data['date'] = $dateCheck; 
             $data['user_id'] = Auth::user()->id;
-            $data['photo'] = $request->file('photo')->storeAs('public/assets/documentation', 'documentation-'.str_replace(" ","-",Auth::user()->name).'-'.$tanggal.'-'.Str::random(15).'.'.$formatPhoto);
+            // $data['photo'] = $request->file('photo')->storeAs('public/assets/documentation', 'documentation-'.str_replace(" ","-",Auth::user()->name).'-'.$tanggal.'-'.Str::random(15).'.'.$formatPhoto);
+            $data['photo'] = '-';
     
             Logbook::create($data);
     

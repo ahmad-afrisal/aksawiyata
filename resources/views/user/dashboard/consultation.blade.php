@@ -34,7 +34,7 @@
                         <th scope="col">Tanggal</th>
                         <th scope="col">Topik Bimbingan</th>
                         <th scope="col">Detail Bimbingan</th>
-                            <th scope="col">Foto</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                         <td class="fw-bold">{{ $consultation->topic }}</td>
                         <td>{{ $consultation->detail }}</td>
                         <td>
-                            @if ($consultation->is_accepted == 0)
+                            @if ($consultation->is_accepted == 3)
                                 <span class="badge bg-info text-dark">Menuggu Persetujuan</span>
                             @elseif($consultation->is_accepted == 1)
                                 <span class="badge bg-success text-white">Diterima</span>

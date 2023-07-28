@@ -29,7 +29,8 @@ class UserController extends Controller
         $username = strtolower($callback->getName()).strval(rand(100,999));
 
         // $user = User::firstOrCreate(['email' => $data['email']], $data);
-        $user = User::whereEmail($callback->getEmail())->first();
+        $user = User::with('Student')->whereEmail($callback->getEmail())->first();
+        // return $user;
         if(!$user) {
             // DB::beginTransaction();
 
