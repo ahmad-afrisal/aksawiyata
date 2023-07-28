@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        
-        return view('user.dashboard.profile', [
-            'transkip' => str_replace('public/assets/transkip/', '', Auth::user()->transkip),
-            'cv' => str_replace('public/assets/cv/', '', Auth::user()->cv),
+        // $student = User::with('Student')->where('id', Auth::user()->id)->firstOrFail();
 
+        return view('user.dashboard.profile', [
+            // 'student' => $student,
         ]);
     }
 
@@ -66,34 +66,23 @@ class ProfileController extends Controller
         $data = $request->all();
         // return $request->all();
         
-        $item =  User::findOrFail(Auth::user()->id);
+        $item =  Student::where('user_id', Auth::user()->id)->firstOrFail();
 
-        if ($request->hasFile('transkip') and $request->hasFile('cv')) {
-            $data['transkip'] = $request->file('transkip')->storeAs('public/assets/transkip', 'transkip-'.str_replace(" ","-",Auth::user()->name).'-'.Auth::user()->nim.'-'.Str::random(15).'.pdf',);
-            $data['cv'] = $request->file('cv')->storeAs('public/assets/cv', 'cv-'.str_replace(" ","-",Auth::user()->name).'-'.Auth::user()->nim.'-'.Str::random(15).'.pdf');
-            
-            Storage::delete($item->transkip);
-            Storage::delete($item->cv);
+        if ($request->transkip and $request->cv) {
+            $data['transkip'] = $request->transkip;
+            $data['cv'] = $request->cv;
 
 
             $item->update($data);
-        } elseif($request->hasFile('transkip')) {
-            $data['transkip'] = $request->file('transkip')->store('assets/transkip','public');
-            
-            Storage::delete('public/'.$item->transkip);
-    
-            $item->update($data);
-        } elseif($request->hasFile('cv')) {
-            
-            $data['cv'] = $request->file('cv')->store('assets/cv','public');
-            
-            Storage::delete('public/'.$item->cv);
-    
-            $item->update($data);
+
+            return redirect()->route('user.profile')->with('success', 'Transkip dan CV Berhasil di Upload');
         } else {
             $item->update([
-                'name'     => $request->name,
-                'nim'     => $request->nim,
+                'nama_mhs'     => $request->name,
+                'nim_mhs'     => $request->nim,
+                'angkatan_mhs' => $request->angkatan_mhs,
+                'prodi_mhs'     => 'informatika',
+                'status_mhs'     => 1,
                 'concentration'     => $request->concentration,
                 'about'     => $request->about,
                 'phone_number'     => $request->phone_number,
@@ -102,16 +91,66 @@ class ProfileController extends Controller
                 'linkedin_profile'     => $request->linkedin_profile,
             ]);
 
+            return redirect()->route('user.profile')->with('success', 'Profile Berhasil di Upload');
+
+
         }
     
-        return redirect()->route('user.profile');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function updatePass(Request $request, string $id)
     {
-        //
+        $item =  User::findOrFail(Auth::user()->id);
+
+
+        if ($request->username == $item->username && $request->password) {
+            $this->validate($request, [
+                'username' => ['required'],
+                'password' => ['required','confirmed'],
+            ]);
+
+            $data = $request->all();
+
+            $data['username'] = $request->username;
+            $data['password'] = \bcrypt($request->password);
+
+            
+            $item->update($data);
+            
+            return redirect()->route('user.profile')->with('success', 'Password berhasil diupdate');
+
+        } elseif($request->username && $request->password) {
+            $this->validate($request, [
+                'username' => ['required','regex:/(^([a-zA-z]+)(\d+)?$)/u','unique:users,username'],
+                'password' => ['required','confirmed'],
+            ]);
+
+            $data = $request->all();
+            
+            $item =  User::findOrFail(Auth::user()->id);
+            $data['username'] = $request->username;
+            $data['password'] = \bcrypt($request->password);
+            
+            $item->update($data);
+            
+            return redirect()->route('user.profile')->with('success', 'Username & Password berhasil diupdate');
+        } else {
+            $this->validate($request, [
+                'username' => ['required','regex:/(^([a-zA-z]+)(\d+)?$)/u','unique:users,username'],
+            ]);
+            
+            $data = $request->all();
+            
+            $item =  User::findOrFail(Auth::user()->id);
+            $data['username'] = $request->username;
+            
+            $item->update($data);
+            
+            return redirect()->route('user.profile')->with('success', 'Password berhasil diupdate');
+        }
+        
     }
 }

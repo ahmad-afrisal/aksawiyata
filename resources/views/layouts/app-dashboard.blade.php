@@ -73,16 +73,16 @@
                 @if (Auth::user()->avatar)
                     <img src="{{Auth::user()->avatar}}" class="rounded-circle" alt="" srcset="">
                 @else
-                    <img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}" class=" rounded-circle" alt="" srcset="">
+                    <img src="https://ui-avatars.com/api/?name={{Auth::user()->Student->nama_mhs}}" class=" rounded-circle" alt="" srcset="">
                 @endif
                
-                <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->name}}</span>
+                <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->Student->nama_mhs}}</span>
             </a><!-- End Profile Iamge Icon -->
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
-                <h6>{{Auth::user()->name}}</h6>
-                <span>{{Auth::user()->nim}}</span>
+                <h6>{{Auth::user()->Student->nama_mhs}}</h6>
+                <span>{{Auth::user()->Student->nim_mhs}}</span>
                 </li>
                 <li>
                 <hr class="dropdown-divider">

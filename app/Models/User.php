@@ -67,4 +67,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Lecture::class, 'id', 'user_id');
     }
+
+    /**
+     * Get the user that owns the Checkout
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class, 'id', 'user_id');
+    }
 }

@@ -25,14 +25,15 @@ class ProfileRequest extends FormRequest
         return [
             'name' => 'string',
             'nim' => 'string',
+            'angkatan_mhs' => 'string',
             'concentration' => 'string',
             'about' => 'string',
             'phone_number' => 'string',
             'instagram_profile' => 'string',
             'linkedin_profile' => 'string',
             'github_profile' => 'string',
-            'transkip' => 'file|mimes:pdf',
-            'cv' => 'file|mimes:pdf',
+            'transkip' => 'string',
+            'cv' => 'string',
             'avatar' => 'image|mimes:png,jpg,jpeg|max:2048',
         ];
     }
