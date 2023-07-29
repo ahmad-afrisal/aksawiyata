@@ -23,14 +23,14 @@
                     @if ($user->avatar)
                       <img src="{{$user->avatar}}" class="rounded-circle" alt="" srcset="">
                     @else
-                      <img src="https://ui-avatars.com/api/?name={{$user->name}}" class=" rounded-circle" alt="" srcset="">
+                      <img src="https://ui-avatars.com/api/?name={{$user->Student->nama_mhs}}" class=" rounded-circle" alt="" srcset="">
                     @endif
-                    <h2>{{ $user->name}}</h2>
-                    <h3>{{ $user->nim}}</h3>
+                    <h2>{{ $user->Student->nama_mhs}}</h2>
+                    <h3>{{ $user->Student->nim_mhs}}</h3>
                     <div class="social-links mt-2">
-                      <a href="{{ $user->instagram_profile ?? ''}}" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-                      <a href="{{ $user->linkedin_profile ?? ''}}" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                      <a href="{{ $user->github_profile ?? ''}}" target="_blank" class="github"><i class="bi bi-github"></i></a>
+                      <a href="https://instagram.com/{{ $user->Student->instagram_profile ?? ''}}" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                      <a href="https://linkedin/{{ $user->Student->linkedin_profile ?? ''}}" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                      <a href="https://github.com/{{ $user->Student->github_profile ?? ''}}" target="_blank" class="github"><i class="bi bi-github"></i></a>
                     </div>
                   </div>
                 </div>
@@ -54,28 +54,28 @@
       
                       <div class="tab-pane fade show active profile-overview" id="profile-overview">
                         <h5 class="card-title">Tentang</h5>
-                        <p class="small fst-italic">{{ $user->about }}.</p>
+                        <p class="small fst-italic">{{ $user->Student->about }}.</p>
       
                         <h5 class="card-title">Data Diri </h5>
       
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                          <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
+                          <div class="col-lg-9 col-md-8">{{ $user->Student->nama_mhs }}</div>
                         </div>
       
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">NIM</div>
-                          <div class="col-lg-9 col-md-8">{{ $user->nim }}</div>
+                          <div class="col-lg-9 col-md-8">{{ $user->Student->nim_mhs }}</div>
                         </div>
       
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Konsentrasi</div>
-                          <div class="col-lg-9 col-md-8">{{ $user->concentration }}</div>
+                          <div class="col-lg-9 col-md-8">{{ $user->Student->concentration }}</div>
                         </div>
       
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Nomor Handphone</div>
-                          <div class="col-lg-9 col-md-8">{{ $user->phone_number }}</div>
+                          <div class="col-lg-9 col-md-8">{{ $user->Student->phone_number }}</div>
                         </div>
       
                         <div class="row">
@@ -85,12 +85,12 @@
       
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Transkip</div>
-                          <div class="col-lg-9 col-md-8"><a href="{{ Storage::url($user->transkip ?? '')}}">{{ $transkip ?? ''}}</a></div>
+                          <div class="col-lg-9 col-md-8"><a href="{{ $user->Student->transkip }}" target="_blank">Lihat Transkip</a></div>
                         </div>
       
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">CV</div>
-                          <div class="col-lg-9 col-md-8"><a href="{{ Storage::url($user->cv ?? '')}}">{{ $cv ?? ''}}</a></div>
+                          <div class="col-lg-9 col-md-8"><a href="{{ $user->Student->cv }}" target="_blank">Lihat CV</a></div>
                         </div>
       
                       </div>

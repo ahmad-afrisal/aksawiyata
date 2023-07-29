@@ -55,13 +55,13 @@
                         @if ($user->avatar)
                             <img src="{{$user->avatar}}" class="rounded-circle" alt="" srcset="">
                         @else
-                            <img src="https://ui-avatars.com/api/?name={{$user->name}}" class=" rounded-circle" alt="" srcset="">
+                            <img src="https://ui-avatars.com/api/?name={{$user->Student->nama_mhs}}" class=" rounded-circle" alt="" srcset="">
                         @endif
                       </th>
-                      <td class="fw-bold">{{ $user->name }}</td>
-                      <td><a href="#" class="text-primary fw-bold">{{ $user->nim}}</a></td>
+                      <td class="fw-bold">{{ $user->Student->nama_mhs}}</td>
+                      <td><a href="#" class="text-primary fw-bold">{{ $user->Student->nim_mhs}}</a></td>
                       <td>{{ $user->email }}</td>
-                      <td>{{ $user->phone_number }}</td>
+                      <td>{{ $user->Student->phone_number }}</td>
                       <td><a href="{{ route('admin.users.show', $user->id)}}" class="btn btn-info"><i class="bi bi-info-circle"></i></a></td>
                     </tr>
                     @empty

@@ -1,4 +1,4 @@
-@extends('layouts.app-dashboard')
+@extends('layouts.lecture')
 
 @section('content')
 
@@ -26,14 +26,12 @@
               @if (Auth::user()->avatar)
                 <img src="{{Auth::user()->avatar}}" class="rounded-circle" alt="" srcset="">
               @else
-                <img src="https://ui-avatars.com/api/?name={{Auth::user()->Student->nama_mhs}}" class=" rounded-circle" alt="" srcset="">
+                <img src="https://ui-avatars.com/api/?name={{Auth::user()->Lecture->nama_dosen}}" class=" rounded-circle" alt="" srcset="">
               @endif
-              <h2>{{ Auth::user()->Student->nama_mhs}}</h2>
-              <h3>{{ Auth::user()->Student->nim_mhs}}</h3>
+              <h2>{{ Auth::user()->username}}</h2>
+              <h3>{{ Auth::user()->Lecture->nidn_dosen}}</h3>
               <div class="social-links mt-2">
-                <a href="https://instagram.com/{{ Auth::user()->Student->instagram_profile ?? ''}}" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://linkedin.com/{{ Auth::user()->Student->linkedin_profile ?? ''}}" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                <a href="https://github.com/{{ Auth::user()->Student->github_profile ?? ''}}" target="_blank" class="github"><i class="bi bi-github"></i></a>
+                
               </div>
             </div>
           </div>
@@ -56,10 +54,6 @@
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-portfolio">Portofolio</button>
-                </li>
-
-                <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-akun">Akun</button>
                 </li>
 
@@ -67,29 +61,34 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">Tentang</h5>
-                  <p class="small fst-italic">{{ Auth::user()->about }}.</p>
+                  <h5 class="card-title">Bidang Peminatan</h5>
+                  <p class="small fst-italic">{{ Auth::user()->Lecture->bidang_peminatan }}.</p>
 
                   <h5 class="card-title">Data Diri </h5>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Student->nama_mhs }}</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->nama_dosen }}</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">NIM</div>
-                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Student->nim }}</div>
+                    <div class="col-lg-3 col-md-4 label">NIP</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->nip_dosen}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">NIDN</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->nidn_dosen}}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Konsentrasi</div>
-                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Student->concentration }}</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->konsentrasi_dosen }}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Nomor Handphone</div>
-                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Student->phone_number }}</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->hp_dosen}}</div>
                   </div>
 
                   <div class="row">
@@ -98,18 +97,22 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Transkip</div>
-                    <div class="col-lg-9 col-md-8"><a href="{{ Auth::user()->Student->transkip ?? '' }}" target="_blank">Lihat</a></div>
+                    <div class="col-lg-3 col-md-4 label">Jabatan Fungsional</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->jafung_dosen }}</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">CV</div>
-                    <div class="col-lg-9 col-md-8"><a href="{{ Auth::user()->Student->cv ?? ''}}" target="_blank">Lihat</a></div>
+                    <div class="col-lg-3 col-md-4 label">Program Studi</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->prodi_dosen }}</div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Status Dosen</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Lecture->status_dosen }}</div>
+                  </div>
                 </div>
 
-                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                {{-- <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
                   <form method="post" action="{{ route('user.update-profile', Auth::user()->id)}}" enctype="multipart/form-data">
@@ -227,47 +230,12 @@
                     </div>
                   </form><!-- End Profile Edit Form -->
 
-                </div>
+                </div> --}}
 
-                <div class="tab-pane fade profile-portfolio pt-3" id="profile-portfolio">
-                  <!-- Change Password Form -->
-                  <form method="post"  action="{{ route('user.update-profile', Auth::user()->id)}}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row mb-3">
-                      <label for="transkip" class="col-md-4 col-lg-3 col-form-label">Transkip Akademik</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input class="form-control {{$errors->has('transkip') ? 'is-invalid' : ''}}"  value="{{ Auth::user()->Student->transkip ?? ''}}"  name="transkip" type="text" id="transkip">
-                        <p class="text-muted small pt-2">Link Download : <a href="{{ Auth::user()->Student->transkip ?? '' }}" target="_blank">{{ Auth::user()->Student->transkip?? ''}}</a></p>
-                        @if ($errors->has('transkip'))
-                          <div class="invalid-feedback">
-                            {{$errors->first('transkip')}}
-                          </div>
-                        @endif
 
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="cv" class="col-md-4 col-lg-3 col-form-label">Curriculum Vitae (CV)</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input class="form-control {{$errors->has('cv') ? 'is-invalid' : ''}}" value="{{ Auth::user()->Student->cv ?? ''}}"  name="cv" type="text" id="cv">
-                        <p class="text-muted small pt-2">Link Download : <a href="{{ Auth::user()->Student->cv ?? ''}}" target="_blank">{{ Auth::user()->Student->transkip ?? ''}}</a></p>
-                        @if ($errors->has('cv'))
-                          <div class="invalid-feedback">
-                            {{$errors->first('cv')}}
-                          </div>
-                        @endif
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-                </div>
                 <div class="tab-pane fade profile-akun pt-3 " id="profile-akun">
                   <!-- Change Password Form -->
-                  <form method="post"  action="{{ route('user.update-password', Auth::user()->id)}}" enctype="multipart/form-data">
+                  <form method="post"  action="{{ route('lecture.update-password', Auth::user()->id)}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                       <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
@@ -308,7 +276,7 @@
                       <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                   </form><!-- End Change Password Form -->
-                </div>
+                </div> 
 
               </div><!-- End Bordered Tabs -->
 

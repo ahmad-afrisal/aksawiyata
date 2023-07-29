@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ExamScheduleController;
 use App\Http\Controllers\Lecture\ExamineeController;
 use App\Http\Controllers\Lecture\ExaminerController;
 use App\Http\Controllers\Lecture\ReportController;
+use App\Http\Controllers\Lecture\ProfileController as ProfileLecture;
 use App\Http\Controllers\user\ActivityController;
 use App\Http\Controllers\User\ExamineController;
 
@@ -130,6 +131,8 @@ Route::middleware('auth')->group(function () {
         // Admin Settings
         Route::get('/settings', [AdminDashboard::class, 'settings'])->name('settings');
         Route::post('/update-profile', [AdminDashboard::class, 'updateProfile'])->name('update-profile');
+        Route::post('/update-password/{user}', [AdminDashboard::class, 'updatePass'])->name('update-password');
+
         
 
          // Admin Semseter
@@ -188,6 +191,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/report/update-accept/{report}', [ReportController::class, 'accepted'])->name('report.accepted');
         Route::post('/report/update-rejcet/{report}', [ReportController::class, 'rejected'])->name('report.rejected');
 
+         // ULecture Profile
+        Route::get('/profile', [ProfileLecture::class, 'index'])->name('profile');
+        Route::post('/profile/{user}', [ProfileLecture::class, 'update'])->name('update-profile');
+        Route::post('/update-password/{user}', [ProfileLecture::class, 'updatePass'])->name('update-password');
     });
 
 

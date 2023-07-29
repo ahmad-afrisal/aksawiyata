@@ -19,11 +19,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        // $student = User::with('Student')->where('id', Auth::user()->id)->firstOrFail();
-
-        return view('user.dashboard.profile', [
-            // 'student' => $student,
-        ]);
+        return view('user.dashboard.profile');
     }
 
     /**

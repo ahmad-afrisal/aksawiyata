@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 use App\Models\Checkout;
@@ -45,45 +46,89 @@ class DashboardController extends Controller
         return view('admin.setting.index');
     }
 
-    public function updateProfile(ProfileRequest $request)
+    public function updateProfile(Request $request)
     {
+        $this->validate($request, [
+            'name' => ['required','string'],
+        ]);
+
         $data = $request->all();
         
+        // $item =  Admin::findOrFail('user_id', Auth::user()->id);
+        $item =  Admin::where('user_id', Auth::user()->id)->first();
+
+        $data['name'] = $request->name;
+
+        $item->update($data);
+
+
+
+        return redirect()->route('admin.settings')->with('success','Nama Berhasil di ubah');
+        
+    }
+
+    public function updatePass(Request $request, string $id)
+    {
         $item =  User::findOrFail(Auth::user()->id);
 
-        if($request->hasFile('avatar')) {
-            $data['avatar'] = $request->file('avatar')->store('assets/avatar','public');
-            
-            Storage::delete('public/'.$item->avatar);
-    
-            $item->update($data);
 
-        } else {
-            $item->update([
-                'name'     => $request->name,
-                'nim'     => $request->nim,
-                'concentration'     => $request->concentration,
-                'about'     => $request->about,
-                'phone_number'     => $request->phone_number,
-                'instagram_profile'     => $request->instagram_profile,
-                'linkedin_profile'     => $request->linkedin_profile,
-                'github_profile'     => $request->github_profile,
+        if ($request->username == $item->username && $request->password) {
+            $this->validate($request, [
+                'username' => ['required'],
+                'password' => ['required','confirmed'],
             ]);
-        }
 
-        return redirect()->route('admin.settings');
+            $data = $request->all();
+
+            $data['username'] = $request->username;
+            $data['password'] = \bcrypt($request->password);
+
+            
+            $item->update($data);
+            
+            return redirect()->route('admin.settings')->with('success', 'Password berhasil diupdate');
+
+        } elseif($request->username && $request->password) {
+            $this->validate($request, [
+                'username' => ['required','regex:/(^([a-zA-z]+)(\d+)?$)/u','unique:users,username'],
+                'password' => ['required','confirmed'],
+            ]);
+
+            $data = $request->all();
+            
+            $item =  User::findOrFail(Auth::user()->id);
+            $data['username'] = $request->username;
+            $data['password'] = \bcrypt($request->password);
+            
+            $item->update($data);
+            
+            return redirect()->route('admin.settings')->with('success', 'Username & Password berhasil diupdate');
+        } else {
+            $this->validate($request, [
+                'username' => ['required','regex:/(^([a-zA-z]+)(\d+)?$)/u','unique:users,username'],
+            ]);
+            
+            $data = $request->all();
+            
+            $item =  User::findOrFail(Auth::user()->id);
+            $data['username'] = $request->username;
+            
+            $item->update($data);
+            
+            return redirect()->route('admin.settings')->with('success', 'Password berhasil diupdate');
+        }
         
     }
 
     
     public function users()
     {
-        $users = User::where('roles', false)->get();
-        $usersCount = User::where('roles', false)->count();
+        $users = User::where('role_id', 4)->get();
+        // $usersCount = User::where('role_id', false)->count();
 
         return view('admin.user.student.index', [
             'users' => $users,
-            'usersCount' => $usersCount,
+            'usersCount' => $users->count(),
         ]);        
     }
 
@@ -92,8 +137,6 @@ class DashboardController extends Controller
         $user = User::findOrFail($id);
         return view('admin.user.student.show', [
             'user' => $user,
-            'transkip' => str_replace('public/assets/transkip/', '', $user->transkip),
-            'cv' => str_replace('public/assets/cv/', '', $user->cv),
         ]);  
     }
 

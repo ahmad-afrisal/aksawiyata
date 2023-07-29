@@ -49,7 +49,7 @@
                                   <td>{{ $examinee->created_at }}</td>
                                   <td>{{ $examinee->Checkout->Job->name }}</td>
                                   <td>{{ $examinee->Checkout->Job->Company->name }}</td>
-                                  <td>{{ $examinee->Student->name }}</td>
+                                  <td>{{ $examinee->Student->Student->nama_mhs }}</td>
                                   <td>
                                     @if ($examinee->is_accepted == 0) 
                                       <span class="badge border-danger border-1 text-danger">Ditolak</span>

@@ -178,7 +178,7 @@
         </li><!-- End Pengguna Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/settings')) ? '' : 'collapsed' }}" href="#">
+            <a class="nav-link {{ (request()->is('admin/dashboard/settings')) ? '' : 'collapsed' }}" href="{{ route('lecture.profile')}}">
                 <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
             </a>
