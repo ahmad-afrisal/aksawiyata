@@ -54,6 +54,10 @@
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Ubah Password</button>
                 </li>
 
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#done">Selesai</button>
+                </li>
+
               </ul>
               <div class="tab-content pt-2">
 
@@ -133,6 +137,16 @@
 
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                  </form><!-- End Change Password Form -->
+                </div> 
+
+                <div class="tab-pane fade done pt-3 " id="done">
+                  <!-- Change Password Form -->
+                  <form method="post"  action="{{ route('admin.done')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-danger">Selesaikan KPI</button>
                     </div>
                   </form><!-- End Change Password Form -->
                 </div> 

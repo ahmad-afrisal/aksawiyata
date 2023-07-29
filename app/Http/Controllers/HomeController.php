@@ -77,4 +77,14 @@ class HomeController extends Controller
         
     }
 
+    public function jobs()
+    {
+        $jobs = Job::with('company')->get();
+
+        return view('jobs',[
+            'jobs' => $jobs
+        ]);
+
+    }
+
 }

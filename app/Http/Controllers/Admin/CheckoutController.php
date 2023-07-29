@@ -69,4 +69,11 @@ class CheckoutController extends Controller
         }
         
     }
+
+    public function done()
+    {
+        Checkout::where('status', 'sedang berjalan')->update(['status' => 'selesai']);
+        return redirect(route('admin.dashboard'))->with('success', 'KPI Periode ini telah selesai');
+        
+    }
 }

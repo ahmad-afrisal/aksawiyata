@@ -5,13 +5,15 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                    <a href="{{route('welcome')}}" class="logo">
+                        {{-- <img src="{{ assets/images/logo.png" alt=""> --}}
+                        Aksawiyata
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{{ route('welcome') }}" class="active">Beranda</a></li>
+                        <li><a href="{{ route('jobs') }}">Posisi</a></li>
                         <li><a href="{{ route('contact') }}">Kontak</a></li>
                         @auth
                             <li><a href="{{  route('dashboard') }}">Hi, {{Auth::user()->username }}</a></li>
@@ -22,7 +24,7 @@
                                 </form>
                             </li>
                         @else
-                            <li><a href="{{ route('user.login.google')}}">Masuk ke Akun</a></li>
+                            <li><a href="{{ route('user.logina')}}">Masuk ke Akun</a></li>
                         @endauth
                     </ul>   
                     <a class='menu-trigger'>

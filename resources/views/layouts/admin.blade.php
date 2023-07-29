@@ -211,11 +211,19 @@
         </li><!-- End Pengguna Page Nav -->
 
         <li class="nav-item">
+            <a class="nav-link {{ (request()->is('admin/dashboard/grade')) ? '' : 'collapsed' }}" href="{{ route('admin.grade')}}">
+                <i class="bi bi-clipboard2-plus"></i>
+                <span>Nilai</span>
+            </a>
+        </li><!-- End Pengaturan Page Nav -->
+
+        <li class="nav-item">
             <a class="nav-link {{ (request()->is('admin/dashboard/settings')) ? '' : 'collapsed' }}" href="{{ route('admin.settings')}}">
                 <i class="bi bi-gear"></i>
                 <span>Pengaturan</span>
             </a>
         </li><!-- End Pengaturan Page Nav -->
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
                 <i class="bi bi-box-arrow-in-right"></i>
@@ -248,6 +256,7 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    @stack('prepend-script')
 
     <!-- Vendor JS Files -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -259,7 +268,7 @@
     <script src="{{ asset('backend/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></s>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
 
     <!-- Template Main JS File -->
@@ -267,7 +276,6 @@
     
     
     <script>
-    
 
         function previewImg() {
             const sampul = document.querySelector('#sampul');
@@ -295,6 +303,8 @@
         CKEDITOR.replace('editor3');
         CKEDITOR.replace('editor4');
     </script>
+    @stack('addon-script')
+
 
 </body>
 

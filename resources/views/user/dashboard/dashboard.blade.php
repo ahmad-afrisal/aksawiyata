@@ -33,7 +33,7 @@
                     @elseif ($checkout->status == "sedang berjalan")
                       <span class="badge bg-success text-white">Sedang Berjalan</span>
                     @else
-                      <span class="badge bg-info">Selesai</span>
+                      <span class="badge bg-info text-white">Selesai</span>
                     @endif
                   </h5>
                   <div class="d-flex align-items-center">

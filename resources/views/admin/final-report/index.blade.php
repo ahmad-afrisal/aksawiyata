@@ -54,8 +54,8 @@
                   <tbody>
                     @forelse ($reports as $report)
                       <tr>
-                        <th scope="row"><a href="#">{{ $report->User->nim }}</a></th>
-                        <td>{{ $report->User->name }}</td>
+                        <th scope="row"><a href="#">{{ $report->User->Student->nim_mhs }}</a></th>
+                        <td>{{ $report->User->Student->nama_mhs }}</td>
                         {{-- <td>{{ $report->User-> }}</td> --}}
                         {{-- <td>Bangk.id</td> --}}
                         <td>{{ (date_format($report->created_at, 'd-m-Y')) }}</td>

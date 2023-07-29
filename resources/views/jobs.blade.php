@@ -2,50 +2,7 @@
 
 @section('content')
       <!-- ***** Main Banner Area Start ***** -->
-  <section id="section-1">
-    <div class="content-slider">
-      <input type="radio" id="banner1" class="sec-1-input" name="banner" checked>
 
-      <div class="slider">
-        <div id="top-banner-1" class="banner">
-          <div class="banner-inner-wrapper header-text">
-            <div class="main-caption">
-              <h2>Temukan Magang Impianmu dengan Mudah dan Cepat!</h2>
-              <h1>Aksawiyata</h1>
-              <div class="border-button"><a href="{{ route('user.login.google')}}">Buat Akun</a></div>
-            </div>
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="more-info">
-                    <div class="row">
-                      <div class="col-lg-3 col-sm-6 col-6">
-                        <i class="fa fa-user"></i>
-                        <h4><span>Pengguna :</span><br>{{ $users }}</h4>
-                      </div>
-                      <div class="col-lg-3 col-sm-6 col-6">
-                        <i class="fa fa-globe"></i>
-                        <h4><span>Lowongan :</span><br>{{ $jobsCount }}</h4>
-                      </div>
-                      <div class="col-lg-3 col-sm-6 col-6">
-                        <i class="fa fa-home"></i>
-                        <h4><span>Perusahaan :</span><br>{{ $companies }}</h4>
-                      </div>
-                      <div class="col-lg-3 col-sm-6 col-6">
-                        <div class="main-button">
-                          <a href="{{ route('jobs')}}">Cari Posisi</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
   <!-- ***** Main Banner Area End ***** -->
   {{-- <div class="search-form">
     <div class="container">
@@ -107,7 +64,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-12">
           <div class="items">
             <div class="row">
               @forelse ($jobs as $job)
@@ -148,27 +105,6 @@
                 <div class="text-button">
                   <a href="{{ route('jobs') }}">Posisi Lainnya<i class="fa fa-arrow-right"></i></a>
                 </div>
-              </div>
-              {{ $jobs->links() }}
-              {{-- <div class="col-lg-12">
-                <ul class="page-numbers">
-                  <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-                </ul>
-              </div> --}}
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="side-bar-map">
-            <div class="row">
-              <div class="col-lg-12">
-                    <h2>Mitra</h2>
-                    <img src="{{ asset('frontend/assets/images/logo/logo-bankid.png') }}" alt="" srcset="">
-                    <img src="{{ asset('frontend/assets/images/logo/logo-bankid.png') }}" alt="" srcset="">
               </div>
             </div>
           </div>

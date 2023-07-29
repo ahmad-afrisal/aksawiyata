@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\ExamScheduleController;
+use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Lecture\ExamineeController;
 use App\Http\Controllers\Lecture\ExaminerController;
 use App\Http\Controllers\Lecture\ReportController;
@@ -41,9 +42,11 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/details/{job:slug}', [HomeController::class, 'detail'])->name('details');
 Route::get('/companies/{company:slug}', [HomeController::class, 'company'])->name('companies');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 
 
 
+Route::get('user-login', [UserController::class, 'login'])->name('user.logina');
 // socialite routes
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
 Route::get('auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
@@ -132,6 +135,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/settings', [AdminDashboard::class, 'settings'])->name('settings');
         Route::post('/update-profile', [AdminDashboard::class, 'updateProfile'])->name('update-profile');
         Route::post('/update-password/{user}', [AdminDashboard::class, 'updatePass'])->name('update-password');
+
+        // Admin Grade
+        Route::get('/grade', [GradeController::class, 'index'])->name('grade');
+        Route::post('/done', [AdminCheckout::class, 'done'])->name('done');
 
         
 
