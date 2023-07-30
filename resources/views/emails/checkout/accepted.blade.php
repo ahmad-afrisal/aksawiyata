@@ -1,9 +1,9 @@
 <x-mail::message>
 # Pendafataranmu telah disetujui
 
-Hi {{$checkout->User->name}}
+Hi {{$checkout->User->Student->nama_mhs}}
 <br>
-Pendaftaranmu pada posisi <b>{{$checkout->Job->name}}</b> di <b>{{$checkout->Job->Company->name}}</b> menunggu persetujuanmu.
+Pendaftaranmu pada posisi <b>{{$checkout->Job->name}}</b> di <b>{{$checkout->Job->Company->name}}</b> telah diterima.
 
 <x-mail::button :url="$url">
 Dashboard

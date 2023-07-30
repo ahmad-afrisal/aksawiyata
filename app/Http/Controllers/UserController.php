@@ -29,7 +29,7 @@ class UserController extends Controller
         $username = strtolower($callback->getName()).strval(rand(100,999));
 
         // $user = User::firstOrCreate(['email' => $data['email']], $data);
-        $user = User::with('Student')->whereEmail($callback->getEmail())->first();
+        $user = User::whereEmail($callback->getEmail())->first();
         // return $user;
         if(!$user) {
             // DB::beginTransaction();
@@ -45,12 +45,13 @@ class UserController extends Controller
                     'status' => 1,
                 ]);
 
-                // return $userId;
-
                 Student::create([
                     'user_id' => $userId,
                     'nama_mhs' => $callback->getName(),
                 ]);
+
+                $user = User::whereId($userId)->first();
+                // $user= str_replace(' ', '_', $username);
                 
                 Mail::to($callback->getEmail())->send(new AfterRegister($user));
 

@@ -64,21 +64,34 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('login') }}">
+                  <form class="row g-3 " method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Email / Username</label>
-                      <div class="input-group has-validation">
-                        <input type="text" name="email" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Masukkan Email atau Username.</div>
+                      <label for="input_type" class="form-label">Email / Username</label>
+                      <div class="input-group">
+                        <input type="text" name="input_type" class="form-control {{$errors->has('email') || $errors->has('username')  ? 'is-invalid' : ''}}" id="input_type" required>
+                        @if ($errors->has('email'))
+                          <div class="invalid-feedback">
+                              {{$errors->first('email')}}
+                          </div>
+                        @elseif ($errors->has('username'))
+                        <div class="invalid-feedback">
+                          {{$errors->first('username')}}
                       </div>
+                        @endif
+                      </div>
+                     
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Masukkan Password!</div>
+                      <input type="password" name="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" id="yourPassword" required>
+                      @if ($errors->has('password'))
+                      <div class="invalid-feedback">
+                          {{$errors->first('password')}}
+                      </div>
+                    @endif
                     </div>
 
                     <div class="col-12">

@@ -29,7 +29,7 @@ class AfterCheckout extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Register Camp: '.$this->checkout->Job->name,
+            subject: 'Pendaftaran: '.$this->checkout->Job->name,
         );
     }
 

@@ -73,7 +73,7 @@
                           @elseif ($checkout->status == "sedang berjalan")
                             <span class="badge bg-success">Sedang Berjalan</span>
                           @else
-                            <span class="badge bg-light">Selesai</span>
+                            <span class="badge bg-primary">Selesai</span>
                           @endif
                         </td>
                         <td>

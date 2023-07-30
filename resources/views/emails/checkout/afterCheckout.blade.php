@@ -1,7 +1,7 @@
 <x-mail::message>
 # Pendafataran pada posisi {{$checkout->Job->name}}
 
-Hi {{$checkout->User->name}}
+Hi {{$checkout->User->Student->nama_mhs}}
 <br>
 Terima kasih telah melakukan pendaftaran pada {{$checkout->Job->name}}, untuk informasi lebih lanjut kami akan segera mengabari anda
 
