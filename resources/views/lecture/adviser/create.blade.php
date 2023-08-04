@@ -40,7 +40,7 @@
                                         <tr>
                                             <td>NIM</td>
                                             <td>:</td>
-                                            <td>{{ $item->user->nim_mhs }}</td>
+                                            <td>{{ $item->user->Student->nim_mhs }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tempat Kerja Praktek Industri</td>

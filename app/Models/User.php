@@ -83,4 +83,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Admin::class, 'id', 'user_id');
     }
+
+
 }

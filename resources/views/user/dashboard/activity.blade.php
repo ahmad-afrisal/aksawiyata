@@ -32,9 +32,10 @@
                                             </div>
                                             <div class="ps-3">
                                                 <h6>{{$checkout->Job->Company->name}}</h6>
-                                                <span class="text-success small pt-1 fw-bold">{{$checkout->Job->name}}</span>
+                                                <a href="{{ route('details', $checkout->Job->slug) }}"> <span class="text-success small pt-1 fw-bold">{{$checkout->Job->name}}</span></a>
                                                 <br>
-                                                <a href="{{ route('details', $checkout->Job->slug) }}" class="text-muted small pt-2">Selengkapnya</a>
+                                                <span class="text-muted small pt-2" >Dosen Pembimbing : {{ $checkout->Job->Company->Adviser->Lecture->nama_dosen }} <br> Dosen Penguji : {{ $checkout->Job->Company->Examiner->Lecture->nama_dosen }} <br>Pembimbing Lapangan : {{ $checkout->Job->Company->Mentor->Mentor->name }}</span><br>
+                                                {{-- <a href="{{ route('details', $checkout->Job->slug) }}" ">Selengkapnya</a> --}}
                                             </div>
                                         </div>
                                     </div>
