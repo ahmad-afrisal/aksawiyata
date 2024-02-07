@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             ExamScheduleTableSeeder::class,
             MentorUserSeeder::class,
             LectureUserSeeder::class,
-            // CompanyTableSeeder::class,
-            // JobTableSeeder::class,
+            CompanyTableSeeder::class,
+            JobTableSeeder::class,
         ]);
     }
 }
