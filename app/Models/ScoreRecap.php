@@ -11,7 +11,7 @@ class ScoreRecap extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id', 'mentor_score','adviser_score','examiner_score'];
+    protected $fillable = ['user_id', 'mentor_score','adviser_score','examiner_score', 'semester_id'];
 
     /**
      * Get the user that owns the ScoreRecap
@@ -21,6 +21,11 @@ class ScoreRecap extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, );
+    }
+
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, );
     }
 
 }

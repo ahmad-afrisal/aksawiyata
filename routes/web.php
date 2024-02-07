@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Mentor\DashboardController as MentorDashboard;
 use App\Http\Controllers\Lecture\DashboardController as LectureDashboard;
 use App\Http\Controllers\Admin\CheckoutController as AdminCheckout;
+use App\Http\Controllers\Admin\ReportController as AdminReport;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\FinalReportController;
@@ -157,6 +158,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/exam-schedule/show/{examschedule}', [ExamScheduleController::class, 'show'])->name('exam-schedule.show');
         Route::get('/exam-schedule/edit/{examschedule}', [ExamScheduleController::class, 'edit'])->name('exam-schedule.edit');
         Route::post('/exam-schedule/update/{examschedule}', [ExamScheduleController::class, 'update'])->name('exam-schedule.update');
+
+        // Admin Report
+        Route::get('/report/examine', [AdminReport::class, 'examine'])->name ('report.examine');
+        Route::post('/report/examine/sk', [AdminReport::class, 'examineSk'])->name ('report.examine.sk');
+        Route::get('/report/adviser', [AdminReport::class, 'adviser'])->name ('report.adviser');
+        Route::post('/report/adviser/sk', [AdminReport::class, 'adviserSk'])->name ('report.adviser.sk');
+
     });
 
 

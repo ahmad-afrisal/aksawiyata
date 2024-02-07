@@ -26,18 +26,18 @@
                 <div class="card-body">
                   <h5 class="card-title">Periode KPI</h5>
                     <!-- Floating Labels Form -->
-                    <form class="row g-3" action="{{ route('admin.lectures.store') }}" method="post" enctype="multipart/form-data">
-                      @csrf
+                    <form class="row g-3" action="{{ route('admin.grade') }}" method="get" enctype="multipart/form-data">
+                      {{-- @csrf --}}
                       <div class="col-12 col-lg-6">
-                        <select class="form-select {{$errors->has('semester_id') ? 'is-invalid' : ''}}" value="{{old('semester_id') ?: ''}}"  aria-label="Default select example" name="semester_id">
-                          <option selected>Pilih Semester</option>
+                        <select class="form-select {{$errors->has('semester') ? 'is-invalid' : ''}}" value="{{old('semester') ?: ''}}"  aria-label="Default select example" name="semester" id="semester" required>
+                          <option>Pilih Semester</option>
                           @foreach ($semesters as $semester)
-                            <option value="{{ $semester->id }}">{{ $semester->name }}</option>
+                            <option value="{{ $semester->name }}">{{ $semester->name }}</option>
                           @endforeach
                         </select>
-                        @if ($errors->has('semester_id'))
+                        @if ($errors->has('semester'))
                           <div class="invalid-feedback">
-                            {{$errors->first('semester_id')}}
+                            {{$errors->first('semester')}}
                           </div>
                         @endif
                       </div>
@@ -59,7 +59,7 @@
               <div class="card top-selling overflow-auto">
   
                 <div class="card-body pb-0">
-                  <h5 class="card-title">Nilai <span>|</span></h5>
+                  <h5 class="card-title">Nilai <span>| </span></h5>
   
                   <table class="table table-borderless datatable">
                     <thead>
@@ -79,7 +79,7 @@
                       @forelse ($grades as $grade)
                       <tr>
                         <th scope="row">{{ $loop->iteration}}</th>
-                        {{-- <th scope="row">{{ $grade->Semester->name }}</th> --}}
+                        <th scope="row">{{ $grade->Semester->name }}</th>
                         <td>{{ $grade->user->Student->nim_mhs }}</td>
                         <td>{{ $grade->user->Student->nama_mhs }}</td>
                         <td>{{ $grade->mentor_score }}</td>
@@ -133,3 +133,21 @@
 
 @endsection
 
+@push('addon-script')
+<script>
+  const selectElement = document.getElementById('semester');
+
+  // Cek apakah nilai tersimpan di LocalStorage
+  const savedValue = localStorage.getItem('selected_gender');
+  if (savedValue) {
+      // Setel nilai pilihan select sesuai dengan nilai yang tersimpan
+      selectElement.value = savedValue;
+  }
+
+  // Tambahkan event listener untuk menyimpan nilai ke LocalStorage saat ada perubahan nilai
+  selectElement.addEventListener('change', function() {
+      const selectedValue = selectElement.value;
+      localStorage.setItem('selected_gender', selectedValue);
+  });
+</script>
+@endpush

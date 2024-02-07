@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 30, 2023 at 12:26 PM
+-- Generation Time: Aug 18, 2023 at 10:50 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.9
 
@@ -41,7 +41,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `user_id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(6, 1, 'Eka Liana', '2023-07-21 07:36:24', '2023-07-29 01:30:01', NULL);
+(7, 20, 'admin', '2023-08-18 21:48:16', '2023-08-18 21:48:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -106,15 +106,6 @@ CREATE TABLE `companies` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `companies`
---
-
-INSERT INTO `companies` (`id`, `name`, `slug`, `mentor_id`, `examiner_id`, `adviser_id`, `about`, `ceo`, `number_of_employees`, `website_link`, `street`, `postal_code`, `district`, `regency`, `province`, `logo`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Bangk.id', 'bangkid', 6, 12, 9, '<p>Bangk.id adalah perusahaan yang berfokus pada penyediaan pelatihan dan pengembangan keterampilan di bidang teknologi informasi. Startup ini dapat menawarkan berbagai jenis kursus dan program pelatihan, seperti pengembangan web, data science, keamanan siber, pengembangan aplikasi seluler, dan lain sebagainya.</p>', 'Ahmad Afrisal', 100, 'https://www.bangk.id', 'Jl. Poros Majene Mamuju No 39', '91353', 'Banggae Timur', 'Majene', 'Sulawesi Barat', 'assets/logo/0PcBs8Em7sJRfrjQt8li6NMmmyElcserbr6zN1xa.png', '2023-07-22 12:19:18', '2023-07-22 12:29:24', NULL),
-(2, 'Radio Kampus', 'radio-kampus', 7, 11, 10, '<p>Radio Kampus adalah&nbsp; situs web yang menyediakan platform untuk mengadakan dan mengikuti webinar.</p>', 'Wawan Firgiawan', 20, 'https://www.radiokampus.com', 'Jalan Andi Pangeran Pettarani No. 67', '90222', 'Rappocini', 'Makassar', 'Sulawesi Barat', 'assets/logo/48YHrLvYHwqkLSTjw8vujy4kZuiC11CfLLu3jTeK.png', '2023-07-22 12:44:54', '2023-07-22 12:44:54', NULL),
-(3, 'Laodinawang', 'laodinawang', 8, 10, 11, '<p>laodinawang adalah usaha yang menyediakan alat dan perlengkapan camping untuk kegiatan di alam bebas, seperti tenda, sleeping bag, matras, kompor gas, pisau lipat, dan aksesori lainnya</p>', 'Ayana See', 10, 'https://www.laodinawang.com', 'Jalan Hasanuddin No. 10', '91964', 'Mamuju', 'Mamuju', 'Sulawesi Barat', 'assets/logo/uVJUFt9WNVK5wG057Nmhmb79t8si684sgE5OlbaZ.jpg', '2023-07-22 12:48:09', '2023-07-22 12:48:09', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -128,22 +119,6 @@ CREATE TABLE `company_galleries` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `company_galleries`
---
-
-INSERT INTO `company_galleries` (`id`, `photos`, `companies_id`, `created_at`, `updated_at`) VALUES
-(1, 'assets/company/LbJsHGvMLbgdFB8cuYaswh9edioh1kJnXREuLVfH.jpg', 1, '2023-07-22 12:19:18', '2023-07-22 12:19:18'),
-(2, 'assets/company/q9KWT2yHNlrAHB9bS2WIAW5cQKwxv8WERdCXpcUv.jpg', 2, '2023-07-22 12:44:54', '2023-07-22 12:44:54'),
-(3, 'assets/company/SuZlQkEaquCuigxrKAf6DD9Aqd5muI2ZXsWACNjv.jpg', 3, '2023-07-22 12:48:09', '2023-07-22 12:48:09'),
-(5, 'assets/company/fa3uUWKpQvnQ4sYfBdRi1kc6oH1pcgMnL6w4d6ig.jpg', 1, '2023-07-22 12:48:56', '2023-07-22 12:48:56'),
-(6, 'assets/company/3D8OXB4rU4TKEG0ecZIksy6ThKHsBjtvyDUXwsYh.jpg', 1, '2023-07-22 12:49:06', '2023-07-22 12:49:06'),
-(7, 'assets/company/O4ckJnET9SY1aVG6vIpWhz8O6ZhsauEK9TZgiI5x.jpg', 1, '2023-07-22 12:49:20', '2023-07-22 12:49:20'),
-(8, 'assets/company/sWOLwJeXHU6QEDQZseosCC0GIAsJuuxbx3BRHlqQ.jpg', 2, '2023-07-22 12:49:52', '2023-07-22 12:49:52'),
-(9, 'assets/company/L7UqsTg3fiqC64A5Su4XtLZyGfFuw2fZVKLA9TMx.jpg', 2, '2023-07-22 12:50:02', '2023-07-22 12:50:02'),
-(10, 'assets/company/QzgeFkqf3KAkFb8FcUBgGf4dXULSw5qOZdVgMiXz.jpg', 3, '2023-07-22 12:50:41', '2023-07-22 12:50:41'),
-(11, 'assets/company/5IgJr33F49JU5Qw0ZjVu29eLDO7kJlk5QwvlQjaG.jpg', 3, '2023-07-22 12:50:52', '2023-07-22 12:50:52');
 
 -- --------------------------------------------------------
 
@@ -216,13 +191,6 @@ CREATE TABLE `exam_schedules` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `exam_schedules`
---
-
-INSERT INTO `exam_schedules` (`id`, `admin_id`, `exam_date`, `place`, `is_open`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, '2023-07-20', 'HP 3', 0, '2023-07-22 06:20:59', '2023-07-22 06:21:21', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -258,10 +226,10 @@ CREATE TABLE `group_roles` (
 --
 
 INSERT INTO `group_roles` (`id`, `nama_role`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Admin', '2023-07-21 07:23:42', '2023-07-21 07:23:42'),
-(2, 'dosen', 'Dosen', '2023-07-21 07:23:42', '2023-07-21 07:23:42'),
-(3, 'mentor', 'Mentor', '2023-07-21 07:23:42', '2023-07-21 07:23:42'),
-(4, 'mahasiswa', 'Mahasaiswa', '2023-07-21 07:23:42', '2023-07-21 07:23:42');
+(1, 'admin', 'Admin', '2023-08-18 21:46:25', '2023-08-18 21:46:25'),
+(2, 'dosen', 'Dosen', '2023-08-18 21:46:25', '2023-08-18 21:46:25'),
+(3, 'mentor', 'Mentor', '2023-08-18 21:46:25', '2023-08-18 21:46:25'),
+(4, 'mahasiswa', 'Mahasaiswa', '2023-08-18 21:46:25', '2023-08-18 21:46:25');
 
 -- --------------------------------------------------------
 
@@ -286,16 +254,6 @@ CREATE TABLE `jobs` (
   `semester_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `jobs`
---
-
-INSERT INTO `jobs` (`id`, `company_id`, `name`, `slug`, `details_of_activities`, `develop_competencies`, `participant_criteria`, `additional_information`, `quota`, `status`, `created_at`, `updated_at`, `deleted_at`, `semester_id`) VALUES
-(1, 1, 'Full-Stack Web Develeper', 'full-stack-web-develeper', '<p>Seorang full stack web developer bertanggung jawab untuk mengembangkan sebuah website secara keseluruhan, baik dari sisi front-end maupun back-end. Pekerjaan seorang full stack web developer meliputi beberapa tugas antara lain membangun website dari awal hingga selesai, memastikan website yang dibuat responsif dan mudah diakses di berbagai perangkat, dan mengoptimalkan kinerja website agar dapat diakses dengan cepat.</p>', '<p>Commit &amp; Push Kode, Review Kode, Implementasi API, Unit tes kode, kolaborasi antar divisi</p>', '<p>Jurusan: Teknologi Informasi, Informatika, Ilmu Komputer, atau Jurusan yang Berkaitan<br />\r\nJenjang: D3 / D4 / S1,<br />\r\nSemester: Minimal semester 6 Kriteria: - Memiliki kemampuan GIT - Memiliki kemampuan Javascript - Memiliki kemampuan Python - Memiliki Kemampuan SQL (MySQL, PostgreSQL) Kriteria soft skills: - Komunikasi - Bekerja dalam tim - Memiliki inisiatif tinggi - Negosiasi - Berpikir strategis</p>', '<p>Sehat jasmani dan rohani serta siap melaksanakan program magang secara offline di kantor PT Widya Inovasi Indonesia</p>', 8, 1, '2023-07-22 12:56:54', '2023-07-30 11:07:40', NULL, 1),
-(2, 1, 'Web Designer', 'web-designer', 'Seorang web designer memiliki peran penting dalam menciptakan pengalaman pengguna yang baik di sebuah website. Tugas utama seorang web designer adalah merancang tampilan visual dan fungsionalitas dari sebuah website. Mereka harus mampu memperhatikan aspek keamanan, kinerja, dan kegunaan website agar pengguna merasa nyaman dalam mengaksesnya.', 'Commit & Push Kode, Review Kode, Implementasi API, Unit tes kode, kolaborasi antar divisi', '\n                Jurusan: Teknologi Informasi, Informatika, Ilmu Komputer, atau Jurusan yang Berkaitan<br>Jenjang: D3 / D4 / S1, <br>Semester: Minimal semester 6\n                Kriteria:\n                - Memiliki kemampuan GIT\n                - Memiliki kemampuan Javascript\n                - Memiliki kemampuan Python\n                - Memiliki Kemampuan SQL (MySQL, PostgreSQL)\n                \n                \n                Kriteria soft skills:\n                - Komunikasi\n                - Bekerja dalam tim\n                - Memiliki inisiatif tinggi\n                - Negosiasi\n                - Berpikir strategis', 'Sehat jasmani dan rohani serta siap melaksanakan program magang secara offline di kantor PT Widya Inovasi Indonesia', 4, 1, '2023-07-22 12:56:54', '2023-07-28 06:34:25', NULL, 1),
-(3, 2, 'Scrum Master', 'scrum-master', 'Seorang Scrum Master adalah seorang pemimpin dalam tim pengembangan software yang menggunakan metodologi Agile. Tugas utama seorang Scrum Master adalah memastikan bahwa tim memahami dan menerapkan prinsip-prinsip Agile dengan benar dan efektif. Seorang Scrum Master bertanggung jawab untuk memfasilitasi proses pengembangan software, memastikan tim bekerja secara kolaboratif dan terus meningkatkan kualitas produk yang dibuat.', 'Commit & Push Kode, Review Kode, Implementasi API, Unit tes kode, kolaborasi antar divisi', '\n                Jurusan: Teknologi Informasi, Informatika, Ilmu Komputer, atau Jurusan yang Berkaitan<br>Jenjang: D3 / D4 / S1, <br>Semester: Minimal semester 6\n                Kriteria:\n                - Memiliki kemampuan GIT\n                - Memiliki kemampuan Javascript\n                - Memiliki kemampuan Python\n                - Memiliki Kemampuan SQL (MySQL, PostgreSQL)\n                \n                \n                Kriteria soft skills:\n                - Komunikasi\n                - Bekerja dalam tim\n                - Memiliki inisiatif tinggi\n                - Negosiasi\n                - Berpikir strategis', 'Sehat jasmani dan rohani serta siap melaksanakan program magang secara offline di kantor PT Widya Inovasi Indonesia', 19, 1, '2023-07-22 12:56:54', '2023-07-28 10:53:35', NULL, 1),
-(4, 3, 'Project Manager', 'project-manager', '<p>Mahasiswa peserta magang pada aktivitas ini akan mengerjakan pada lingkup office pada umumnya.</p>', '<p>Communication and Teamwork, Decision Making, Leadership, Critical Thinking, palnning And Analyze</p>', '<p>- Mahasiswa teknik dan atau yang berhubungan, minimal sedang menempuh semester 6</p>\r\n\r\n<p>- Memiliki kemampuan manajemen proyek dan negosiasi yang baik</p>\r\n\r\n<p>- Mampu merencanakan, menganalisis dan mengontrol suatu proyek</p>\r\n\r\n<p>- Dapat bekerjasama secara mandiri ataupun tim</p>', '<p>sehat</p>', 8, 1, '2023-07-22 13:37:58', '2023-07-30 11:14:02', NULL, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -319,16 +277,6 @@ CREATE TABLE `lectures` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `lectures`
---
-
-INSERT INTO `lectures` (`id`, `user_id`, `nidn_dosen`, `nip_dosen`, `nama_dosen`, `status_dosen`, `konsentrasi_dosen`, `jafung_dosen`, `hp_dosen`, `prodi_dosen`, `aktif`, `bidang_peminatan`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 9, NULL, NULL, 'Muzaki, S.Kom.,M.M', NULL, NULL, NULL, NULL, NULL, 1, NULL, '2023-07-22 10:40:47', '2023-07-22 10:40:47', NULL),
-(3, 10, NULL, NULL, 'Nuralamsah Zulkarnaim, S.Kom., M.Kom', NULL, NULL, NULL, NULL, NULL, 1, NULL, '2023-07-22 10:41:32', '2023-07-22 10:41:32', NULL),
-(4, 11, NULL, NULL, 'Muh. Fahmi Rustan, S.Kom., M.T', NULL, NULL, NULL, NULL, NULL, 1, NULL, '2023-07-22 10:42:15', '2023-07-22 10:42:15', NULL),
-(5, 12, NULL, NULL, 'Ir. Sugiarto Cokrowibowo, S.Si., M.T', NULL, NULL, NULL, NULL, NULL, 1, NULL, '2023-07-22 10:43:00', '2023-07-22 10:43:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -362,15 +310,6 @@ CREATE TABLE `mentors` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mentors`
---
-
-INSERT INTO `mentors` (`id`, `user_id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 6, 'Adnan Fadli', '2023-07-22 10:37:40', '2023-07-22 10:37:40', NULL),
-(2, 7, 'sulkipli', '2023-07-22 10:39:12', '2023-07-22 10:39:12', NULL),
-(3, 8, 'Ibnu Munzir', '2023-07-22 10:40:00', '2023-07-22 10:40:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -499,7 +438,8 @@ CREATE TABLE `score_recaps` (
   `examiner_score` double(8,2) UNSIGNED NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -514,13 +454,6 @@ CREATE TABLE `semesters` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `semesters`
---
-
-INSERT INTO `semesters` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, '2022/2023 Ganjil', '2023-07-22 06:13:49', '2023-07-22 06:14:02');
 
 -- --------------------------------------------------------
 
@@ -575,14 +508,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `avatar`, `role_id`, `status`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'admin455', 'admin@aksawiyata.com', '2023-07-21 07:36:24', '$2y$10$rAyYZuoJHBWqMl5ypCmHQeFCTuwIq/n/2xF5Tfn.WmuD4CfZ9NfJm', NULL, 1, 1, NULL, '2023-07-21 07:36:24', '2023-07-29 01:34:03', NULL),
-(6, 'adnan_fadli', 'adnanfadli@gmail.com', '2023-07-22 10:37:40', '$2y$10$0lHVYPkNvL2vjWTqT4U.jOT0Yd2pEcvpJ5pT4vYeoN0Ff6tDFLauS', NULL, 3, 2, NULL, '2023-07-22 10:37:40', '2023-07-22 10:37:40', NULL),
-(7, 'sulkipli', 'sulkipli@gmail.com', '2023-07-22 10:39:12', '$2y$10$Mbembw9wR4YnUQfF.wRpwuDEgbaw0KUwk9syBIS4YVBcz66hTtAbK', NULL, 3, 2, NULL, '2023-07-22 10:39:12', '2023-07-22 10:39:12', NULL),
-(8, 'ibnu_munzir', 'ibnumunzir@gmail.com', '2023-07-22 10:40:00', '$2y$10$CJta24ViXgKa24GdvSa62OfSDzBJnxwyl4B/SX3tmhk9C0S7p8lWm', NULL, 3, 2, NULL, '2023-07-22 10:40:00', '2023-07-22 10:40:00', NULL),
-(9, 'muzakki', 'muzaki@unsulbar.ac.id', '2023-07-22 10:40:46', '$2y$10$BwI8uQfLVp9jvVSt9Dm99OB6JCdlYSHd31Yi5btZaSC11h3j/DNUm', NULL, 2, 2, NULL, '2023-07-22 10:40:47', '2023-07-22 10:40:47', NULL),
-(10, 'nuralamsah', 'nuralamsah@unsulbar.ac.id', '2023-07-22 10:41:32', '$2y$10$7CZ9g3cvg9bwgTK9O7r6DO3Seieekar8iv2XUUwlswQfHcbRRVj4G', NULL, 2, 2, NULL, '2023-07-22 10:41:32', '2023-07-22 10:41:32', NULL),
-(11, 'fahmi', 'muhfahmi@unsulbar.ac.id', '2023-07-22 10:42:15', '$2y$10$3ALLN700smqigCUWo/9ai.NLwa/Y5PBg81tIIctbOe4D0IU6wlHma', NULL, 2, 2, NULL, '2023-07-22 10:42:15', '2023-07-22 10:42:15', NULL),
-(12, 'sugiarto1', 'sugiarto.cokrowibowo@unsulbar.ac.id', '2023-07-22 10:42:59', NULL, NULL, 2, 2, NULL, '2023-07-22 10:43:00', '2023-07-28 22:49:26', NULL);
+(20, 'admin455', 'admin@aksawiyata.com', '2023-08-18 21:48:16', '$2y$10$K3Wr68gMnAOMZyT1yPBKo.oXKgVzFiQTCMKCFdFC4MrhC/b15VVUK', NULL, 1, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -801,19 +727,19 @@ ALTER TABLE `user_reviews`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `adviser_scores`
 --
 ALTER TABLE `adviser_scores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `checkouts`
 --
 ALTER TABLE `checkouts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -831,13 +757,13 @@ ALTER TABLE `company_galleries`
 -- AUTO_INCREMENT for table `consultations`
 --
 ALTER TABLE `consultations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `examinees`
 --
 ALTER TABLE `examinees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `examiner_scores`
@@ -861,7 +787,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `group_roles`
 --
 ALTER TABLE `group_roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -879,7 +805,7 @@ ALTER TABLE `lectures`
 -- AUTO_INCREMENT for table `logbooks`
 --
 ALTER TABLE `logbooks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mentors`
@@ -891,7 +817,7 @@ ALTER TABLE `mentors`
 -- AUTO_INCREMENT for table `mentor_scores`
 --
 ALTER TABLE `mentor_scores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -909,37 +835,37 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `score_recaps`
 --
 ALTER TABLE `score_recaps`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `semesters`
 --
 ALTER TABLE `semesters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user_reviews`
 --
 ALTER TABLE `user_reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

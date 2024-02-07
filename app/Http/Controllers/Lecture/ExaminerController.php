@@ -104,6 +104,8 @@ class ExaminerController extends Controller
                     'report_score' => $request->report_score,
                     'presentation_score' => $request->presentation_score,
                     'final_score' =>  $request->final_score,
+                    'semester_id' => ['required'],
+
                 ]
                 );
 
@@ -111,7 +113,7 @@ class ExaminerController extends Controller
             //Step 2 : Input data ke tabel Recap_store
             $recap = ScoreRecap::updateOrCreate(
                 ['user_id' => $request->user_id],
-                ['user_id' => $request->user_id, 'examiner_score' => $request->final_score]
+                ['user_id' => $request->user_id, 'examiner_score' => $request->final_score, 'semester_id' => $request->semester_id]
             );
 
             DB::commit();

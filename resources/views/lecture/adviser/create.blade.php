@@ -57,6 +57,14 @@
                                             <td>:</td>
                                             <td>{{ $item->Job->name }}</td>
                                         </tr>
+                                        <tr>
+                                            <td>Periode KPI</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="hidden" class="form-control " value="{{ $item->Job->Semester->id }}" name="semester_id"  required>
+                                                {{ $item->Job->Semester->name }}
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                                 @empty

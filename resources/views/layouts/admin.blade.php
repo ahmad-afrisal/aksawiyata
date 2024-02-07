@@ -218,17 +218,17 @@
         </li><!-- End Pengaturan Page Nav -->
         
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('admin/dashboard/users*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link {{ (request()->is('admin/dashboard/report*')) ? '' : 'collapsed' }}" data-bs-target="#charts-nav2" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-people"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="charts-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('admin.lectures.index')}}">
+                    <a href="{{ route('admin.report.adviser')}}">
                         <i class="bi bi-circle"></i><span>Dosen Pembimbing</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.mentors.index')}}">
+                    <a href="{{ route('admin.report.examine')}}">
                         <i class="bi bi-circle"></i><span>Dosen Penguji</span>
                     </a>
                 </li>

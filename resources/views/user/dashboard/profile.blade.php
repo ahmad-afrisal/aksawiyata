@@ -79,7 +79,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">NIM</div>
-                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Student->nim }}</div>
+                    <div class="col-lg-9 col-md-8">{{ Auth::user()->Student->nim_mhs }}</div>
                   </div>
 
                   <div class="row">

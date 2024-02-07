@@ -92,6 +92,8 @@ class DashboardController extends Controller
             'diligent_score' => ['required'],
             'performance_score' => ['required'],
             'final_score' => ['required'],
+            'semester_id' => ['required'],
+
         ]);
 
         
@@ -118,7 +120,7 @@ class DashboardController extends Controller
             //Step 2 : Input data ke tabel Recap_store
             $recap = ScoreRecap::updateOrCreate(
                 ['user_id' => $request->user_id],
-                ['user_id' => $request->user_id, 'mentor_score' => $request->final_score]
+                ['user_id' => $request->user_id, 'mentor_score' => $request->final_score, 'semester_id' => $request->semester_id]
             );
 
             DB::commit();
