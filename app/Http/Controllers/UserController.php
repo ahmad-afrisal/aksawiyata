@@ -18,6 +18,11 @@ class UserController extends Controller
         return view('auth.user.login');
     }
 
+    public function create()
+    {
+        return view('auth.user.register');
+    }
+
     public function google()
     {
         return Socialite::driver('google')->redirect();
