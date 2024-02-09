@@ -10,6 +10,7 @@ use Mail;
 use App\Mail\User\AfterRegister;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,15 +38,16 @@ class UserController extends Controller
         $user = User::whereEmail($callback->getEmail())->first();
         // return $user;
         if(!$user) {
-            // DB::beginTransaction();
+            DB::beginTransaction();
 
-            // try {
+            try {
 
                 $userId = User::insertGetId([
                     'username' => str_replace(' ', '_', $username),
                     'email' => $callback->getEmail(),
                     'avatar' => $callback->getAvatar(),
                     'email_verified_at' => date('Y-m-d H:i:s'),
+                    'password' => Hash::make($callback->getEmail()),
                     'role_id' => 4,
                     'status' => 1,
                 ]);
@@ -60,12 +62,12 @@ class UserController extends Controller
                 
                 Mail::to($callback->getEmail())->send(new AfterRegister($user));
 
-            //     DB::commit();
-            // } catch (\Exception $e) {
-            //     DB::rollback();
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
 
-            //     return redirect()->back()->with('warning','Login Gagal');
-            // }
+                return redirect()->back()->with('warning','Login Gagal');
+            }
 
             
 
