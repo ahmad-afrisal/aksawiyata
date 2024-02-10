@@ -15,7 +15,7 @@ class ExamineController extends Controller
 {
     public function index()
     {
-        $schedules = ExamSchedule::all()->sortByDesc('id');
+        $schedules = ExamSchedule::where('is_open', 1)->orderBy('id', 'desc')->get();
         $histories = Examinee::with('Schedule')->where('student_id', Auth::user()->id)->get()->sortByDesc('id');
 
         // return $histories;

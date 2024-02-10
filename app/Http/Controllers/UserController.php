@@ -47,7 +47,7 @@ class UserController extends Controller
                     'email' => $callback->getEmail(),
                     'avatar' => $callback->getAvatar(),
                     'email_verified_at' => date('Y-m-d H:i:s'),
-                    'password' => Hash::make($callback->getEmail()),
+                    'password' => \bcrypt($callback->getEmail()),
                     'role_id' => 4,
                     'status' => 1,
                 ]);

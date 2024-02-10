@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
                 'username' => $request->nim,
                 'email' => $request->email,
                 'email_verified_at' => date('Y-m-d H:i:s', time()),
-                'password' => Hash::make($request->yourPassword),
+                'password' => \bcrypt($request->password),
                 'role_id' => 4,
                 'status' => 1,
                 'created_at' => date('Y-m-d H:i:s', time()),

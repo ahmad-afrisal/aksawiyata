@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Checkout;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +30,8 @@ class DatabaseSeeder extends Seeder
             LectureUserSeeder::class,
             CompanyTableSeeder::class,
             JobTableSeeder::class,
+            StudentTableSeeder::class,
+            CheckoutTableSeeder::class,
         ]);
     }
 }

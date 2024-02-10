@@ -16,7 +16,10 @@ use Auth;
 class HomeController extends Controller
 {
     public function welcome() {
-        $jobs = Job::with('company')->paginate(4);
+        $jobs = Job::with(['company', 'Semester'])
+            ->whereHas('Semester', function ($query) {
+                $query->where('status', 1);
+            })->paginate(4);
         $companies = Company::count();
         $users = User::count();
 
@@ -79,7 +82,11 @@ class HomeController extends Controller
 
     public function jobs()
     {
-        $jobs = Job::with('company')->get();
+
+        $jobs = Job::with(['company', 'Semester'])
+        ->whereHas('Semester', function ($query) {
+            $query->where('status', 1);
+        })->get();
 
         return view('jobs',[
             'jobs' => $jobs
