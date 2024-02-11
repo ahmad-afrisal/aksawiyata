@@ -12,7 +12,7 @@
             <div class="main-caption">
               <h2>Temukan Magang Impianmu dengan Mudah dan Cepat!</h2>
               <h1>Aksawiyata</h1>
-              <div class="border-button"><a href="{{ route('user.login.google')}}">Buat Akun</a></div>
+              <div class="border-button"><a href="{{ route('register')}}">Buat Akun</a></div>
             </div>
             <div class="container">
               <div class="row">

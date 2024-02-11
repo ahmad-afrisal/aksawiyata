@@ -20,7 +20,7 @@
             <div class="thumb">
               <img src="{{ asset('frontend/assets/images/offers-02.jpg') }}" alt="">
               <div class="text">
-                <h4>Penanggung Jawab 1<br><span>Esia</span></h4>
+                <h4>Penanggung Jawab 1<br><span>#</span></h4>
                 <div class="line-dec"></div>
                 <ul>
                   <li>Kontak:</li>
@@ -38,7 +38,7 @@
             <div class="thumb">
               <img src="{{ asset('frontend/assets/images/offers-03.jpg') }}" alt="">
               <div class="text">
-                <h4>Penanggung Jawab 2<br><span><i class="fa fa-users"></i> Ahmad Afrisal</span></h4>
+                <h4>Penanggung Jawab 2<br><span><i class="fa fa-users"></i> #</span></h4>
                 <div class="line-dec"></div>
                 <ul>
                   <li>Kontak:</li>
