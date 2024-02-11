@@ -36,6 +36,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Waktu Ujian</th>
                         <th scope="col">Tempat Ujian</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Lihat Pendaftar</th>
                         <th scope="col">Ubah</th>
                       </tr>
@@ -46,6 +47,14 @@
                         <th scope="row">{{ $loop->iteration}}</th>
                         <td>{{ $schedule->exam_date }}</td>
                         <td>{{ $schedule->place }}</td>
+                        <td>
+                          @if ($schedule->is_open)
+                            <span class="badge bg-success">Terbuka</span>
+                          @else
+                            <span class="badge bg-danger">Tertutup</span>
+                          @endif
+                        </td>
+
                         <td>
                           <a href="{{route('admin.exam-schedule.show',$schedule->id)}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
                         </td>

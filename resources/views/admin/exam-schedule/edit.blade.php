@@ -48,6 +48,22 @@
                   </div>
 
                   <div class="col-12">
+                    <label for="status"  class="form-label">Status</label>
+                    <div class="col-sm-12">
+                      <select class="form-select {{$errors->has('status') ? 'is-invalid' : ''}}"  aria-label="Default select example" name="status">
+                        <option value="{{ $exam_schedule->is_open }}">{{ $exam_schedule->is_open ? 'terbuka' : 'tertutup'}}</option>
+                        <option value="1">Terbuka</option>
+                        <option value="0">Tertutup</option>
+                      </select>
+                      @if ($errors->has('status'))
+                        <div class="invalid-feedback">
+                          {{$errors->first('status')}}
+                        </div>
+                      @endif
+                    </div>
+                  </div>
+
+                  <div class="col-12">
                     <div class="d-grid gap-2 mt-3">
                       <button type="submit" class="btn btn-primary" >Simpan</button>
                     </div>                  

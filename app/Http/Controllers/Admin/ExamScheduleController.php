@@ -40,12 +40,14 @@ class ExamScheduleController extends Controller
 
             'exam_date' => ['required'],
             'place' => ['required'],
+            'status' => ['required', 'boolean'],
         ]);
 
        $user = ExamSchedule::create([
             'admin_id' => Auth::user()->id,
             'exam_date' => $request->exam_date,
             'place' => $request->place,
+            'is_open' => $request->status,
         ]);
 
         
@@ -87,6 +89,7 @@ class ExamScheduleController extends Controller
         $this->validate($request, [
             'exam_date' => ['required'],
             'place' => ['required'],
+            'status' => ['required', 'boolean'],
         ]);
 
         $exam_schedule = ExamSchedule::findOrFail($id);
@@ -95,6 +98,7 @@ class ExamScheduleController extends Controller
             'admin_id' => Auth::user()->id,
             'exam_date' => $request->exam_date,
             'place' => $request->place,
+            'is_open' => $request->status,
         ]);
 
 
