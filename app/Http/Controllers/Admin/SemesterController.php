@@ -34,10 +34,13 @@ class SemesterController extends Controller
     {
         $this->validate($request, [
             'name' => ['required','unique:semesters,name'],
+            'status' => ['required', 'boolean'],
+
         ]);
 
         $user = Semester::create([
             'name' => $request->name,
+            'status' => $request->status,
         ]);
 
 
@@ -73,13 +76,16 @@ class SemesterController extends Controller
         $semester = Semester::findOrFail($id);
 
         $this->validate($request, [
-            'name' => ['required','unique:semesters,name'],
+            'name' => ['required','unique:semesters,name,'.$id],
+            'status' => ['required', 'boolean'],
         ]);
 
         $semester->update([
             'name'     => $request->name,
+            'status'   => $request->status,
         ]);
 
+        // return  $request->status;
         return redirect()->route('admin.semester.index')->with('success', 'Data Berhasil diubah');
 
     }

@@ -35,6 +35,7 @@
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">Tingkat Semester</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                       </tr>
                     </thead>
@@ -43,6 +44,13 @@
                       <tr>
                         <th scope="row">{{ $loop->iteration}}</th>
                         <td>{{ $semester->name }}</td>
+                        <td>
+                          @if ($semester->status)
+                            <span class="badge bg-success">Aktif</span>
+                          @else
+                            <span class="badge bg-danger">Tidak Aktif</span>
+                          @endif
+                        </td>
                         <td>
                           <a href="{{route('admin.semester.edit',$semester->id)}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                         </td>

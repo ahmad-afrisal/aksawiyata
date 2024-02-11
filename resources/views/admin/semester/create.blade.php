@@ -36,6 +36,21 @@
                       </div>
                     @endif
                   </div>
+                  <div class="col-12">
+                    <label for="status"  class="form-label">Status</label>
+                    <div class="col-sm-12">
+                      <select class="form-select {{$errors->has('status') ? 'is-invalid' : ''}}"  value="{{old('status') ?: ''}}" aria-label="Default select example" name="status" required>
+                        <option disabled>Pilih Status</option>
+                        <option value="1">Aktif</option>
+                        <option value="0">Tidak Aktif</option>
+                      </select>
+                      @if ($errors->has('status'))
+                        <div class="invalid-feedback">
+                          {{$errors->first('status')}}
+                        </div>
+                      @endif
+                    </div>
+                  </div>
 
                   <div class="col-12">
                     <div class="d-grid gap-2 mt-3">
